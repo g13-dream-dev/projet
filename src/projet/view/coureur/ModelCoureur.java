@@ -8,7 +8,6 @@ import jfox.commun.exception.ExceptionValidation;
 import jfox.javafx.util.UtilFX;
 import projet.commun.IMapper;
 import projet.dao.DaoCoureur;
-import projet.dao.DaoPersonne;
 import projet.data.Coureur;
 import projet.data.Personne;
 import projet.data.Telephone;
@@ -21,7 +20,8 @@ public class ModelCoureur {
 	
 	private final ObservableList<Coureur> liste = FXCollections.observableArrayList();
 	
-	private final Coureur		courant = new Coureur();
+	private final Coureur		courant1 = new Coureur();
+	private final Coureur		courant2 = new Coureur();
 	
 	
 	// Autres champs
@@ -38,8 +38,11 @@ public class ModelCoureur {
 		return liste;
 	}
 	
-	public Personne getCourant() {
-		return courant;
+	public Coureur getCourant1() {
+		return courant1;
+	}
+	public Coureur getCourant2() {
+		return courant2;
 	}
 	
 	// Actualisations
@@ -52,12 +55,14 @@ public class ModelCoureur {
 	// Actions
 	
 	public void preparerAjouter() {
-		mapper.update( courant, new Coureur() );
+		mapper.update( courant1, new Coureur() );
+		mapper.update( courant2, new Coureur() );
 	}
 	
 
 	public void preparerModifier( Personne item ) {
-		mapper.update( courant, daoCoureur.retrouver( item.getId() ) );
+		mapper.update( courant1, daoCoureur.retrouver( item.getId() ) );
+		mapper.update( courant2, daoCoureur.retrouver( item.getId() ) );
 	}
 	
 
@@ -67,15 +72,27 @@ public class ModelCoureur {
 		
 		StringBuilder message = new StringBuilder();
 		
-		if( courant.getNom() == null || courant.getNom().isEmpty() ) {
+		if( courant1.getNom() == null || courant1.getNom().isEmpty() ) {
 			message.append( "\nLe nom ne doit pas être vide." );
-		} else  if ( courant.getNom().length()> 25 ) {
+		} else  if ( courant1.getNom().length()> 25 ) {
 			message.append( "\nLe nom est trop long." );
 		}
 
-		if( courant.getPrenom() == null || courant.getPrenom().isEmpty() ) {
+		if( courant1.getPrenom() == null || courant1.getPrenom().isEmpty() ) {
 			message.append( "\nLe prénom ne doit pas être vide." );
-		} else if ( courant.getPrenom().length()> 25 ) {
+		} else if ( courant1.getPrenom().length()> 25 ) {
+			message.append( "\nLe prénom est trop long." );
+		}
+		
+		if( courant2.getNom() == null || courant2.getNom().isEmpty() ) {
+			message.append( "\nLe nom ne doit pas être vide." );
+		} else  if ( courant2.getNom().length()> 25 ) {
+			message.append( "\nLe nom est trop long." );
+		}
+
+		if( courant2.getPrenom() == null || courant2.getPrenom().isEmpty() ) {
+			message.append( "\nLe prénom ne doit pas être vide." );
+		} else if ( courant2.getPrenom().length()> 25 ) {
 			message.append( "\nLe prénom est trop long." );
 		}
 
@@ -86,29 +103,39 @@ public class ModelCoureur {
 		
 		// Effectue la mise à jour
 		
-		if ( courant.getId() == null ) {
+		if ( courant1.getId() == null ) {
 			// Insertion
-			courant.setId( daoCoureur.inserer( courant ) );
+			courant1.setId( daoCoureur.inserer( courant1 ) );
 		} else {
 			// modficiation
-			daoCoureur.modifier( courant );
+			daoCoureur.modifier( courant1 );
+		}
+		if ( courant2.getId() == null ) {
+			// Insertion
+			courant2.setId( daoCoureur.inserer( courant2 ) );
+		} else {
+			// modficiation
+			daoCoureur.modifier( courant2 );
 		}
 	}
 	
 
 	public void supprimer( Coureur item ) {
 		daoCoureur.supprimer( item.getId() );
-		mapper.update( courant, UtilFX.findNext( liste, item ) );
+		mapper.update( courant1, UtilFX.findNext( liste, item ) );
+		mapper.update( courant2, UtilFX.findNext( liste, item ) );
 	}
 	
 
 	public void ajouterTelephone() {
-		courant.getTelephones().add( new Telephone() );
+		courant1.getTelephones().add( new Telephone() );
+		courant2.getTelephones().add( new Telephone() );
 	}
 	
 
 	public void supprimerTelephone( Telephone telephone )  {
-		courant.getTelephones().remove( telephone );
+		courant1.getTelephones().remove( telephone );
+		courant2.getTelephones().remove( telephone );
 	}
 	
 }

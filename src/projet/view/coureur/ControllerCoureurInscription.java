@@ -7,9 +7,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import jfox.javafx.util.ConverterStringInteger;
 import jfox.javafx.view.IManagerGui;
 import projet.data.Compte;
+import projet.data.Coureur;
+import projet.data.Personne;
 import projet.view.EnumView;
+import projet.view.personne.ModelPersonne;
 
 
 public class ControllerCoureurInscription {
@@ -18,21 +22,23 @@ public class ControllerCoureurInscription {
 	// Composants de la vue
 	
 	@FXML
-	private TextField		tfNom;
+	private TextField		tfId1;
 	@FXML
-	private TextField		tfPrenom;
+	private TextField		tfNom1;
 	@FXML
-	private DatePicker dpNaissance;
+	private TextField		tfPrenom1;
 	@FXML
-	private TextField tfTelephone;
+	private DatePicker dpNaissance1;
 	@FXML
-	private TextField tfAdresse;
+	private TextField tfTelephone1;
 	@FXML
-	private TextField tfCodePostal;
+	private TextField tfAdresse1;
 	@FXML
-	private TextField		tfEmail;
+	private TextField tfCodePostal1;
 	@FXML
-	private TextField tfClub;
+	private TextField		tfEmail1;
+	@FXML
+	private TextField tfClub1;
 	
 
 	
@@ -40,13 +46,17 @@ public class ControllerCoureurInscription {
 	
 	@Inject
 	private IManagerGui		managerGui;
-	
+	@Inject
+	private ModelCoureur		modelCoureur;
 	
 	// Initialisation du Controller
 	
 	@FXML
 	private void initialize() {
+		Coureur courant1 = modelCoureur.getCourant1();
 		
+		// Champs simples
+		tfId1.textProperty().bindBidirectional( courant1.idProperty(), new ConverterStringInteger() );
 	}
 	
 	
