@@ -6,6 +6,7 @@ import org.mapstruct.MappingTarget;
 
 import projet.data.Categorie;
 import projet.data.Compte;
+import projet.data.Coureur;
 import projet.data.Memo;
 import projet.data.Personne;
 import projet.data.Service;
@@ -16,12 +17,13 @@ public interface IMapper {
 	
 	Compte update( @MappingTarget Compte target, Compte source  );
 	
-	Categorie update( @MappingTarget Categorie target, Categorie source );
+	//Categorie update( @MappingTarget Categorie target, Categorie source );
 
-	@Mapping( target="categorie", expression="java( source.getCategorie() )" )
+	//@Mapping( target="categorie", expression="java( source.getCategorie() )" )
 	Personne update( @MappingTarget Personne target, Personne source );
+	Coureur update( @MappingTarget Coureur target, Coureur source );
 
-	@Mapping( target="categorie", expression="java( source.getCategorie() )" )
+	//@Mapping( target="categorie", expression="java( source.getCategorie() )" )
 	Memo update( @MappingTarget Memo target, Memo source );
 
 	Service update( @MappingTarget Service target, Service source );

@@ -1,8 +1,8 @@
 
 
--- Supprime le schéma projet
+-- Supprime le schéma dreamdev
 
-DROP SCHEMA IF EXISTS projet CASCADE;
+DROP SCHEMA IF EXISTS dreamdev CASCADE;
 
 
 -- Crée l'utilisateur projet
@@ -10,14 +10,14 @@ DROP SCHEMA IF EXISTS projet CASCADE;
 
 DO $code$
 BEGIN
-	IF EXISTS (SELECT  FROM pg_catalog.pg_roles WHERE rolname  = 'projet')
+	IF EXISTS (SELECT  FROM pg_catalog.pg_roles WHERE rolname  = 'dreamdev')
 	THEN
-		REVOKE CREATE ON DATABASE postgres FROM projet;
-		DROP USER projet;
+		REVOKE CREATE ON DATABASE postgres FROM dreamdev;
+		DROP USER dreamdev;
 	END IF;
 END
 $code$;
 
-CREATE USER projet WITH PASSWORD 'projet';
-GRANT CREATE ON DATABASE postgres TO projet;
+CREATE USER dreamdev WITH PASSWORD 'dreamdev';
+GRANT CREATE ON DATABASE postgres TO dreamdev;
 

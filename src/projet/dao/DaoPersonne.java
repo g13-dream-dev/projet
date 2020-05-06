@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +25,6 @@ public class DaoPersonne {
 	private DataSource		dataSource;
 	@Inject
 	private DaoTelephone	daoTelephone;
-	@Inject
-	private DaoCategorie	daoCategorie;
 
 	
 	// Actions
@@ -41,11 +40,15 @@ public class DaoPersonne {
 			cn = dataSource.getConnection();
 
 			// Insère le personne
-			sql = "INSERT INTO personne ( idcategorie, nom, prenom ) VALUES ( ?, ?, ? )";
+			sql = "INSERT INTO personne ( nom, prenom, sexe, naissance, adresse, codepostal, email ) VALUES ( ?, ?, ?, ?, ?, ?, ? )";
 			stmt = cn.prepareStatement( sql, Statement.RETURN_GENERATED_KEYS  );
-			stmt.setInt(	1, personne.getCategorie().getId() );
-			stmt.setString(	2, personne.getNom() );
-			stmt.setString(	3, personne.getPrenom() );
+			stmt.setString(	1, personne.getNom() );
+			stmt.setString(	2, personne.getPrenom() );
+			stmt.setString(	3, personne.getSexe() );
+			stmt.setObject(	4, personne.getNaissance() );
+			stmt.setString(	5, personne.getAdresse() );
+			stmt.setInt(	6, personne.getCodePostal() );
+			stmt.setString(	7, personne.getEmail() );
 			stmt.executeUpdate();
 
 			// Récupère l'identifiant généré par le SGBD
@@ -77,12 +80,16 @@ public class DaoPersonne {
 			cn = dataSource.getConnection();
 
 			// Modifie le personne
-			sql = "UPDATE personne SET idcategorie = ?, nom = ?, prenom = ? WHERE idpersonne =  ?";
+			sql = "UPDATE personne SET nom = ?, prenom = ?, sexe = ?, naissance = ?, adresse = ?, codepostal = ?, email = ? WHERE idpersonne =  ?";
 			stmt = cn.prepareStatement( sql );
-			stmt.setObject( 1, personne.getCategorie().getId() );
-			stmt.setObject( 2, personne.getNom() );
-			stmt.setObject( 3, personne.getPrenom() );
-			stmt.setObject( 4, personne.getId() );
+			stmt.setObject( 1, personne.getNom() );
+			stmt.setObject( 2, personne.getPrenom() );
+			stmt.setObject( 3, personne.getSexe() );
+			stmt.setObject( 4, personne.getNaissance() );
+			stmt.setObject( 5, personne.getAdresse() );
+			stmt.setObject( 6, personne.getCodePostal() );
+			stmt.setObject( 7, personne.getEmail() );
+			stmt.setObject( 8, personne.getId() );
 			stmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -210,7 +217,7 @@ public class DaoPersonne {
 	}
 
     
-    public int compterPourCategorie(int idCategorie) {
+    /*public int compterPourCategorie(int idCategorie) {
     	
 		Connection			cn		= null;
 		PreparedStatement	stmt 	= null;
@@ -231,7 +238,7 @@ public class DaoPersonne {
 		} finally {
 			UtilJdbc.close( rs, stmt, cn );
 		}
-    }
+    }*/
 	
 	
 	// Méthodes auxiliaires
@@ -242,9 +249,13 @@ public class DaoPersonne {
 		personne.setId(rs.getObject( "idpersonne", Integer.class ));
 		personne.setNom(rs.getObject( "nom", String.class ));
 		personne.setPrenom(rs.getObject( "prenom", String.class ));
+		personne.setSexe(rs.getObject( "sexe", String.class ));
+		personne.setNaissance(rs.getObject( "naissance", LocalDate.class ));
+		personne.setAdresse(rs.getObject( "adresse", String.class ));
+		personne.setCodePostal(rs.getObject( "codepostal", Integer.class ));
+		personne.setEmail(rs.getObject( "email", String.class ));
 
 		if ( flagComplet ) {
-			personne.setCategorie( daoCategorie.retrouver( rs.getObject("idcategorie", Integer.class) ) );
 			personne.getTelephones().addAll( daoTelephone.listerPourPersonne( personne ) );
 		}
 		

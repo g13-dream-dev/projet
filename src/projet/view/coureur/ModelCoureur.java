@@ -1,4 +1,4 @@
- package projet.view.personne;
+ package projet.view.coureur;
 
 import javax.inject.Inject;
 
@@ -7,20 +7,21 @@ import javafx.collections.ObservableList;
 import jfox.commun.exception.ExceptionValidation;
 import jfox.javafx.util.UtilFX;
 import projet.commun.IMapper;
+import projet.dao.DaoCoureur;
 import projet.dao.DaoPersonne;
-import projet.data.Categorie;
+import projet.data.Coureur;
 import projet.data.Personne;
 import projet.data.Telephone;
 
 
-public class ModelPersonne {
+public class ModelCoureur {
 	
 	
 	// Données observables 
 	
-	private final ObservableList<Personne> liste = FXCollections.observableArrayList();
+	private final ObservableList<Coureur> liste = FXCollections.observableArrayList();
 	
-	private final Personne		courant = new Personne();
+	private final Coureur		courant = new Coureur();
 	
 	
 	// Autres champs
@@ -28,12 +29,12 @@ public class ModelPersonne {
     @Inject
 	private IMapper		        mapper;
     @Inject
-	private DaoPersonne			daoPersonne;
+	private DaoCoureur			daoCoureur;
 	
 	
 	// Getters 
 	
-	public ObservableList<Personne> getListe() {
+	public ObservableList<Coureur> getListe() {
 		return liste;
 	}
 	
@@ -44,19 +45,19 @@ public class ModelPersonne {
 	// Actualisations
 	
 	public void actualiserListe() {
-		liste.setAll( daoPersonne.listerTout() );
+		liste.setAll( daoCoureur.listerTout() );
 	}
 
 	
 	// Actions
 	
 	public void preparerAjouter() {
-		mapper.update( courant, new Personne() );
+		mapper.update( courant, new Coureur() );
 	}
 	
 
 	public void preparerModifier( Personne item ) {
-		mapper.update( courant, daoPersonne.retrouver( item.getId() ) );
+		mapper.update( courant, daoCoureur.retrouver( item.getId() ) );
 	}
 	
 
@@ -87,16 +88,16 @@ public class ModelPersonne {
 		
 		if ( courant.getId() == null ) {
 			// Insertion
-			courant.setId( daoPersonne.inserer( courant ) );
+			courant.setId( daoCoureur.inserer( courant ) );
 		} else {
 			// modficiation
-			daoPersonne.modifier( courant );
+			daoCoureur.modifier( courant );
 		}
 	}
 	
 
-	public void supprimer( Personne item ) {
-		daoPersonne.supprimer( item.getId() );
+	public void supprimer( Coureur item ) {
+		daoCoureur.supprimer( item.getId() );
 		mapper.update( courant, UtilFX.findNext( liste, item ) );
 	}
 	

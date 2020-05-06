@@ -144,6 +144,30 @@ public class MenuBarAppli extends MenuBar {
 		menu.getItems().add( item );
 
 
+		// Manu Coureur
+		
+		menu =  new Menu( "Coureur" );;
+		this.getMenus().add(menu);
+		menuEtats = menu;
+		
+		item = new MenuItem( "Inscription" );
+		item.setOnAction(  (e) ->  
+				managerGui.showDialog( EnumView.CoureurInscription ) );
+		menu.getItems().add( item );
+		
+		
+		// Manu Benevole
+		
+		menu =  new Menu( "Benevole" );;
+		this.getMenus().add(menu);
+		menuEtats = menu;
+		
+		item = new MenuItem( "Inscription" );
+		item.setOnAction(  (e) ->  
+				managerGui.showDialog( EnumView.BenevoleInscription ) );
+		menu.getItems().add( item );
+		
+		
 		// Configuration initiale du menu
 		configurerMenu( modelConnexion.getCompteActif() );
 

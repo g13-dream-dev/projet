@@ -1,4 +1,4 @@
-SET search_path TO projet;
+SET search_path TO dreamdev;
 
 
 -- Supprime toutes les fonctions du schéma
@@ -11,7 +11,7 @@ BEGIN
 		SELECT 'DROP FUNCTION ' || ns.nspname || '.' || proname 
 	       || '(' || oidvectortypes(proargtypes) || ')' AS sql
 		FROM pg_proc INNER JOIN pg_namespace ns ON (pg_proc.pronamespace = ns.oid)
-		WHERE ns.nspname = 'projet'  
+		WHERE ns.nspname = 'dreamdev'  
 	LOOP
 		EXECUTE r.sql;
 	END LOOP;
