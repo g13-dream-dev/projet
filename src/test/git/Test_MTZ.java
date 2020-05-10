@@ -20,7 +20,7 @@ public class Test_MTZ {
 		if ( 0 <= i && i < adresses.length ) {
 			return adresses[i];
 		} else {
-			return null;
+			return "Erreur";
 		}
 	}
 	
