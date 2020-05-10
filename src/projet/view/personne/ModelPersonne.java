@@ -1,4 +1,4 @@
-package projet.view.personne;
+ package projet.view.personne;
 
 import javax.inject.Inject;
 
@@ -29,8 +29,6 @@ public class ModelPersonne {
 	private IMapper		        mapper;
     @Inject
 	private DaoPersonne			daoPersonne;
-	@Inject
-    private ModelCategorie 		modelCategorie;
 	
 	
 	// Getters 
@@ -43,11 +41,6 @@ public class ModelPersonne {
 		return courant;
 	}
 	
-	public ObservableList<Categorie> getCategories() {
-		return modelCategorie.getListe();
-	}
-
-	
 	// Actualisations
 	
 	public void actualiserListe() {
@@ -58,13 +51,11 @@ public class ModelPersonne {
 	// Actions
 	
 	public void preparerAjouter() {
-		modelCategorie.actualiserListe();
 		mapper.update( courant, new Personne() );
 	}
 	
 
 	public void preparerModifier( Personne item ) {
-		modelCategorie.actualiserListe();
 		mapper.update( courant, daoPersonne.retrouver( item.getId() ) );
 	}
 	
@@ -87,10 +78,6 @@ public class ModelPersonne {
 			message.append( "\nLe prénom est trop long." );
 		}
 
-		if( courant.getCategorie() == null ) {
-			message.append( "\nLe catégorie doit être indiquée." );
-		}
-		
 		if ( message.length() > 0 ) {
 			throw new ExceptionValidation( message.toString().substring(1) );
 		}

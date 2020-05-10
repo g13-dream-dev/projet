@@ -1,11 +1,11 @@
-SET search_path TO projet;
+SET search_path TO dreamdev;
 
 
 -- Schéma
 
-DROP SCHEMA IF EXISTS projet CASCADE;
-CREATE SCHEMA projet AUTHORIZATION projet;
-GRANT ALL PRIVILEGES ON SCHEMA projet TO projet;
+DROP SCHEMA IF EXISTS dreamdev CASCADE;
+CREATE SCHEMA dreamdev AUTHORIZATION dreamdev;
+GRANT ALL PRIVILEGES ON SCHEMA dreamdev TO dreamdev;
 
 
 -- Tables

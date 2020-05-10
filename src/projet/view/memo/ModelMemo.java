@@ -22,7 +22,6 @@ import projet.dao.DaoPersonne;
 import projet.data.Categorie;
 import projet.data.Memo;
 import projet.data.Personne;
-import projet.view.personne.ModelCategorie;
 import projet.view.systeme.ModelConfig;
 
 
@@ -48,8 +47,6 @@ public class ModelMemo  {
     @Inject
 	private DaoMemo			daoMemo;
     @Inject
-    private ModelCategorie	modelCategorie;
-    @Inject
 	private DaoPersonne		daoPersonne;
     @Inject
     private ModelConfig		modelConfig;
@@ -74,7 +71,7 @@ public class ModelMemo  {
 	}
 	
 	public ObservableList<Categorie> getCategories() {
-		return modelCategorie.getListe();
+		return null;//modelCategorie.getListe();
 	}
 	
 	public ObservableList<Personne> getPersonnesPourDialogAjout() {
@@ -101,14 +98,14 @@ public class ModelMemo  {
 	// Actions
 	
 	public void preparerAjouter() {
-		modelCategorie.actualiserListe();
+		//modelCategorie.actualiserListe();
 		mapper.update( courant, new Memo() );
 		schema.setValue(null);
 		flagModifSchema = false;
 	}
 	
 	public void preparerModifier( Memo item ) {
-		modelCategorie.actualiserListe();
+		//modelCategorie.actualiserListe();
 		mapper.update( courant, daoMemo.retrouver( item.getId() ) );
 		File fichier = getFichierSchemaCourant();
 		if ( fichier.exists() ) {

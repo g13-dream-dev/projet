@@ -27,8 +27,8 @@ public class ControllerPersonneForm  {
 	private TextField			textFieldNom;
 	@FXML	
 	private TextField			textFieldPrenom;
-    @FXML
-    private ComboBox<Categorie>	comboBoxCategorie;
+    //@FXML
+    //private ComboBox<Categorie>	comboBoxCategorie;
 	@FXML
 	private TableView<Telephone>	tableViewTelphones;
 	@FXML
@@ -61,8 +61,8 @@ public class ControllerPersonneForm  {
 		// Configuration de la combo box
 
 		// Data binding
-		comboBoxCategorie.setItems(  modelPersonne.getCategories());
-        comboBoxCategorie.valueProperty().bindBidirectional( courant.categorieProperty() );
+		//comboBoxCategorie.setItems(  modelPersonne.getCategories());
+        //comboBoxCategorie.valueProperty().bindBidirectional( courant.categorieProperty() );
  		
 		
 		// Configuration du TableView
