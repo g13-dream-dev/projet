@@ -9,6 +9,7 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -40,7 +41,7 @@
                                        <children>
                                           <Label text="A joindre au bulletin d'inscription :">
                                              <VBox.margin>
-                                                <Insets left="4.0" />
+                                                <Insets left="4.0" top="15.0" />
                                              </VBox.margin>
                                           </Label>
                                           <Label text="&gt;permis de conduire si renseigné">
@@ -48,22 +49,18 @@
                                                 <Insets left="4.0" />
                                              </VBox.margin>
                                           </Label>
-                                          <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="350.0" text="Enregistrer">
-                                             <VBox.margin>
-                                                <Insets left="4.0" top="25.0" />
-                                             </VBox.margin>
-                                          </Button>
                                        </children>
                                     </VBox>
-                                    <CheckBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="300.0" text="En cochant cette case j'affirme avoir luet accepter le reglement et la facon dontmes données personnelles seront traitéespar CKC.voir reglement et traitement des donnees" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                    <CheckBox fx:id="cbEngagement1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="300.0" text="En cochant cette case j'affirme avoir luet accepter le reglement et la facon dontmes données personnelles seront traitéespar CKC.voir reglement et traitement des donnees" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                                  </children>
                               </GridPane>
-                              <GridPane layoutX="14.0" layoutY="14.0" prefHeight="240.0" prefWidth="300.0">
+                              <GridPane layoutX="14.0" layoutY="23.0" prefHeight="265.0" prefWidth="300.0">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 </columnConstraints>
                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -74,33 +71,35 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Label text="Nom :" />
-                                    <Label text="Prenom :" GridPane.rowIndex="1" />
-                                    <Label text="Naissance :" GridPane.rowIndex="2" />
-                                    <Label text="Téléphone :" GridPane.rowIndex="3" />
-                                    <Label text="Adresse :" GridPane.rowIndex="4" />
-                                    <Label text="Adresse mail :" GridPane.rowIndex="6" />
-                                    <TextField fx:id="tfNom" GridPane.columnIndex="1" />
-                                    <TextField fx:id="tfPrenom" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <DatePicker fx:id="dpNaissance" promptText="dpnaissance" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField fx:id="tfTelephone" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField fx:id="tfadresse" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                    <Label text="Nom :" GridPane.rowIndex="1" />
+                                    <Label text="Prenom :" GridPane.rowIndex="2" />
+                                    <Label text="Naissance :" GridPane.rowIndex="3" />
+                                    <Label text="Téléphone :" GridPane.rowIndex="4" />
+                                    <Label text="Adresse :" GridPane.rowIndex="5" />
+                                    <Label text="Adresse mail :" GridPane.rowIndex="7" />
+                                    <TextField fx:id="tfNom1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="tfPrenom1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <DatePicker fx:id="dpNaissance1" promptText="dpnaissance" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="tfTelephone1" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField fx:id="tfAdresse1" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                        <children>
                                           <Label text="CP :">
                                              <padding>
                                                 <Insets top="3.0" />
                                              </padding>
                                           </Label>
-                                          <TextField prefHeight="25.0" prefWidth="67.0" />
+                                          <TextField fx:id="tfCodePostal1" prefHeight="25.0" prefWidth="67.0" />
                                        </children>
                                        <padding>
                                           <Insets top="3.0" />
                                        </padding>
                                     </HBox>
-                                    <TextField fx:id="tfEmail" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                    <Label text="Club :" GridPane.rowIndex="7" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <TextField fx:id="tfEmail1" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <Label text="Club :" GridPane.rowIndex="8" />
+                                    <TextField fx:id="tfClub1" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                    <Label text="Id :" />
+                                    <TextField fx:id="tfId1" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="67.0" GridPane.columnIndex="1" />
                                  </children>
                               </GridPane>
                               <GridPane layoutX="406.0" layoutY="14.0" prefHeight="210.0" prefWidth="300.0">
@@ -120,12 +119,15 @@
                                     <Label text="Sexe :" GridPane.halignment="CENTER" />
                                     <HBox prefHeight="30.0" prefWidth="240.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                        <children>
-                                          <RadioButton id="BRsexe" mnemonicParsing="false" text="HOMME">
+                                          <RadioButton fx:id="rbHomme1" mnemonicParsing="false" selected="true" text="HOMME">
                                              <HBox.margin>
                                                 <Insets left="75.0" />
                                              </HBox.margin>
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="brSexe1" />
+                                             </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="FEMME">
+                                          <RadioButton fx:id="rbFemme1" mnemonicParsing="false" text="FEMME" toggleGroup="$brSexe1">
                                              <HBox.margin>
                                                 <Insets left="20.0" />
                                              </HBox.margin>
@@ -164,7 +166,7 @@
                                        <children>
                                           <Label text="A joindre au bulletin d'inscription :">
                                              <VBox.margin>
-                                                <Insets left="4.0" />
+                                                <Insets left="4.0" top="15.0" />
                                              </VBox.margin>
                                           </Label>
                                           <Label text="&gt;permis de conduire si renseigné">
@@ -172,19 +174,14 @@
                                                 <Insets left="4.0" />
                                              </VBox.margin>
                                           </Label>
-                                          <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="350.0" text="Enregistrer">
-                                             <VBox.margin>
-                                                <Insets left="4.0" top="25.0" />
-                                             </VBox.margin>
-                                          </Button>
                                        </children>
                                     </VBox>
-                                    <CheckBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="300.0" text="En cochant cette case j'affirme avoir luet accepter le reglement et la facon dontmes données personnelles seront traitéespar CKC.voir reglement et traitement des donnees" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                    <CheckBox fx:id="cbEngagement2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="300.0" text="En cochant cette case j'affirme avoir luet accepter le reglement et la facon dontmes données personnelles seront traitéespar CKC.voir reglement et traitement des donnees" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                                  </children>
                               </GridPane>
                            </children>
                         </AnchorPane>
-                        <GridPane layoutX="14.0" layoutY="15.0" prefHeight="240.0" prefWidth="300.0">
+                        <GridPane layoutX="19.0" layoutY="20.0" prefHeight="261.0" prefWidth="300.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -198,35 +195,38 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Label text="Nom :" />
-                              <Label text="Prenom :" GridPane.rowIndex="1" />
-                              <Label text="Naissance :" GridPane.rowIndex="2" />
-                              <Label text="Téléphone :" GridPane.rowIndex="3" />
-                              <Label text="Adresse :" GridPane.rowIndex="4" />
-                              <Label text="Adresse mail :" GridPane.rowIndex="6" />
-                              <TextField GridPane.columnIndex="1" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                              <Label text="Nom :" GridPane.rowIndex="1" />
+                              <Label text="Prenom :" GridPane.rowIndex="2" />
+                              <Label text="Naissance :" GridPane.rowIndex="3" />
+                              <Label text="Téléphone :" GridPane.rowIndex="4" />
+                              <Label text="Adresse :" GridPane.rowIndex="5" />
+                              <Label text="Adresse mail :" GridPane.rowIndex="7" />
+                              <TextField fx:id="tfNom2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="tfPrenom2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <DatePicker fx:id="dpNaissance2" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="tfTelephone2" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="tfAdresse2" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                  <children>
                                     <Label text="CP :">
                                        <padding>
                                           <Insets top="3.0" />
                                        </padding>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="67.0" />
+                                    <TextField fx:id="tfCodePostal2" prefHeight="25.0" prefWidth="67.0" />
                                  </children>
                                  <padding>
                                     <Insets top="3.0" />
                                  </padding>
                               </HBox>
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                              <Label text="Club :" GridPane.rowIndex="7" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                              <TextField fx:id="tfEmail2" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                              <Label text="Club :" GridPane.rowIndex="8" />
+                              <TextField fx:id="tfClub2" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                              <Label text="Id :" />
+                              <TextField fx:id="tfId2" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="67.0" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                         <GridPane layoutX="406.0" layoutY="15.0" prefHeight="210.0" prefWidth="300.0">
@@ -246,12 +246,15 @@
                               <Label text="Sexe :" GridPane.halignment="CENTER" />
                               <HBox prefHeight="30.0" prefWidth="240.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                  <children>
-                                    <RadioButton id="BRsexe" mnemonicParsing="false" text="HOMME">
+                                    <RadioButton fx:id="rbHomme2" mnemonicParsing="false" text="HOMME">
                                        <HBox.margin>
                                           <Insets left="75.0" />
                                        </HBox.margin>
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="brSexe2" />
+                                       </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton mnemonicParsing="false" text="FEMME">
+                                    <RadioButton id="brSexe2" fx:id="rbFemme2" mnemonicParsing="false" text="FEMME" toggleGroup="$brSexe2">
                                        <HBox.margin>
                                           <Insets left="20.0" />
                                        </HBox.margin>
@@ -271,6 +274,6 @@
           </Tab>
         </tabs>
       </TabPane>
-      <Button layoutX="421.0" layoutY="513.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="350.0" text="Valider" />
+      <Button layoutX="421.0" layoutY="513.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#doInscrire" prefHeight="30.0" prefWidth="350.0" text="Valider" />
    </children>
 </AnchorPane>

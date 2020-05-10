@@ -39,19 +39,26 @@ INSERT INTO categorie (idcategorie, libelle ) VALUES
   (3, 'Clients' ),
   (4, 'Fournisseurs' ),
   (5, 'Dirigeants' );
-
+ 
 ALTER TABLE categorie ALTER COLUMN idcategorie RESTART WITH 6;
 
 
 -- Personne
 
-INSERT INTO personne (idpersonne, idcategorie, nom, prenom) VALUES 
-  ( 1, 1, 'GRASSET', 'Jérôme' ),
-  ( 2, 1, 'BOUBY', 'Claude' ),
-  ( 3, 1, 'AMBLARD', 'Emmanuel' );
+INSERT INTO personne (idpersonne, nom, prenom, sexe, naissance, telephone, adresse, codepostal, email) VALUES 
+  ( 1, 'GRASSET', 'Jérôme', 'Homme', {d  '2001-05-18' }, '655286355', 'Lion de mer', 82000, 'jean@gmail.fr'),
+  ( 2, 'LIONNE', 'Petite', 'Femme', {d  '2001-05-18' }, '655286358', 'Lion de mer', 82100, 'jean@gmail.fr'),
+  ( 3, 'Moi', 'Monsieur', 'Homme', {d  '2001-05-02' }, '655286355', 'Lion de mer', 82500, 'jean@gmail.fr');
 
 ALTER TABLE personne ALTER COLUMN idpersonne RESTART WITH 4;
 
+-- Coureur
+
+INSERT INTO coureur (idpersonne, poste, club) VALUES 
+  ( 2, 'Capitaine', '3il'),
+  ( 3, 'Equipier', '3il');
+
+ALTER TABLE personne ALTER COLUMN idpersonne RESTART WITH 4;
 
 -- Telephone
 
@@ -71,10 +78,10 @@ ALTER TABLE telephone ALTER COLUMN idtelephone RESTART WITH 100;
 
 -- Memo
 
-INSERT INTO memo (idmemo, titre, description, flagurgent, statut, effectif, budget, echeance, idcategorie ) VALUES 
-  ( 1, 'Mémo n°1', 'Texte du mémo n°1', TRUE,  2,   2,   1234.56,   {d  '2020-02-25' }, 1 ),
-  ( 2, 'Mémo n°2', 'Texte du mémo n°2', FALSE, 1,   4,   5000.00,   {d  '2020-05-18' }, 2 ),
-  ( 3, 'Mémo n°3', NULL, TRUE, 0, NULL, NULL, NULL, NULL );
+INSERT INTO memo (idmemo, titre, description, flagurgent, statut, effectif, budget, echeance) VALUES 
+  ( 1, 'Mémo n°1', 'Texte du mémo n°1', TRUE,  2,   2,   1234.56,   {d  '2020-02-25' }),
+  ( 2, 'Mémo n°2', 'Texte du mémo n°2', FALSE, 1,   4,   5000.00,   {d  '2020-05-18' }),
+  ( 3, 'Mémo n°3', NULL, TRUE, 0, NULL, NULL, NULL);
 
 ALTER TABLE memo ALTER COLUMN idmemo RESTART WITH 4;
 

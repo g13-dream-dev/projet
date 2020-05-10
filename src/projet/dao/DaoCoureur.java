@@ -24,11 +24,12 @@ public class DaoCoureur {
 
 	@Inject
 	private DataSource		dataSource;
-	private DaoPersonne personne;
+	@Inject
+	private DaoPersonne daoPersonne;
 	// Actions
 
 	public int inserer(Coureur coureur)  {
-		personne.inserer(coureur);
+		daoPersonne.inserer(coureur);
 		Connection			cn		= null;
 		PreparedStatement	stmt	= null;
 		ResultSet 			rs 		= null;
@@ -40,15 +41,15 @@ public class DaoCoureur {
 			// Insère le coureur
 			sql = "INSERT INTO coureur ( idpersonne, club, poste) VALUES ( ?, ?, ?)";
 			stmt = cn.prepareStatement( sql, Statement.RETURN_GENERATED_KEYS  );
-			stmt.setInt(	1, coureur.getId() );
+			stmt.setObject(	1, coureur.getId() );
 			stmt.setString(	2, coureur.getClub() );
 			stmt.setString(	3, coureur.getPoste() );
 			stmt.executeUpdate();
 
 			// Récupère l'identifiant généré par le SGBD
-			rs = stmt.getGeneratedKeys();
-			rs.next();
-			coureur.setId( rs.getObject( 1, Integer.class ) );
+			//rs = stmt.getGeneratedKeys();
+			//rs.next();
+			//coureur.setId( rs.getObject( 1, Integer.class ) );
 	
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -62,7 +63,7 @@ public class DaoCoureur {
 
 	
 	public void modifier(Coureur coureur)  {
-		personne.modifier(coureur);
+		daoPersonne.modifier(coureur);
 		Connection			cn		= null;
 		PreparedStatement	stmt	= null;
 		String 				sql;
@@ -87,7 +88,7 @@ public class DaoCoureur {
 
 	
 	public void supprimer(int idCoureur)  {
-		personne.supprimer(idCoureur);
+		daoPersonne.supprimer(idCoureur);
 		Connection			cn		= null;
 		PreparedStatement	stmt	= null;
 		String 				sql;
@@ -168,7 +169,17 @@ public class DaoCoureur {
 	
 	private Coureur construireCoureur( ResultSet rs, boolean flagComplet ) throws SQLException {
 
+		Personne personne = daoPersonne.retrouver(rs.getObject("idpersonne", Integer.class));
 		Coureur coureur = new Coureur();
+		coureur.setId(personne.getId());
+		coureur.setNom(personne.getNom());
+		coureur.setPrenom(personne.getPrenom());
+		coureur.setSexe(personne.getSexe());
+		coureur.setNaissance(personne.getNaissance());
+		coureur.setAdresse(personne.getAdresse());
+		coureur.setCodePostal(personne.getCodePostal());
+		coureur.setTelephone(personne.getTelephone());
+		coureur.setEmail(personne.getEmail());
 		coureur.setClub(rs.getObject("club", String.class));
 		coureur.setPoste(rs.getObject("poste", String.class));
 		

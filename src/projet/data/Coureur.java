@@ -12,9 +12,9 @@ public class Coureur extends Personne {
 	public Coureur() {
 	}
 
-	public Coureur(int id, String nom, String prenom, String sexe, LocalDate naissance, String adresse, int codePostal,
+	public Coureur(int id, String nom, String prenom, String sexe, LocalDate naissance,String telephone, String adresse, int codePostal,
 			String email, String club, String poste) {
-		super(id, nom, prenom, sexe, naissance, adresse, codePostal, email);
+		super(id, nom, prenom, sexe, naissance, telephone, adresse, codePostal, email);
 		setClub(club);
 		setPoste(poste);
 	}
