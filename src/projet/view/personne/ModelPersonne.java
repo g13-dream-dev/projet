@@ -100,14 +100,5 @@ public class ModelPersonne {
 		mapper.update( courant, UtilFX.findNext( liste, item ) );
 	}
 	
-
-	public void ajouterTelephone() {
-		courant.getTelephones().add( new Telephone() );
-	}
-	
-
-	public void supprimerTelephone( Telephone telephone )  {
-		courant.getTelephones().remove( telephone );
-	}
 	
 }

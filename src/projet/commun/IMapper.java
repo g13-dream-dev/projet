@@ -27,7 +27,6 @@ public interface IMapper {
 
 	//@Mapping( target="categorie", expression="java( source.getCategorie() )" )
 	Memo update( @MappingTarget Memo target, Memo source );
-
 	Service update( @MappingTarget Service target, Service source );
 	
 }

@@ -23,9 +23,6 @@ public class DaoPersonne {
 
 	@Inject
 	private DataSource		dataSource;
-	@Inject
-	private DaoTelephone	daoTelephone;
-
 	
 	// Actions
 
@@ -40,15 +37,16 @@ public class DaoPersonne {
 			cn = dataSource.getConnection();
 
 			// Insère le personne
-			sql = "INSERT INTO personne ( nom, prenom, sexe, naissance, adresse, codepostal, email ) VALUES ( ?, ?, ?, ?, ?, ?, ? )";
+			sql = "INSERT INTO personne ( nom, prenom, sexe, naissance, telephone, adresse, codepostal, email ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)";
 			stmt = cn.prepareStatement( sql, Statement.RETURN_GENERATED_KEYS  );
 			stmt.setString(	1, personne.getNom() );
 			stmt.setString(	2, personne.getPrenom() );
 			stmt.setString(	3, personne.getSexe() );
 			stmt.setObject(	4, personne.getNaissance() );
-			stmt.setString(	5, personne.getAdresse() );
-			stmt.setInt(	6, personne.getCodePostal() );
-			stmt.setString(	7, personne.getEmail() );
+			stmt.setString(5, personne.getTelephone());
+			stmt.setString(	6, personne.getAdresse() );
+			stmt.setInt(	7, personne.getCodePostal() );
+			stmt.setString(	8, personne.getEmail() );
 			stmt.executeUpdate();
 
 			// Récupère l'identifiant généré par le SGBD
@@ -61,9 +59,6 @@ public class DaoPersonne {
 		} finally {
 			UtilJdbc.close( stmt, cn );
 		}
-
-		// Insère les telephones
-		daoTelephone.insererPourPersonne( personne );
 		
 		// Retourne l'identifiant
 		return personne.getId();
@@ -80,16 +75,17 @@ public class DaoPersonne {
 			cn = dataSource.getConnection();
 
 			// Modifie le personne
-			sql = "UPDATE personne SET nom = ?, prenom = ?, sexe = ?, naissance = ?, adresse = ?, codepostal = ?, email = ? WHERE idpersonne =  ?";
+			sql = "UPDATE personne SET nom = ?, prenom = ?, sexe = ?, naissance = ?, telephone = ?, adresse = ?, codepostal = ?, email = ? WHERE idpersonne =  ?";
 			stmt = cn.prepareStatement( sql );
 			stmt.setObject( 1, personne.getNom() );
 			stmt.setObject( 2, personne.getPrenom() );
 			stmt.setObject( 3, personne.getSexe() );
 			stmt.setObject( 4, personne.getNaissance() );
-			stmt.setObject( 5, personne.getAdresse() );
-			stmt.setObject( 6, personne.getCodePostal() );
-			stmt.setObject( 7, personne.getEmail() );
-			stmt.setObject( 8, personne.getId() );
+			stmt.setObject( 5, personne.getTelephone() );
+			stmt.setObject( 6, personne.getAdresse() );
+			stmt.setObject( 7, personne.getCodePostal() );
+			stmt.setObject( 8, personne.getEmail() );
+			stmt.setObject( 9, personne.getId() );
 			stmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -98,8 +94,6 @@ public class DaoPersonne {
 			UtilJdbc.close( stmt, cn );
 		}
 
-		// Modifie les telephones
-		daoTelephone.modifierPourPersonne( personne );
 	}
 
 	
@@ -108,9 +102,6 @@ public class DaoPersonne {
 		Connection			cn		= null;
 		PreparedStatement	stmt	= null;
 		String 				sql;
-
-		// Supprime les telephones
-		daoTelephone.supprimerPourPersonne( idPersonne );
 
 		try {
 			cn = dataSource.getConnection();
@@ -251,14 +242,11 @@ public class DaoPersonne {
 		personne.setPrenom(rs.getObject( "prenom", String.class ));
 		personne.setSexe(rs.getObject( "sexe", String.class ));
 		personne.setNaissance(rs.getObject( "naissance", LocalDate.class ));
+		personne.setTelephone(rs.getObject( "telephone", String.class ));
 		personne.setAdresse(rs.getObject( "adresse", String.class ));
 		personne.setCodePostal(rs.getObject( "codepostal", Integer.class ));
 		personne.setEmail(rs.getObject( "email", String.class ));
 
-		if ( flagComplet ) {
-			personne.getTelephones().addAll( daoTelephone.listerPourPersonne( personne ) );
-		}
-		
 		return personne;
 	}
 	

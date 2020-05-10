@@ -68,7 +68,6 @@ public class ControllerPersonneForm  {
 		// Configuration du TableView
 
 		// Data binding
-		tableViewTelphones.setItems(  courant.getTelephones() );
 		
 		columnId.setCellValueFactory( t -> t.getValue().idProperty() );
 		columnLibelle.setCellValueFactory( t -> t.getValue().libelleProperty() );
@@ -93,16 +92,13 @@ public class ControllerPersonneForm  {
 		managerGui.showView( EnumView.PersonneListe );
 	}
 	
-	@FXML
-	private void doAjouterTelephone() {
-		modelPersonne.ajouterTelephone();
-	}
-	
-	
-	@FXML
-	private void doiSupprimerTelephone() {
-		Telephone telephone = tableViewTelphones.getSelectionModel().getSelectedItem();
-		modelPersonne.supprimerTelephone(telephone);
-	}
+	/*
+	 * @FXML private void doAjouterTelephone() { modelPersonne.ajouterTelephone(); }
+	 * 
+	 * 
+	 * @FXML private void doiSupprimerTelephone() { Telephone telephone =
+	 * tableViewTelphones.getSelectionModel().getSelectedItem();
+	 * modelPersonne.supprimerTelephone(telephone); }
+	 */
     
 }
