@@ -1,4 +1,4 @@
- package projet.view.coureur;
+ package projet.view.benevole;
 
 import javax.inject.Inject;
 
@@ -12,7 +12,7 @@ import projet.data.Coureur;
 import projet.data.Personne;
 
 
-public class ModelCoureur {
+public class ModelBenevole {
 	
 	
 	// Données observables 

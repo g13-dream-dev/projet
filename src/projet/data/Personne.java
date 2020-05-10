@@ -21,12 +21,13 @@ public class Personne {
 	private final StringProperty		prenom		= new SimpleStringProperty();
 	private final StringProperty		sexe		= new SimpleStringProperty();
 	private final Property<LocalDate> naissance = new SimpleObjectProperty<>();
+	private final StringProperty		telephone		= new SimpleStringProperty();
 	private final StringProperty		adresse		= new SimpleStringProperty();
 	private final Property<Integer>		codePostal			= new SimpleObjectProperty<>();
 	private final StringProperty		email		= new SimpleStringProperty();
-	private final ObservableList<Telephone>	telephones	= FXCollections.observableArrayList(
-			t ->  new Observable[] { t.libelleProperty(), t.numeroProperty() } 
-		);
+	//private final ObservableList<Telephone>	telephones	= FXCollections.observableArrayList(
+	//		t ->  new Observable[] { t.libelleProperty(), t.numeroProperty() } 
+	//	);
 	
 	
 	// Constructeurs
@@ -34,12 +35,13 @@ public class Personne {
 	public Personne() {
 	}
 	
-	public Personne( int id, String nom, String prenom, String sexe, LocalDate naissance, String adresse, int codePostal, String email) {
+	public Personne( int id, String nom, String prenom, String sexe, LocalDate naissance,String telephone, String adresse, int codePostal, String email) {
 		setId(id);
 		setNom(nom);
 		setPrenom(prenom);
 		setSexe(sexe);
 		setNaissance(naissance);
+		setTelephone(telephone);
 		setAdresse(adresse);
 		setCodePostal(codePostal);
 		setEmail(email);
@@ -84,11 +86,6 @@ public class Personne {
 		this.prenomProperty().setValue(prenom);
 	}
 
-	public ObservableList<Telephone> getTelephones() {
-		return telephones;
-	}
-
-	
 	// toString()
 	
 	@Override
@@ -188,6 +185,21 @@ public class Personne {
 	public final void setEmail(final String email) {
 		this.emailProperty().set(email);
 	}
+
+	public final StringProperty telephoneProperty() {
+		return this.telephone;
+	}
+	
+
+	public final String getTelephone() {
+		return this.telephoneProperty().get();
+	}
+	
+
+	public final void setTelephone(final String telephone) {
+		this.telephoneProperty().set(telephone);
+	}
+	
 	
 	
 	
