@@ -5,6 +5,7 @@ public class Test_MTZ {
 	
 	public void bonjour() {
 		System.out.println( "Bonjoour" );
+		System.out.println(" ça va? ");
 	}
 	
 	
