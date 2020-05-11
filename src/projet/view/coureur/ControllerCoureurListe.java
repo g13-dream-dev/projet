@@ -41,7 +41,7 @@ public class ControllerCoureurListe {
 	private void initialize() {
 		
 		listView.setCellFactory( UtilFX.cellFactory( item -> item.getClub() ) );
-		modelCoureur.actualiserListe();
+		modelCoureur.actualiserListeClubs();
 		// Data binding
 		listView.setItems( modelCoureur.getListe() );
 		
@@ -56,7 +56,7 @@ public class ControllerCoureurListe {
 	}
 	
 	public void refresh() {
-	modelCoureur.actualiserListe();
+	modelCoureur.actualiserListeClubs();
 	UtilFX.selectInListView( listView, modelCoureur.getCourant2() );
 	listView.requestFocus();
 	}
@@ -95,6 +95,8 @@ public class ControllerCoureurListe {
 				if ( listView.getSelectionModel().getSelectedIndex() == -1 ) {
 					managerGui.showDialogError( "Aucun élément n'est sélectionné dans la liste.");
 				} else {
+					System.out.println(listView.getSelectionModel().getSelectedItem().getClub());
+					modelCoureur.actualiserListeCoureurs(listView.getSelectionModel().getSelectedItem().getClub());
 					managerGui.showView( EnumView.CoureurForm );
 				}
 			}

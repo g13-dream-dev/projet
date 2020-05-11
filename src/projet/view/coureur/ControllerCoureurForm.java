@@ -42,8 +42,7 @@ public class ControllerCoureurForm {
 		
 		listView.setCellFactory( UtilFX.cellFactory( item -> item.toString() ) );
 		// Data binding
-		listView.setItems( modelCoureur.getListe() );
-		
+		listView.setItems( modelCoureur.getCoureurs() );
 		// Configuraiton des boutons
 		listView.getSelectionModel().selectedItemProperty().addListener(
 				(obs, oldVal, newVal) -> {
@@ -54,8 +53,8 @@ public class ControllerCoureurForm {
 	}
 	
 	public void refresh() {
-		modelCoureur.actualiserListe();
-		UtilFX.selectInListView( listView, modelCoureur.getCourant2() );
+		modelCoureur.actualiserListeCoureurs("");
+		UtilFX.selectInListView( listView, modelCoureur.getCourant1() );
 		listView.requestFocus();
 	}
 
