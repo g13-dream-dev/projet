@@ -165,6 +165,34 @@ public class DaoCoureur {
 		}
 	}
 	
+	public List<Coureur> listerPourClub(String club)   {
+
+		Connection			cn		= null;
+		PreparedStatement	stmt	= null;
+		ResultSet 			rs 		= null;
+		String				sql;
+
+		try {
+			cn = dataSource.getConnection();
+
+			sql = "SELECT * FROM coureur WHERE club = ? ORDER BY club, poste";
+			stmt = cn.prepareStatement(sql);
+			stmt.setString(1, club);
+			rs = stmt.executeQuery();
+			
+			List<Coureur> coureurs = new ArrayList<>();
+			while (rs.next()) {
+				coureurs.add( construireCoureur(rs, false) );
+			}
+			return coureurs;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			UtilJdbc.close( rs, stmt, cn );
+		}
+	}
+	
 	// Méthodes auxiliaires
 	
 	private Coureur construireCoureur( ResultSet rs, boolean flagComplet ) throws SQLException {

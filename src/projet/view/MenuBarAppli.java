@@ -150,9 +150,9 @@ public class MenuBarAppli extends MenuBar {
 		this.getMenus().add(menu);
 		menuEtats = menu;
 		
-		item = new MenuItem( "Inscription" );
+		item = new MenuItem( "Liste" );
 		item.setOnAction(  (e) ->  
-				managerGui.showDialog( EnumView.CoureurInscription ) );
+				managerGui.showDialog( EnumView.CoureurListe ) );
 		menu.getItems().add( item );
 		
 		

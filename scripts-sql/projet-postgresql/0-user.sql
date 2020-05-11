@@ -5,7 +5,7 @@
 DROP SCHEMA IF EXISTS dreamdev CASCADE;
 
 
--- Crée l'utilisateur projet
+-- Crée l'utilisateur dreamdev
 -- (après l'avoir supprimé au préalable s'il existait déjà)
 
 DO $code$

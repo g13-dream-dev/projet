@@ -21,7 +21,6 @@ import projet.data.Personne;
 import projet.view.EnumView;
 import projet.view.personne.ModelPersonne;
 
-
 public class ControllerCoureurInscription {
 	
 
@@ -42,15 +41,15 @@ public class ControllerCoureurInscription {
 	@FXML
 	private ToggleGroup		brSexe1;
 	@FXML
-	private RadioButton rbHomme1;
+	private RadioButton 	rbHomme1;
 	@FXML
-	private RadioButton rbFemme1;
+	private RadioButton 	rbFemme1;
 	@FXML
 	private ToggleGroup		brSexe2;
 	@FXML
-	private RadioButton rbHomme2;
+	private RadioButton 	rbHomme2;
 	@FXML
-	private RadioButton rbFemme2;
+	private RadioButton 	rbFemme2;
 	@FXML
 	private DatePicker		dpNaissance1;  
 	@FXML

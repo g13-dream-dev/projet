@@ -115,6 +115,6 @@
  * String.class )); poste.setNombrePlaces(rs.getObject( "nombreplace",
  * Integer.class )); poste.setHeureD(rs.getObject( "heureD", String.class ));
  * poste.setEtat(rs.getObject( "etat", String.class )); return poste; }
- * //yeah
+ * 
  * }
  */
