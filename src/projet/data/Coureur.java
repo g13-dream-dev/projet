@@ -47,6 +47,11 @@ public class Coureur extends Personne {
 	public final void setPoste(final String poste) {
 		this.posteProperty().set(poste);
 	}
+	@Override
+	public String toString() {
+		
+		return getPoste()+" "+super.toString();
+	}
 	
 
 }
