@@ -58,6 +58,7 @@ public class MenuBarAppli extends MenuBar {
 		menu.getItems().add( item );
 		itemDeconnecter = item;
 		
+		
 		item = new MenuItem( "Quitter" );
 		item.setOnAction(  (e) -> managerGui.exit()  );
 		menu.getItems().add( item );
@@ -156,7 +157,7 @@ public class MenuBarAppli extends MenuBar {
 		menu.getItems().add( item );
 		
 		
-		// Manu Benevole
+		// Menu Benevole
 		
 		menu =  new Menu( "Benevole" );;
 		this.getMenus().add(menu);
@@ -165,6 +166,18 @@ public class MenuBarAppli extends MenuBar {
 		item = new MenuItem( "Inscription" );
 		item.setOnAction(  (e) ->  
 				managerGui.showDialog( EnumView.BenevoleInscription ) );
+		menu.getItems().add( item );
+		
+		
+		//Menu Poste 
+		
+		menu =  new Menu( "Poste" );;
+		this.getMenus().add(menu);
+		menuEtats = menu;
+		
+		item = new MenuItem( "Liste des postes" );
+		item.setOnAction(  (e) ->  
+				managerGui.showDialog( EnumView.PosteListe ) );
 		menu.getItems().add( item );
 		
 		
