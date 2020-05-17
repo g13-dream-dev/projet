@@ -107,3 +107,14 @@ INSERT INTO service ( idservice, nom, anneecreation, flagsiege ) VALUES
 
 ALTER TABLE service ALTER COLUMN idservice RESTART WITH 5;
 
+-- Course
+
+INSERT INTO course ( idcourse, nom, heureD, distance ) VALUES 
+  ( 1, 'Cheval',' 12h:45', 500 ),
+  ( 2, 'Voiture', ' 12h:40', 600),
+  ( 3, 'Limoges', ' 12h:55', 100),
+  ( 4, ' Brive', ' 12h:00',250 );
+
+
+ALTER TABLE service ALTER COLUMN idservice RESTART WITH 5;
+
