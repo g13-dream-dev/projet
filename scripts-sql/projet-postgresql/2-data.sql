@@ -54,7 +54,7 @@ ALTER TABLE personne ALTER COLUMN idpersonne RESTART WITH 4;
 
 -- Coureur
 
-INSERT INTO coureur (idpersonne, poste, club) VALUES 
+INSERT INTO coureur (idcoureur, poste, club) VALUES 
   ( 2, 'Capitaine', '3il'),
   ( 3, 'Equipier', '3il');
 
@@ -103,6 +103,17 @@ INSERT INTO service ( idservice, nom, anneecreation, flagsiege ) VALUES
   ( 2, 'Comptabilité', NULL, TRUE ),
   ( 3, 'Agence Limoges', 2008, FALSE ),
   ( 4, 'Agence Brive', 2014, FALSE );
+
+
+ALTER TABLE service ALTER COLUMN idservice RESTART WITH 5;
+
+-- Course
+
+INSERT INTO course ( idcourse, nom, heureD, distance ) VALUES 
+  ( 1, 'Cheval',' 12h:45', 500 ),
+  ( 2, 'Voiture', ' 12h:40', 600),
+  ( 3, 'Limoges', ' 12h:55', 100),
+  ( 4, ' Brive', ' 12h:00',250 );
 
 
 ALTER TABLE service ALTER COLUMN idservice RESTART WITH 5;

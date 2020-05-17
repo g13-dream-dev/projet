@@ -1,4 +1,4 @@
-package projet.view.poste;
+package projet.view.coureur;
 
 import javax.inject.Inject;
 
@@ -14,8 +14,7 @@ import projet.view.EnumView;
 import projet.view.coureur.ModelCoureur;
 
 
-public class ControllerPosteListe {
-	
+public class ControllerCoureurClubListe {
 	
 	
 	// Composants de la vue

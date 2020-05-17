@@ -7,8 +7,12 @@ import javafx.collections.ObservableList;
 import jfox.commun.exception.ExceptionValidation;
 import jfox.javafx.util.UtilFX;
 import projet.commun.IMapper;
+import projet.dao.DaoBenevole;
 import projet.dao.DaoCoureur;
+import projet.dao.DaoPermis;
+import projet.data.Benevole;
 import projet.data.Coureur;
+import projet.data.Permis;
 import projet.data.Personne;
 
 
@@ -17,10 +21,10 @@ public class ModelBenevole {
 	
 	// Données observables 
 	
-	private final ObservableList<Coureur> liste = FXCollections.observableArrayList();
+	private final ObservableList<Benevole> liste = FXCollections.observableArrayList();
 	
-	private final Coureur		courant1 = new Coureur();
-	private final Coureur		courant2 = new Coureur();
+	private final Benevole		courant = new Benevole();
+	private final Permis courantPermis = new Permis();
 	
 	
 	// Autres champs
@@ -28,40 +32,43 @@ public class ModelBenevole {
     @Inject
 	private IMapper		        mapper;
     @Inject
-	private DaoCoureur			daoCoureur;
+	private DaoBenevole			daoBenevole;
+    @Inject
+   	private DaoPermis			daoPermis;
 	
 	
 	// Getters 
 	
-	public ObservableList<Coureur> getListe() {
+	public ObservableList<Benevole> getListe() {
 		return liste;
 	}
 	
-	public Coureur getCourant1() {
-		return courant1;
+	public Benevole getCourant() {
+		return courant;
 	}
-	public Coureur getCourant2() {
-		return courant2;
+	
+	public Permis getCourantPermis() {
+		return courantPermis;
 	}
 	
 	// Actualisations
 	
 	public void actualiserListe() {
-		liste.setAll( daoCoureur.listerTout() );
+		liste.setAll( daoBenevole.listerTout() );
 	}
 
 	
 	// Actions
 	
 	public void preparerAjouter() {
-		mapper.update( courant1, new Coureur() );
-		mapper.update( courant2, new Coureur() );
+		mapper.update( courant, new Benevole() );
+		mapper.update(courant.getPermis(), new Permis());
 	}
 	
 
-	public void preparerModifier( Personne item1 , Personne item2) {
-		mapper.update( courant1, daoCoureur.retrouver( item1.getId() ) );
-		mapper.update( courant2, daoCoureur.retrouver( item2.getId() ) );
+	public void preparerModifier( Benevole item ) {
+		mapper.update( courant, daoBenevole.retrouver( item.getId() ) );
+		mapper.update(courantPermis, daoPermis.avoirPourBenevole(courant));
 	}
 	
 
@@ -72,125 +79,77 @@ public class ModelBenevole {
 		StringBuilder message = new StringBuilder();
 		
 		//controle de validite sur courant1
-		if( courant1.getNom() == null || courant1.getNom().isEmpty() ) {
-			message.append( "\nErreur pour Capitaine : Le nom ne doit pas être vide." );
-		} else  if ( courant1.getNom().length()> 25 ) {
-			message.append( "\nErreur pour Capitaine : Le nom est trop long." );
+		if( courant.getNom() == null || courant.getNom().isEmpty() ) {
+			message.append( "\nLe nom ne doit pas être vide." );
+		} else  if ( courant.getNom().length()> 25 ) {
+			message.append( "\nLe nom est trop long." );
 		}
 
-		if( courant1.getPrenom() == null || courant1.getPrenom().isEmpty() ) {
-			message.append( "\nErreur pour Capitaine : Le prénom ne doit pas être vide." );
-		} else if ( courant1.getPrenom().length()> 25 ) {
-			message.append( "\nErreur pour Capitaine : Le prénom est trop long." );
+		if( courant.getPrenom() == null || courant.getPrenom().isEmpty() ) {
+			message.append( "\nLe prénom ne doit pas être vide." );
+		} else if ( courant.getPrenom().length()> 25 ) {
+			message.append( "\nLe prénom est trop long." );
 		}
 		
-		if( courant1.getSexe() == null || courant1.getSexe().isEmpty() ) {
-			message.append( "\nErreur pour Capitaine : selectionnez un sexe." );
+		if( courant.getSexe() == null || courant.getSexe().isEmpty() ) {
+			message.append( "\nselectionnez un sexe." );
 		}
 		
-		if( courant1.getNaissance() == null ) {
-			message.append( "\nErreur pour Capitaine : La naissance ne doit pas être vide." );
+		if( courant.getNaissance() == null ) {
+			message.append( "\nLa naissance ne doit pas être vide." );
 		}
 		
-		if( courant1.getTelephone() == null || courant1.getTelephone().isEmpty() ) {
-			message.append( "\nErreur pour Capitaine : Le telephone ne doit pas être vide." );
-		} else if ( courant1.getTelephone().length()> 13 ) {
-			message.append( "\nErreur pour Capitaine : Le telephone est trop long." );
+		if( courant.getTelephone() == null || courant.getTelephone().isEmpty() ) {
+			message.append( "\nLe telephone ne doit pas être vide." );
+		} else if ( courant.getTelephone().length()> 13 ) {
+			message.append( "\nLe telephone est trop long." );
 		}
 		
-		if( courant1.getAdresse() == null || courant1.getAdresse().isEmpty() ) {
-			message.append( "\nErreur pour Capitaine : L'adresse ne doit pas être vide." );
-		} else if ( courant1.getAdresse().length()> 100 ) {
-			message.append( "\nErreur pour Capitaine : L'adresse est trop long." );
+		if( courant.getAdresse() == null || courant.getAdresse().isEmpty() ) {
+			message.append( "\nL'adresse ne doit pas être vide." );
+		} else if ( courant.getAdresse().length()> 100 ) {
+			message.append( "\nL'adresse est trop long." );
 		}
 		
-		if( courant1.getCodePostal() == null) {
-			message.append( "\nErreur pour Capitaine : le code postal ne doit pas être vide." );
-		} else if ( courant1.getCodePostal() < 0 ) {
-			message.append( "\nErreur pour Capitaine : le code postal ne doit pas etre negatif." );
+		if( courant.getCodePostal() == null) {
+			message.append( "\nle code postal ne doit pas être vide." );
+		} else if ( courant.getCodePostal() < 0 ) {
+			message.append( "\nle code postal ne doit pas etre negatif." );
 		}
 		
-		if( courant1.getEmail() == null || courant1.getEmail().isEmpty() ) {
-			message.append( "\nErreur pour Capitaine : L'adresse mail ne doit pas être vide." );
-		} else if ( courant1.getEmail().length()> 100 ) {
-			message.append( "\nErreur pour Capitaine : L'adresse mail est trop long." );
+		if( courant.getEmail() == null || courant.getEmail().isEmpty() ) {
+			message.append( "\nL'adresse mail ne doit pas être vide." );
+		} else if ( courant.getEmail().length()> 100 ) {
+			message.append( "\nL'adresse mail est trop long." );
 		}
 		
-		//controle de validite sur courant2
-		if( courant2.getNom() == null || courant2.getNom().isEmpty() ) {
-			message.append( "\nErreur pour Capitaine : Le nom ne doit pas être vide." );
-		} else  if ( courant2.getNom().length()> 25 ) {
-			message.append( "\nErreur pour Equipier : Le nom est trop long." );
-		}
-
-		if( courant2.getPrenom() == null || courant2.getPrenom().isEmpty() ) {
-			message.append( "\nErreur pour Equipier : Le prénom ne doit pas être vide." );
-		} else if ( courant2.getPrenom().length()> 25 ) {
-			message.append( "\nErreur pour Equipier : Le prénom est trop long." );
+		if( courantPermis.getNumero() == null || courantPermis.getNumero().isEmpty() ) {
+			message.append( "\nLe numero de permis ne doit pas etre vide." );
+		} else if ( courantPermis.getNumero().length()> 15 ) {
+			message.append( "\nLe numero de permis est trop long." );
 		}
 		
-		if( courant2.getSexe() == null || courant2.getSexe().isEmpty() ) {
-			message.append( "\nErreur pour Equipier : selectionnez un sexe." );
-		}
-		
-		if( courant2.getNaissance() == null ) {
-			message.append( "\nErreur pour Equipier : La naissance ne doit pas être vide." );
-		}
-		
-		if( courant2.getTelephone() == null || courant2.getTelephone().isEmpty() ) {
-			message.append( "\nErreur pour Equipier : Le telephone ne doit pas être vide." );
-		} else if ( courant2.getTelephone().length()> 13 ) {
-			message.append( "\nErreur pour Equipier : Le telephone est trop long." );
-		}
-		
-		if( courant2.getAdresse() == null || courant2.getAdresse().isEmpty() ) {
-			message.append( "\nErreur pour Equipier : L'adresse ne doit pas être vide." );
-		} else if ( courant2.getAdresse().length()> 100 ) {
-			message.append( "\nErreur pour Equipier : L'adresse est trop long." );
-		}
-		
-		if( courant2.getCodePostal() == null) {
-			message.append( "\nErreur pour Capitaine : le code postal ne doit pas être vide." );
-		} else if ( courant2.getCodePostal() < 0 ) {
-			message.append( "\nErreur pour Capitaine : le code postal ne doit pas etre negatif." );
-		}
-		
-		if( courant2.getEmail() == null || courant2.getEmail().isEmpty() ) {
-			message.append( "\nErreur pour Equipier : L'adresse mail ne doit pas être vide." );
-		} else if ( courant2.getEmail().length()> 100 ) {
-			message.append( "\nErreur pour Equipier : L'adresse mail est trop long." );
-		}
-
 		if ( message.length() > 0 ) {
 			throw new ExceptionValidation( message.toString().substring(1) );
 		}
 
 		
 		// Effectue la mise à jour
-		courant1.setPoste("Capitaine");
-		courant2.setPoste("Equipier");
-		if ( courant1.getId() == null ) {
+		if ( courant.getId() == null ) {
 			// Insertion
-			courant1.setId( daoCoureur.inserer( courant1 ) );
+			courant.setPermis(courantPermis);
+			courant.setId( daoBenevole.inserer( courant ) );
 		} else {
 			// modficiation
-			daoCoureur.modifier( courant1 );
-		}
-		if ( courant2.getId() == null ) {
-			// Insertion
-			courant2.setId( daoCoureur.inserer( courant2 ) );
-		} else {
-			// modficiation
-			daoCoureur.modifier( courant2 );
+			courant.setPermis(courantPermis);
+			daoBenevole.modifier( courant );
 		}
 	}
 	
 
-	public void supprimer( Coureur item1, Coureur item2 ) {
-		daoCoureur.supprimer( item1.getId() );
-		daoCoureur.supprimer( item2.getId() );
-		mapper.update( courant1, UtilFX.findNext( liste, item1 ) );
-		mapper.update( courant2, UtilFX.findNext( liste, item2) );
+	public void supprimer( Benevole item) {
+		daoBenevole.supprimer( item.getId() );
+		mapper.update( courant, UtilFX.findNext( liste, item ) );
 	}
 	
 }

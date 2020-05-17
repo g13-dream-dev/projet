@@ -1,7 +1,8 @@
-package projet.view.poste;
+package projet.view.benevole;
 
 import javax.inject.Inject;
 
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -9,76 +10,72 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import jfox.javafx.util.UtilFX;
 import jfox.javafx.view.IManagerGui;
-import projet.data.Coureur;
+import projet.data.Benevole;
 import projet.view.EnumView;
-import projet.view.coureur.ModelCoureur;
 
 
-public class ControllerPosteForm {
-	
+public class ControllerBenevoleListe  {
 	
 	
 	// Composants de la vue
-
+	
 	@FXML
-	private ListView<Coureur>	listView;
+	private ListView<Benevole>	listView;
 	@FXML
 	private Button				buttonModifier;
 	@FXML
 	private Button				buttonSupprimer;
-
-
+	
+	
 	// Autres champs
 	
 	@Inject
 	private IManagerGui			managerGui;
 	@Inject
-	private ModelCoureur		modelCoureur;
+	private ModelBenevole		modelBenevole;
 	
 	
-	// Initialisation du Controller
+	// Initialisation du controller
 
 	@FXML
 	private void initialize() {
 		
-		
-		listView.setCellFactory( UtilFX.cellFactory( item -> item.toString() ) );
 		// Data binding
-		listView.setItems( modelCoureur.getCoureurs() );
-		// Configuraiton des boutons
-		listView.getSelectionModel().selectedItemProperty().addListener(
-				(obs, oldVal, newVal) -> {
-					configurerBoutons();
-		});
-		configurerBoutons();
+		listView.setItems( modelBenevole.getListe() );
 		
+		// Configuraiton des boutons
+		listView.getSelectionModel().getSelectedItems().addListener( 
+		        (ListChangeListener<Benevole>) (c) -> {
+		        	configurerBoutons();
+		});
+    	configurerBoutons();
 	}
 	
 	public void refresh() {
-		modelCoureur.actualiserListeCoureurs("");
-		UtilFX.selectInListView( listView, modelCoureur.getCourant1() );
+		modelBenevole.actualiserListe();
+		UtilFX.selectInListView(listView, modelBenevole.getCourant() );
 		listView.requestFocus();
 	}
-
+	
 	
 	// Actions
 	
-	//@FXML
-	//private void doAjouter() {
-	//	modelCoureur.preparerAjouter();;
-	//	managerGui.showView( EnumView.CoureurInscription );
-	//}
-
+	@FXML
+	private void doAjouter() {
+		modelBenevole.preparerAjouter();
+		managerGui.showView( EnumView.BenevoleForm );
+	}
+	
 	@FXML
 	private void doModifier() {
-		modelCoureur.preparerModifier( listView.getItems().get(0),listView.getItems().get(1) );
-		managerGui.showView( EnumView.CoureurForm );
+		modelBenevole.preparerModifier( listView.getSelectionModel().getSelectedItem() );
+		managerGui.showView( EnumView.BenevoleForm );
 	}
-
+	
 	@FXML
 	private void doSupprimer() {
-		if ( managerGui.showDialogConfirm( "Confirmez-vous la suppresion ?" ) ) {
-			modelCoureur.supprimer( listView.getItems().get(0),listView.getItems().get(1) );
+		if ( managerGui.showDialogConfirm("Etes-vous sûr de voulir supprimer ce benevole ?" ) ) {
+			modelBenevole.supprimer( listView.getSelectionModel().getSelectedItem() );
 			refresh();
 		}
 	}
@@ -94,7 +91,7 @@ public class ControllerPosteForm {
 				if ( listView.getSelectionModel().getSelectedIndex() == -1 ) {
 					managerGui.showDialogError( "Aucun élément n'est sélectionné dans la liste.");
 				} else {
-					managerGui.showView( EnumView.CoureurForm );
+					doModifier();
 				}
 			}
 		}
@@ -104,7 +101,6 @@ public class ControllerPosteForm {
 	// Méthodes auxiliaires
 	
 	private void configurerBoutons() {
-		
     	if( listView.getSelectionModel().getSelectedItems().isEmpty() ) {
 			buttonModifier.setDisable(true);
 			buttonSupprimer.setDisable(true);
@@ -113,5 +109,5 @@ public class ControllerPosteForm {
 			buttonSupprimer.setDisable(false);
 		}
 	}
-
+	
 }
