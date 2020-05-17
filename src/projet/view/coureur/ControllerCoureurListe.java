@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 //package projet.view.coureur;
 //
 //import javax.inject.Inject;
@@ -121,6 +122,8 @@
 //
 //}
 =======
+=======
+>>>>>>> branch 'master' of https://github.com/g13-dream-dev/projet.git
 package projet.view.coureur;
 
 import javax.inject.Inject;
@@ -236,4 +239,3 @@ public class ControllerCoureurListe {
 	}
 
 }
->>>>>>> branch 'master' of https://github.com/g13-dream-dev/projet.git
