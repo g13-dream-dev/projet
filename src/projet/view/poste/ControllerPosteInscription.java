@@ -8,6 +8,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import jfox.commun.exception.ExceptionValidation;
@@ -23,61 +24,19 @@ import projet.view.personne.ModelPersonne;
 
 public class ControllerPosteInscription {
 	
+	
 
 	// Composants de la vue
 	
 	@FXML
-	private TextField		tfId1;
+	private TextField		idcoureur;
 	@FXML
-	private TextField		tfId2;
+	private TextArea		libelle;
 	@FXML
-	private TextField		tfNom1;
+	private TextField		heuredeb;
 	@FXML
-	private TextField		tfNom2;
-	@FXML 
-	private TextField		tfPrenom1;
-	@FXML 
-	private TextField		tfPrenom2;
-	@FXML
-	private ToggleGroup		brSexe1;
-	@FXML
-	private RadioButton 	rbHomme1;
-	@FXML
-	private RadioButton 	rbFemme1;
-	@FXML
-	private ToggleGroup		brSexe2;
-	@FXML
-	private RadioButton 	rbHomme2;
-	@FXML
-	private RadioButton 	rbFemme2;
-	@FXML
-	private DatePicker		dpNaissance1;  
-	@FXML
-	private DatePicker		dpNaissance2;  
-	@FXML
-	private TextField		tfTelephone1;
-	@FXML
-	private TextField		tfTelephone2;
-	@FXML
-	private TextField		tfAdresse1;
-	@FXML
-	private TextField		tfAdresse2;
-	@FXML
-	private TextField		tfCodePostal1;
-	@FXML
-	private TextField		tfCodePostal2;
-	@FXML
-	private TextField		tfEmail1;
-	@FXML
-	private TextField		tfEmail2;
-	@FXML
-	private TextField		tfClub1;
-	@FXML
-	private TextField		tfClub2;
-	@FXML
-	private CheckBox		cbEngagement1;
-	@FXML
-	private CheckBox		cbEngagement2;
+	private TextField		nbplace;
+
 	
 
 	
@@ -95,6 +54,7 @@ public class ControllerPosteInscription {
 		Coureur courant1 = modelCoureur.getCourant1();
 		Coureur courant2 = modelCoureur.getCourant2();
 		
+		
 		//courant1 === capitaine
 		// Champs simples
 		tfId1.textProperty().bindBidirectional( courant1.idProperty(), new ConverterStringInteger() );
@@ -108,6 +68,7 @@ public class ControllerPosteInscription {
 		brSexe1 = new ToggleGroup();
 		rbHomme1.setToggleGroup(brSexe1);
 		rbFemme1.setToggleGroup(brSexe1);
+		
 		
 		//champ complex
 		UtilFX.bindBidirectional(dpNaissance1.getEditor(), courant1.naissanceProperty(), new ConverterStringLocalDate());

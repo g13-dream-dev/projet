@@ -43,6 +43,7 @@ public class ControllerCoureurListe {
 		listView.setCellFactory( UtilFX.cellFactory( item -> item.getClub() ) );
 		modelCoureur.actualiserListeClubs();
 		// Data binding
+		
 		listView.setItems( modelCoureur.getListe() );
 		
 		// Configuraiton des boutons

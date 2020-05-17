@@ -73,6 +73,7 @@ public class ModelConnexion {
 		}
 	}
 	
+	
 
 	public void fermerSessionUtilisateur() {
 		compteActif.setValue( null );

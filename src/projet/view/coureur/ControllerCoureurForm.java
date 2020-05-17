@@ -50,6 +50,7 @@ public class ControllerCoureurForm {
 		});
 		configurerBoutons();
 		
+		
 	}
 	
 	public void refresh() {

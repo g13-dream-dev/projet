@@ -9,7 +9,7 @@
 
 <AnchorPane fx:id="paneRoot" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.coureur.ControllerCoureurForm">
    <children>
-      <Label alignment="CENTER" styleClass="titre-vue" text="INFO EQUIPE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+      <Label alignment="CENTER" styleClass="titre-vue" text="INFO POSTE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
       <HBox alignment="CENTER" layoutY="75.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
             <ListView fx:id="listView" layoutX="88.0" layoutY="75.0" onMouseClicked="#gererClicSurListe" prefHeight="200.0" prefWidth="300.0">

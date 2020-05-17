@@ -45,7 +45,7 @@ public class DaoCoureur {
 			stmt.setString(	2, coureur.getClub() );
 			stmt.setString(	3, coureur.getPoste() );
 			stmt.executeUpdate();
-
+ 
 			// Récupère l'identifiant généré par le SGBD
 			//rs = stmt.getGeneratedKeys();
 			//rs.next();
@@ -83,6 +83,7 @@ public class DaoCoureur {
 			throw new RuntimeException(e);
 		} finally {
 			UtilJdbc.close( stmt, cn );
+			
 		}
 	}
 

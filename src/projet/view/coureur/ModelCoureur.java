@@ -30,6 +30,7 @@ public class ModelCoureur {
 	private IMapper		        mapper;
     @Inject
 	private DaoCoureur			daoCoureur;
+    
 	
 	
 	// Getters 

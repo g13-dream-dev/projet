@@ -17,6 +17,7 @@ import projet.view.coureur.ModelCoureur;
 public class ControllerPosteForm {
 	
 	
+	
 	// Composants de la vue
 
 	@FXML
@@ -39,6 +40,7 @@ public class ControllerPosteForm {
 
 	@FXML
 	private void initialize() {
+		
 		
 		listView.setCellFactory( UtilFX.cellFactory( item -> item.toString() ) );
 		// Data binding
