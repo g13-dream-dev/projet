@@ -1,3 +1,4 @@
+
 package projet.dao;
 
 import java.sql.Connection;
@@ -5,165 +6,163 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.LinkedList;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
 import jfox.dao.jdbc.UtilJdbc;
-import projet.data.Service;
-
+import projet.data.Benevole;
+import projet.data.Permis;
 
 public class DaoPermis {
 
-	
 	// Champs
 
 	@Inject
-	private DataSource		dataSource;
+	private DataSource dataSource;
 
-	
 	// Actions
 
-	public int inserer( Service service ) {
+	public void insererPourBenevole(Benevole benevole) {
 
-		Connection			cn		= null;
-		PreparedStatement	stmt	= null;
-		ResultSet 			rs		= null;
-		String				sql;
-		
+		Connection cn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql;
+
 		try {
 			cn = dataSource.getConnection();
-			sql = "INSERT INTO service ( nom, anneecreation, flagSiege ) VALUES( ?, ?, ? ) ";
-			stmt = cn.prepareStatement( sql, Statement.RETURN_GENERATED_KEYS );
-			stmt.setObject( 1, service.getNom() );
-			stmt.setObject( 2, service.getAnneeCreation() );
-			stmt.setObject( 3, service.getFlagSiege() );
+			sql = "INSERT INTO permis ( idpermis, numero, datedelivrance ) VALUES (?,?,?)";
+			stmt = cn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+			stmt.setObject(1, benevole.getId());
+			stmt.setObject(2, benevole.getPermis().getNumero());
+			stmt.setObject(3, benevole.getPermis().getDateDelivrance());
 			stmt.executeUpdate();
 
-			// Récupère l'identifiant généré par le SGBD
+			// Récupère l'identifiant généré par le SGBD 
 			rs = stmt.getGeneratedKeys();
 			rs.next();
-			service.setId( rs.getObject( 1, Integer.class) );
-			return service.getId();
-	
-		} catch ( SQLException e ) {
-			throw new RuntimeException(e);
-		} finally {
-			UtilJdbc.close( rs, stmt, cn );
-		}
-	}
-
-
-	public void modifier( Service service ) {
-
-		Connection			cn		= null;
-		PreparedStatement	stmt	= null;
-		String				sql;
-
-		try {
-			cn = dataSource.getConnection();
-			sql = "UPDATE service SET nom = ?, anneecreation = ?, flagsiege = ? WHERE idservice =  ?";
-			stmt = cn.prepareStatement( sql );
-			stmt.setObject( 1, service.getNom() );
-			stmt.setObject( 2, service.getAnneeCreation() );
-			stmt.setObject( 3, service.getFlagSiege() );
-			stmt.setObject( 4, service.getId() );
-			stmt.executeUpdate();
-
+			benevole.getPermis().setId(rs.getObject(1, Integer.class));
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			UtilJdbc.close( stmt, cn );
+			UtilJdbc.close(stmt, cn);
 		}
 	}
 
+	public void modifierPourBenevole(Benevole benevole) {
 
-	public void supprimer( int idService ) {
-
-		Connection			cn 		= null;
-		PreparedStatement	stmt 	= null;
-		String				sql;
-
-		try {
-			cn = dataSource.getConnection();
-			sql = "DELETE FROM service WHERE idservice = ? ";
-			stmt = cn.prepareStatement( sql );
-			stmt.setInt( 1, idService );
-			stmt.executeUpdate();
-
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		} finally {
-			UtilJdbc.close( stmt, cn );
-		}
-	}
-
-	
-	public Service retrouver( int idService ) {
-
-		Connection			cn 		= null;
-		PreparedStatement	stmt	= null;
-		ResultSet 			rs		= null;
-		String				sql;
+		Connection cn = null;
+		PreparedStatement stmtDelete = null;
+		PreparedStatement stmtInsert = null;
+		PreparedStatement stmtUpdate = null;
+		ResultSet rs = null;
+		String sql;
 
 		try {
 			cn = dataSource.getConnection();
-			sql = "SELECT * FROM service WHERE idservice = ?";
-			stmt = cn.prepareStatement( sql );
-			stmt.setInt(1, idService);
-			rs = stmt.executeQuery();
 
-			if ( rs.next() ) {
-				return construireService( rs );
+			sql = "DELETE FROM permis WHERE idpermis = ?";
+			stmtDelete = cn.prepareStatement(sql);
+			if(avoirPourBenevole(benevole).size() > 0 && avoirPourBenevole(benevole).size() == 1) {
+				Permis p = avoirPourBenevole(benevole).get(0);
+				if (!benevole.getPermis().equals(p)) {
+					stmtDelete.setObject(1, p.getId());
+					stmtDelete.executeUpdate();
+				}
+			}
+			
+
+			sql = "INSERT INTO telephone ( idpermis, numero, datedelivrance ) VALUES (?,?,?)";
+			stmtInsert = cn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			sql = "UPDATE permis SET idpermis = ?, numero = ?, datedelivrance = ? WHERE idpermis = ?";
+			stmtUpdate = cn.prepareStatement(sql);
+
+			if (benevole.getPermis().getId() == null || benevole.getPermis().getId() == 0) {
+				stmtInsert.setObject(1, benevole.getId());
+				stmtInsert.setObject(2, benevole.getPermis().getNumero());
+				stmtInsert.setObject(3, benevole.getPermis().getDateDelivrance());
+				stmtInsert.executeUpdate();
+				// Récupère l'identifiant généré par le SGBD
+				rs = stmtInsert.getGeneratedKeys();
+				rs.next();
+				benevole.getPermis().setId(rs.getObject(1, Integer.class));
 			} else {
-				return null;
+				stmtUpdate.setObject(1, benevole.getId());
+				stmtUpdate.setObject(2, benevole.getPermis().getNumero());
+				stmtUpdate.setObject(3, benevole.getPermis().getDateDelivrance());
+				stmtUpdate.setObject(4, benevole.getPermis().getId());
+				stmtUpdate.executeUpdate();
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			UtilJdbc.close( rs, stmt, cn );
+			UtilJdbc.close(stmtDelete, stmtInsert, stmtUpdate, cn);
 		}
 	}
 
+	public void supprimerPourBenevole(int idBenevole) {
 
-	public List<Service> listerTout() {
-
-		Connection			cn 		= null;
-		PreparedStatement	stmt 	= null;
-		ResultSet 			rs		= null;
-		String				sql;
+		Connection cn = null;
+		PreparedStatement stmt = null;
+		String sql;
 
 		try {
 			cn = dataSource.getConnection();
-			sql = "SELECT * FROM service ORDER BY nom";
-			stmt = cn.prepareStatement( sql );
-			rs = stmt.executeQuery();
 
-			List<Service> services = new LinkedList<>();
-			while (rs.next()) {
-				services.add( construireService( rs ) );
-			}
-			return services;
+			// Supprime les telephones
+			sql = "DELETE FROM permis  WHERE idpermis = ? ";
+			stmt = cn.prepareStatement(sql);
+			stmt.setObject(1, idBenevole);
+			stmt.executeUpdate();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			UtilJdbc.close( rs, stmt, cn );
+			UtilJdbc.close(stmt, cn);
 		}
 	}
-	
-	
+
+	public List<Permis> avoirPourBenevole(Benevole benevole) {
+
+		Connection cn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql;
+
+		try {
+			cn = dataSource.getConnection();
+
+			sql = "SELECT * FROM permis WHERE idpermis = ? ORDER BY libelle";
+			stmt = cn.prepareStatement(sql);
+			stmt.setObject(1, benevole.getId());
+			rs = stmt.executeQuery();
+
+			List<Permis> permis = new ArrayList<>();
+			while (rs.next()) {
+				permis.add(construirePermis(rs, benevole));
+			}
+			return permis;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			UtilJdbc.close(rs, stmt, cn);
+		}
+	}
+
 	// Méthodes auxiliaires
-	
-	private Service construireService( ResultSet rs ) throws SQLException {
-		Service service = new Service();
-		service.setId( rs.getObject( "idservice", Integer.class ) );
-		service.setNom( rs.getObject( "nom", String.class ) );
-		service.setAnneeCreation( rs.getObject( "anneeCreation", Integer.class ) );
-		service.setFlagSiege( rs.getObject( "flagsiege", Boolean.class ) );
-		return service;
+
+	private Permis construirePermis(ResultSet rs, Benevole benevole) throws SQLException {
+		Permis permis = new Permis();
+		permis.setId(rs.getObject("idpermis", Integer.class));
+		permis.setNumero(rs.getObject("numero", String.class));
+		permis.setDateDelivrance(rs.getObject("datedelivrance", LocalDate.class));
+		return permis;
 	}
 
 }

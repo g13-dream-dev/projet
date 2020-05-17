@@ -70,7 +70,7 @@ public class ControllerPosteForm {
 	@FXML
 	private void doModifier() {
 		modelCoureur.preparerModifier( listView.getItems().get(0),listView.getItems().get(1) );
-		managerGui.showView( EnumView.CoureurInscription );
+		managerGui.showView( EnumView.CoureurForm );
 	}
 
 	@FXML
@@ -92,7 +92,7 @@ public class ControllerPosteForm {
 				if ( listView.getSelectionModel().getSelectedIndex() == -1 ) {
 					managerGui.showDialogError( "Aucun élément n'est sélectionné dans la liste.");
 				} else {
-					managerGui.showView( EnumView.CoureurInscription );
+					managerGui.showView( EnumView.CoureurForm );
 				}
 			}
 		}

@@ -27,7 +27,6 @@ public class Poste {
 		return this.id;
 	}
 	
-
 	public final Integer getId() {
 		return this.idProperty().getValue();
 	}

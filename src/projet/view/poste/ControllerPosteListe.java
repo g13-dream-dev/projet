@@ -67,7 +67,7 @@ public class ControllerPosteListe {
 	@FXML
 	private void doAjouter() {
 		modelCoureur.preparerAjouter();;
-		managerGui.showView( EnumView.CoureurInscription );
+		managerGui.showView( EnumView.CoureurForm );
 	}
 
 	//@FXML

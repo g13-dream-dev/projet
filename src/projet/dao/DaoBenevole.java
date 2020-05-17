@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,11 +12,11 @@ import javax.inject.Inject;
 import javax.sql.DataSource;
 
 import jfox.dao.jdbc.UtilJdbc;
-import projet.data.Coureur;
+import projet.data.Benevole;
 import projet.data.Personne;
 
 
-public class DaoCoureur {
+public class DaoBenevole {
 
 	
 	// Champs
@@ -26,10 +25,12 @@ public class DaoCoureur {
 	private DataSource		dataSource;
 	@Inject
 	private DaoPersonne daoPersonne;
+	@Inject
+	private DaoPermis daoPermis;
 	// Actions
 
-	public int inserer(Coureur coureur)  {
-		daoPersonne.inserer(coureur);
+	public int inserer(Benevole benevole)  {
+		daoPersonne.inserer(benevole);
 		Connection			cn		= null;
 		PreparedStatement	stmt	= null;
 		ResultSet 			rs 		= null;
@@ -38,18 +39,16 @@ public class DaoCoureur {
 		try {
 			cn = dataSource.getConnection();
 
-			// Insère le coureur
-			sql = "INSERT INTO coureur ( idcoureur, club, poste) VALUES ( ?, ?, ?)";
+			// Insère le benevole
+			sql = "INSERT INTO benevole ( idbenevole, permanent) VALUES ( ?, ?)";
 			stmt = cn.prepareStatement( sql, Statement.RETURN_GENERATED_KEYS  );
-			stmt.setObject(	1, coureur.getId() );
-			stmt.setString(	2, coureur.getClub() );
-			stmt.setString(	3, coureur.getPoste() );
+			stmt.setObject(	1, benevole.getId() );
+			stmt.setObject(	2, benevole.isPermanent() );
 			stmt.executeUpdate();
-
-			// Récupère l'identifiant généré par le SGBD
-			//rs = stmt.getGeneratedKeys();
-			//rs.next();
-			//coureur.setId( rs.getObject( 1, Integer.class ) );
+			
+			if(benevole.getPermis() != null && benevole.getPermis().getNumero() != null) {
+				daoPermis.insererPourBenevole(benevole);
+			}
 	
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -58,12 +57,13 @@ public class DaoCoureur {
 		}
 		
 		// Retourne l'identifiant
-		return coureur.getId();
+		return benevole.getId();
 	}
 
 	
-	public void modifier(Coureur coureur)  {
-		daoPersonne.modifier(coureur);
+	public void modifier(Benevole benevole)  {
+		daoPersonne.modifier(benevole);
+		daoPermis.modifierPourBenevole(benevole);
 		Connection			cn		= null;
 		PreparedStatement	stmt	= null;
 		String 				sql;
@@ -71,12 +71,11 @@ public class DaoCoureur {
 		try {
 			cn = dataSource.getConnection();
 
-			// Modifie le coureur
-			sql = "UPDATE coureur SET club = ?, poste = ? WHERE idcoureur =  ?";
+			// Modifie le benevole
+			sql = "UPDATE benevole SET permanent = ? WHERE idbenevole =  ?";
 			stmt = cn.prepareStatement( sql );
-			stmt.setObject( 1, coureur.getClub());
-			stmt.setObject( 2, coureur.getPoste());
-			stmt.setObject( 3, coureur.getId() );
+			stmt.setObject( 1, benevole.isPermanent());
+			stmt.setObject( 2, benevole.getId() );
 			stmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -87,8 +86,8 @@ public class DaoCoureur {
 	}
 
 	
-	public void supprimer(int idCoureur)  {
-		daoPersonne.supprimer(idCoureur);
+	public void supprimer(int idBenevole)  {
+		daoPersonne.supprimer(idBenevole);
 		Connection			cn		= null;
 		PreparedStatement	stmt	= null;
 		String 				sql;
@@ -96,10 +95,10 @@ public class DaoCoureur {
 		try {
 			cn = dataSource.getConnection();
 
-			// Supprime le coureur
-			sql = "DELETE FROM coureur WHERE idcoureur = ? ";
+			// Supprime le benevole
+			sql = "DELETE FROM benevole WHERE idbenevole = ? ";
 			stmt = cn.prepareStatement(sql);
-			stmt.setObject( 1, idCoureur );
+			stmt.setObject( 1, idBenevole );
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -110,7 +109,7 @@ public class DaoCoureur {
 	}
 
 	
-	public Coureur retrouver(int idCoureur)  {
+	public Benevole retrouver(int idBenevole)  {
 
 		Connection			cn		= null;
 		PreparedStatement	stmt	= null;
@@ -120,13 +119,13 @@ public class DaoCoureur {
 		try {
 			cn = dataSource.getConnection();
 
-			sql = "SELECT * FROM coureur WHERE idcoureur = ?";
+			sql = "SELECT * FROM benevole WHERE idbenevole = ?";
             stmt = cn.prepareStatement(sql);
-            stmt.setObject( 1, idCoureur);
+            stmt.setObject( 1, idBenevole);
             rs = stmt.executeQuery();
 
             if ( rs.next() ) {
-                return construireCoureur(rs, true );
+                return construireBenevole(rs, true );
             } else {
             	return null;
             }
@@ -138,7 +137,7 @@ public class DaoCoureur {
 	}
 
 	   
-	public List<Coureur> listerTout()   {
+	public List<Benevole> listerTout()   {
 
 		Connection			cn		= null;
 		PreparedStatement	stmt	= null;
@@ -148,15 +147,15 @@ public class DaoCoureur {
 		try {
 			cn = dataSource.getConnection();
 
-			sql = "SELECT * FROM coureur ORDER BY club, poste";
+			sql = "SELECT * FROM benevole";
 			stmt = cn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			
-			List<Coureur> coureurs = new ArrayList<>();
+			List<Benevole> benevoles = new ArrayList<>();
 			while (rs.next()) {
-				coureurs.add( construireCoureur(rs, false) );
+				benevoles.add( construireBenevole(rs, false) );
 			}
-			return coureurs;
+			return benevoles;
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -165,7 +164,7 @@ public class DaoCoureur {
 		}
 	}
 	
-	public List<Coureur> listerPourClub(String club)   {
+	public List<Benevole> listerPermanent(Boolean permanence)   {
 
 		Connection			cn		= null;
 		PreparedStatement	stmt	= null;
@@ -175,16 +174,16 @@ public class DaoCoureur {
 		try {
 			cn = dataSource.getConnection();
 
-			sql = "SELECT * FROM coureur WHERE club = ? ORDER BY club, poste";
+			sql = "SELECT * FROM benevole WHERE permanent = ? ";
 			stmt = cn.prepareStatement(sql);
-			stmt.setString(1, club);
+			stmt.setObject(1, permanence);
 			rs = stmt.executeQuery();
 			
-			List<Coureur> coureurs = new ArrayList<>();
+			List<Benevole> benevoles = new ArrayList<>();
 			while (rs.next()) {
-				coureurs.add( construireCoureur(rs, false) );
+				benevoles.add( construireBenevole(rs, false) );
 			}
-			return coureurs;
+			return benevoles;
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -195,23 +194,22 @@ public class DaoCoureur {
 	
 	// Méthodes auxiliaires
 	
-	private Coureur construireCoureur( ResultSet rs, boolean flagComplet ) throws SQLException {
+	private Benevole construireBenevole( ResultSet rs, boolean flagComplet ) throws SQLException {
 
-		Personne personne = daoPersonne.retrouver(rs.getObject("idcoureur", Integer.class));
-		Coureur coureur = new Coureur();
-		coureur.setId(personne.getId());
-		coureur.setNom(personne.getNom());
-		coureur.setPrenom(personne.getPrenom());
-		coureur.setSexe(personne.getSexe());
-		coureur.setNaissance(personne.getNaissance());
-		coureur.setAdresse(personne.getAdresse());
-		coureur.setCodePostal(personne.getCodePostal());
-		coureur.setTelephone(personne.getTelephone());
-		coureur.setEmail(personne.getEmail());
-		coureur.setClub(rs.getObject("club", String.class));
-		coureur.setPoste(rs.getObject("poste", String.class));
+		Personne personne = daoPersonne.retrouver(rs.getObject("idbenevole", Integer.class));
+		Benevole benevole = new Benevole();
+		benevole.setId(personne.getId());
+		benevole.setNom(personne.getNom());
+		benevole.setPrenom(personne.getPrenom());
+		benevole.setSexe(personne.getSexe());
+		benevole.setNaissance(personne.getNaissance());
+		benevole.setAdresse(personne.getAdresse());
+		benevole.setCodePostal(personne.getCodePostal());
+		benevole.setTelephone(personne.getTelephone());
+		benevole.setEmail(personne.getEmail());
+		benevole.setPermanent(rs.getObject("permanent", Boolean.class));
 		
-		return coureur;
+		return benevole;
 	}
 	
 }

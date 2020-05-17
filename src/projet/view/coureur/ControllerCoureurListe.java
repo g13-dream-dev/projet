@@ -22,9 +22,9 @@ public class ControllerCoureurListe {
 	@FXML
 	private ListView<Coureur>	listView;
 	@FXML
-	private Button				buttonAjouter;
+	private Button				buttonModifier;
 	@FXML
-	private Button				buttonImprimer;
+	private Button				buttonSupprimer;
 
 
 	// Autres champs
@@ -40,11 +40,9 @@ public class ControllerCoureurListe {
 	@FXML
 	private void initialize() {
 		
-		listView.setCellFactory( UtilFX.cellFactory( item -> item.getClub() ) );
-		modelCoureur.actualiserListeClubs();
+		listView.setCellFactory( UtilFX.cellFactory( item -> item.toString() ) );
 		// Data binding
-		listView.setItems( modelCoureur.getListe() );
-		
+		listView.setItems( modelCoureur.getCoureurs() );
 		// Configuraiton des boutons
 		listView.getSelectionModel().selectedItemProperty().addListener(
 				(obs, oldVal, newVal) -> {
@@ -52,37 +50,36 @@ public class ControllerCoureurListe {
 		});
 		configurerBoutons();
 		
-		
 	}
 	
 	public void refresh() {
-	modelCoureur.actualiserListeClubs();
-	UtilFX.selectInListView( listView, modelCoureur.getCourant2() );
-	listView.requestFocus();
+		modelCoureur.actualiserListeCoureurs("");
+		UtilFX.selectInListView( listView, modelCoureur.getCourant1() );
+		listView.requestFocus();
 	}
 
 	
 	// Actions
 	
+	//@FXML
+	//private void doAjouter() {
+	//	modelCoureur.preparerAjouter();;
+	//	managerGui.showView( EnumView.CoureurInscription );
+	//}
+
 	@FXML
-	private void doAjouter() {
-		modelCoureur.preparerAjouter();;
-		managerGui.showView( EnumView.CoureurInscription );
+	private void doModifier() {
+		modelCoureur.preparerModifier( listView.getItems().get(0),listView.getItems().get(1) );
+		managerGui.showView( EnumView.CoureurForm );
 	}
 
-	//@FXML
-	//private void doModifier() {
-		//modelCoureur.preparerModifier( listView.getSelectionModel().getSelectedItem() );
-		//managerGui.showView( EnumView.CoureurInscription );
-	//}
-
-	//@FXML
-	//private void doSupprimer() {
-		//if ( managerGui.showDialogConfirm( "Confirmez-vous la suppresion ?" ) ) {
-		//	modelCoureur.supprimer( listView.getSelectionModel().getSelectedItem() );
-		//	refresh();
-		//}
-	//}
+	@FXML
+	private void doSupprimer() {
+		if ( managerGui.showDialogConfirm( "Confirmez-vous la suppresion ?" ) ) {
+			modelCoureur.supprimer( listView.getItems().get(0),listView.getItems().get(1) );
+			refresh();
+		}
+	}
 	
 	
 	// Gestion des évènements
@@ -95,8 +92,6 @@ public class ControllerCoureurListe {
 				if ( listView.getSelectionModel().getSelectedIndex() == -1 ) {
 					managerGui.showDialogError( "Aucun élément n'est sélectionné dans la liste.");
 				} else {
-					System.out.println(listView.getSelectionModel().getSelectedItem().getClub());
-					modelCoureur.actualiserListeCoureurs(listView.getSelectionModel().getSelectedItem().getClub());
 					managerGui.showView( EnumView.CoureurForm );
 				}
 			}
@@ -109,11 +104,11 @@ public class ControllerCoureurListe {
 	private void configurerBoutons() {
 		
     	if( listView.getSelectionModel().getSelectedItems().isEmpty() ) {
-			buttonAjouter.setDisable(true);
-			buttonImprimer.setDisable(true);
+			buttonModifier.setDisable(true);
+			buttonSupprimer.setDisable(true);
 		} else {
-			buttonAjouter.setDisable(false);
-			buttonImprimer.setDisable(false);
+			buttonModifier.setDisable(false);
+			buttonSupprimer.setDisable(false);
 		}
 	}
 

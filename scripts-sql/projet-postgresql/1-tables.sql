@@ -86,13 +86,13 @@ CREATE TABLE service (
 );
 
 ------------------------------------------------------------
--- Table: benevol_simple
+-- Table: benevol
 ------------------------------------------------------------
 CREATE TABLE benevole(
-	idpersonne 		INT NOT NULL,
-	type 			VARCHAR(10),
-	PRIMARY KEY (idpersonne),
-	FOREIGN KEY (idpersonne) REFERENCES personne(idpersonne)
+	idbenevole 		INT NOT NULL,
+	permanent 			BOOLEAN NOT NULL,
+	PRIMARY KEY (idbenevole),
+	FOREIGN KEY (idbenevole) REFERENCES personne(idpersonne)
 )WITHOUT OIDS;
 
 
@@ -100,25 +100,38 @@ CREATE TABLE benevole(
 -- Table: coureur
 ------------------------------------------------------------
 CREATE TABLE coureur(
-	idpersonne 		INT NOT NULL,
-	poste 			VARCHAR(10),
-	club			VARCHAR(30),
-	PRIMARY KEY (idpersonne),
-	FOREIGN KEY (idpersonne) REFERENCES personne(idpersonne)
+	idcoureur 		INT NOT NULL,
+	poste 			VARCHAR(10) NOT NULL,
+	club			VARCHAR(30) NOT NULL,
+	PRIMARY KEY (idcoureur),
+	FOREIGN KEY (idcoureur) REFERENCES personne(idpersonne)
 )WITHOUT OIDS;
 
 ------------------------------------------------------------
 -- Table: poste
 ------------------------------------------------------------
+
 CREATE TABLE poste(
 	idposte 		INT NOT NULL,
 	idbenevole		INT NOT NULL,
 	libelle 		VARCHAR(100),
 	nombreplace		INT,
 	heured 		VARCHAR(100),
-	heuref 		VARCHAR(100),
+	etat 		VARCHAR(20),
 	PRIMARY KEY (idposte),
-	FOREIGN KEY (idbenevole) REFERENCES benevole (idpersonne)
+	FOREIGN KEY (idbenevole) REFERENCES benevole (idbenevole)
+)WITHOUT OIDS;
+
+------------------------------------------------------------
+-- Table: permis
+------------------------------------------------------------
+
+CREATE TABLE permis(
+	idpermis 		INT NOT NULL,
+	numero 		VARCHAR(100),
+	datedelivrance		DATE,
+	PRIMARY KEY (idpermis),
+	FOREIGN KEY (idpermis) REFERENCES benevole (idbenevole)
 )WITHOUT OIDS;
 
 

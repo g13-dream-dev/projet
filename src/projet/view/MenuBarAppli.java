@@ -151,9 +151,9 @@ public class MenuBarAppli extends MenuBar {
 		this.getMenus().add(menu);
 		menuEtats = menu;
 		
-		item = new MenuItem( "Liste" );
+		item = new MenuItem( "Clubs" );
 		item.setOnAction(  (e) ->  
-				managerGui.showDialog( EnumView.CoureurListe ) );
+				managerGui.showDialog( EnumView.CoureurClubListe ) );
 		menu.getItems().add( item );
 		
 		
@@ -163,9 +163,9 @@ public class MenuBarAppli extends MenuBar {
 		this.getMenus().add(menu);
 		menuEtats = menu;
 		
-		item = new MenuItem( "Inscription" );
+		item = new MenuItem( "Form" );
 		item.setOnAction(  (e) ->  
-				managerGui.showDialog( EnumView.BenevoleInscription ) );
+				managerGui.showDialog( EnumView.BenevoleForm ) );
 		menu.getItems().add( item );
 		
 		
