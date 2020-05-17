@@ -51,8 +51,6 @@ public class ControllerCoureurClubListe {
 					configurerBoutons();
 		});
 		configurerBoutons();
-		
-		
 	}
 	
 	public void refresh() {
