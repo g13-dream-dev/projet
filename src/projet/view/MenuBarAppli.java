@@ -180,6 +180,12 @@ public class MenuBarAppli extends MenuBar {
 				managerGui.showDialog( EnumView.PosteListe ) );
 		menu.getItems().add( item );
 		
+		item = new MenuItem( " Ajouter un poste" );
+		item.setOnAction(  (e) ->  
+				managerGui.showDialog( EnumView.PosteInscription ) );
+		menu.getItems().add( item );
+		
+		
 		
 		// Configuration initiale du menu
 		configurerMenu( modelConnexion.getCompteActif() );
