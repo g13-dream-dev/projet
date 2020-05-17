@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane fx:id="paneRoot" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.coureur.ControllerCoureurClubListe">
+<AnchorPane fx:id="paneRoot" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.coureur.ControllerCoureurClubListe">
    <children>
-      <Label alignment="CENTER" styleClass="titre-vue" text="LISTE DES POSTES" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+      <Label alignment="CENTER" styleClass="titre-vue" text="LISTE DES EQUIPES" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
       <HBox alignment="CENTER" layoutY="75.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
             <ListView fx:id="listView" layoutX="88.0" layoutY="75.0" onMouseClicked="#gererClicSurListe" prefHeight="200.0" prefWidth="300.0">

@@ -54,7 +54,7 @@ ALTER TABLE personne ALTER COLUMN idpersonne RESTART WITH 4;
 
 -- Coureur
 
-INSERT INTO coureur (idpersonne, poste, club) VALUES 
+INSERT INTO coureur (idcoureur, poste, club) VALUES 
   ( 2, 'Capitaine', '3il'),
   ( 3, 'Equipier', '3il');
 

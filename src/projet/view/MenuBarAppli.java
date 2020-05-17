@@ -147,25 +147,25 @@ public class MenuBarAppli extends MenuBar {
 
 		// Manu Coureur
 		
-		menu =  new Menu( "Coureur" );;
+		menu =  new Menu( "Coureur" );
 		this.getMenus().add(menu);
 		menuEtats = menu;
 		
-		item = new MenuItem( "Liste" );
+		item = new MenuItem( "Clubs" );
 		item.setOnAction(  (e) ->  
-				managerGui.showDialog( EnumView.CoureurListe ) );
+				managerGui.showDialog( EnumView.CoureurClubListe ) );
 		menu.getItems().add( item );
 		
 		
 		// Menu Benevole
 		
-		menu =  new Menu( "Benevole" );;
+		menu =  new Menu( "Benevole" );
 		this.getMenus().add(menu);
 		menuEtats = menu;
 		
-		item = new MenuItem( "Inscription" );
+		item = new MenuItem( "Liste" );
 		item.setOnAction(  (e) ->  
-				managerGui.showDialog( EnumView.BenevoleInscription ) );
+				managerGui.showDialog( EnumView.BenevoleListe ) );
 		menu.getItems().add( item );
 		
 		

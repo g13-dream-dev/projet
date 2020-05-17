@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane fx:id="paneRoot" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.coureur.ControllerCoureurForm">
+<AnchorPane fx:id="paneRoot" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.benevole.ControllerBenevoleListe">
    <children>
-      <Label alignment="CENTER" styleClass="titre-vue" text="INFO EQUIPE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+      <Label alignment="CENTER" styleClass="titre-vue" text="LISTE DES EQUIPES" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
       <HBox alignment="CENTER" layoutY="75.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
             <ListView fx:id="listView" layoutX="88.0" layoutY="75.0" onMouseClicked="#gererClicSurListe" prefHeight="200.0" prefWidth="300.0">
@@ -21,8 +21,9 @@
       </HBox>
       <HBox alignment="CENTER" layoutY="263.0" prefHeight="60.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button fx:id="buttonSupprimer" mnemonicParsing="false" onAction="#doSupprimer" text="Supprimer" />
-            <Button fx:id="buttonModifier" mnemonicParsing="false" onAction="#doModifier" text="Modifier" />
+            <Button fx:id="buttonAjouter" mnemonicParsing="false" onAction="#doAjouter" text="Ajouter" />
+            <Button fx:id="buttonModifier" mnemonicParsing="false" text="Modifier" />
+            <Button fx:id="buttonSupprimer" mnemonicParsing="false" text="Supprimer" />
          </children>
       </HBox>
    </children>
