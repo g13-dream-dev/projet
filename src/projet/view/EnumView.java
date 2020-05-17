@@ -32,6 +32,7 @@ public enum EnumView implements IEnumView {
 	CoureurClubListe		( "coureur/ViewCoureurClubListe.fxml" ),
 	CoureurForm       ("coureur/ViewCoureurInscription.fxml"),
 	BenevoleForm		( "benevole/ViewBenevoleInscription.fxml" ),
+	BenevoleListe		( "benevole/ViewBenevoleListe.fxml" ),
 	PosteListe	( "poste/ViewPosteListe.fxml" ),
 	;
 

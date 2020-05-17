@@ -9,6 +9,7 @@ import jfox.javafx.util.UtilFX;
 import projet.commun.IMapper;
 import projet.dao.DaoBenevole;
 import projet.dao.DaoCoureur;
+import projet.dao.DaoPermis;
 import projet.data.Benevole;
 import projet.data.Coureur;
 import projet.data.Permis;
@@ -32,6 +33,8 @@ public class ModelBenevole {
 	private IMapper		        mapper;
     @Inject
 	private DaoBenevole			daoBenevole;
+    @Inject
+   	private DaoPermis			daoPermis;
 	
 	
 	// Getters 
@@ -59,11 +62,13 @@ public class ModelBenevole {
 	
 	public void preparerAjouter() {
 		mapper.update( courant, new Benevole() );
+		mapper.update(courant.getPermis(), new Permis());
 	}
 	
 
 	public void preparerModifier( Benevole item ) {
 		mapper.update( courant, daoBenevole.retrouver( item.getId() ) );
+		mapper.update(courantPermis, daoPermis.avoirPourBenevole(courant));
 	}
 	
 

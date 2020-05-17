@@ -147,7 +147,7 @@ public class MenuBarAppli extends MenuBar {
 
 		// Manu Coureur
 		
-		menu =  new Menu( "Coureur" );;
+		menu =  new Menu( "Coureur" );
 		this.getMenus().add(menu);
 		menuEtats = menu;
 		
@@ -159,13 +159,13 @@ public class MenuBarAppli extends MenuBar {
 		
 		// Menu Benevole
 		
-		menu =  new Menu( "Benevole" );;
+		menu =  new Menu( "Benevole" );
 		this.getMenus().add(menu);
 		menuEtats = menu;
 		
-		item = new MenuItem( "Form" );
+		item = new MenuItem( "Liste" );
 		item.setOnAction(  (e) ->  
-				managerGui.showDialog( EnumView.BenevoleForm ) );
+				managerGui.showDialog( EnumView.BenevoleListe ) );
 		menu.getItems().add( item );
 		
 		

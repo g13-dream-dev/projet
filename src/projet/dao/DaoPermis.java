@@ -68,8 +68,8 @@ public class DaoPermis {
 
 			sql = "DELETE FROM permis WHERE idpermis = ?";
 			stmtDelete = cn.prepareStatement(sql);
-			if(avoirPourBenevole(benevole).size() > 0 && avoirPourBenevole(benevole).size() == 1) {
-				Permis p = avoirPourBenevole(benevole).get(0);
+			Permis p = avoirPourBenevole(benevole);
+			if(p != null) {
 				if (!benevole.getPermis().equals(p)) {
 					stmtDelete.setObject(1, p.getId());
 					stmtDelete.executeUpdate();
@@ -127,7 +127,7 @@ public class DaoPermis {
 		}
 	}
 
-	public List<Permis> avoirPourBenevole(Benevole benevole) {
+	public Permis avoirPourBenevole(Benevole benevole) {
 
 		Connection cn = null;
 		PreparedStatement stmt = null;
@@ -137,15 +137,15 @@ public class DaoPermis {
 		try {
 			cn = dataSource.getConnection();
 
-			sql = "SELECT * FROM permis WHERE idpermis = ? ORDER BY libelle";
+			sql = "SELECT * FROM permis WHERE idpermis = ?";
 			stmt = cn.prepareStatement(sql);
 			stmt.setObject(1, benevole.getId());
 			rs = stmt.executeQuery();
 
-			List<Permis> permis = new ArrayList<>();
-			while (rs.next()) {
-				permis.add(construirePermis(rs, benevole));
-			}
+			Permis permis = null;
+			rs.next();
+			permis = construirePermis(rs, benevole);
+			
 			return permis;
 
 		} catch (SQLException e) {
