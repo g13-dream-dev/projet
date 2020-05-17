@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 //package projet.view.coureur;
 //
 //import javax.inject.Inject;
