@@ -67,7 +67,7 @@ public class ControllerCoureurClubListe {
 	@FXML
 	private void doAjouter() {
 		modelCoureur.preparerAjouter();;
-		managerGui.showView( EnumView.CoureurForm );
+		managerGui.showView( EnumView.CoureurClubListe );
 	}
 
 	//@FXML
@@ -97,7 +97,7 @@ public class ControllerCoureurClubListe {
 				} else {
 					System.out.println(listView.getSelectionModel().getSelectedItem().getClub());
 					modelCoureur.actualiserListeCoureurs(listView.getSelectionModel().getSelectedItem().getClub());
-					managerGui.showView( EnumView.CoureurForm );
+					managerGui.showView( EnumView.CoureurClubListe );
 				}
 			}
 		}
