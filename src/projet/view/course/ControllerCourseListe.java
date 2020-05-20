@@ -64,7 +64,7 @@ public class ControllerCourseListe {
 	
 	@FXML
 	private void doAjouter() {
-		modelCourse.preparerAjouter();;
+		modelCourse.preparerAjouter();
 		managerGui.showView( EnumView.CourseForm );
 	}
 
@@ -75,7 +75,7 @@ public class ControllerCourseListe {
 			managerGui.showDialogError( "Aucun élément n'est sélectionné dans la liste.");
 		} else {
 			modelCourse.preparerModifier(item);
-			managerGui.showView( EnumView.CourseForm );
+			managerGui.showView(EnumView.CourseForm);
 		}
 	}
 
@@ -91,11 +91,6 @@ public class ControllerCourseListe {
 				refresh();
 			}
 		}
-	}
-	@FXML
-	private void doApercu() {
-		modelCourse.preparerAjouter();
-		managerGui.showView( EnumView.CourseApercu );
 	}
 	
 	// Gestion des évènements

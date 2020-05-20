@@ -89,7 +89,6 @@ public class DaoCoureur {
 
 	
 	public void supprimer(int idCoureur)  {
-		daoPersonne.supprimer(idCoureur);
 		Connection			cn		= null;
 		PreparedStatement	stmt	= null;
 		String 				sql;
@@ -102,12 +101,12 @@ public class DaoCoureur {
 			stmt = cn.prepareStatement(sql);
 			stmt.setObject( 1, idCoureur );
 			stmt.executeUpdate();
-
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
 			UtilJdbc.close( stmt, cn );
 		}
+		daoPersonne.supprimer(idCoureur);
 	}
 
 	

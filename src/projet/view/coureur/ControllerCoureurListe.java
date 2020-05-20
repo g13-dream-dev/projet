@@ -77,6 +77,7 @@ public class ControllerCoureurListe {
 		if ( managerGui.showDialogConfirm( "Confirmez-vous la suppresion ?" ) ) {
 			modelCoureur.supprimer( listView.getItems().get(0),listView.getItems().get(1) );
 			refresh();
+			managerGui.showView(EnumView.CoureurClubListe);
 		}
 	}
 	

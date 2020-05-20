@@ -64,7 +64,6 @@ public class ModelCourse {
 
 	public void preparerModifier( Course item ) {
 		mapper.update( courant, daoCourse.retrouver( item.getId() ) );
-		
 	}
 	
 
