@@ -65,7 +65,7 @@ public class ControllerCourseListe {
 	@FXML
 	private void doAjouter() {
 		modelCourse.preparerAjouter();;
-		managerGui.showView( EnumView.CourseForm );
+		managerGui.showView( EnumView.CoureurForm);
 	}
 
 	@FXML
