@@ -70,7 +70,7 @@ public class ControllerCourseApercu {
 	// Actions
 	@FXML
 	private void doModifier() {
-		modelCourse.preparerAjouter();;
+		modelCourse.preparerAjouter();
 		managerGui.showView( EnumView.CourseForm );
 	}
 }

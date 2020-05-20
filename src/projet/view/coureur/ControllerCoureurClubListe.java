@@ -21,8 +21,8 @@ public class ControllerCoureurClubListe {
 
 	@FXML
 	private ListView<String>	listView;
-	//@FXML
-	//private Button				buttonAjouter;
+	@FXML
+	private Button				buttonConsulter;
 	@FXML
 	private Button				buttonImprimer;
 
@@ -65,14 +65,15 @@ public class ControllerCoureurClubListe {
 	@FXML
 	private void doAjouter() {
 		modelCoureur.preparerAjouter();
-		managerGui.showView( EnumView.CoureurClubListe );
+		managerGui.showView( EnumView.CoureurForm );
 	}
 
-	//@FXML
-	//private void doModifier() {
-		//modelCoureur.preparerModifier( listView.getSelectionModel().getSelectedItem() );
-		//managerGui.showView( EnumView.CoureurInscription );
-	//}
+	@FXML
+	private void doConsulter() {
+		modelCoureur.actualiserListeCoureurs(listView.getSelectionModel().getSelectedItem());
+		modelCoureur.preparerModifier( modelCoureur.getCourant1(), modelCoureur.getCourant2() );
+		managerGui.showView( EnumView.CoureurListe );
+	}
 
 	//@FXML
 	//private void doSupprimer() {
@@ -94,6 +95,7 @@ public class ControllerCoureurClubListe {
 					managerGui.showDialogError( "Aucun élément n'est sélectionné dans la liste.");
 				} else {
 					modelCoureur.actualiserListeCoureurs(listView.getSelectionModel().getSelectedItem());
+					modelCoureur.preparerModifier( modelCoureur.getCourant1(), modelCoureur.getCourant2() );
 					managerGui.showView( EnumView.CoureurListe );
 				}
 			}
@@ -106,10 +108,10 @@ public class ControllerCoureurClubListe {
 	private void configurerBoutons() {
 		
     	if( listView.getSelectionModel().getSelectedItems().isEmpty() ) {
-			//buttonAjouter.setDisable(true);
+			buttonConsulter.setDisable(true);
 			buttonImprimer.setDisable(true);
 		} else {
-			//buttonAjouter.setDisable(false);
+			buttonConsulter.setDisable(false);
 			buttonImprimer.setDisable(false);
 		}
 	}

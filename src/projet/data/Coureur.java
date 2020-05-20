@@ -50,7 +50,7 @@ public class Coureur extends Personne {
 	@Override
 	public String toString() {
 		
-		return getPoste()+" "+super.toString();
+		return getPoste().toUpperCase()+": "+super.toString();
 	}
 	
 

@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 
 import jfox.dao.jdbc.UtilJdbc;
 import projet.data.Benevole;
+import projet.data.Permis;
 import projet.data.Personne;
 
 
@@ -208,7 +209,8 @@ public class DaoBenevole {
 		benevole.setTelephone(personne.getTelephone());
 		benevole.setEmail(personne.getEmail());
 		benevole.setPermanent(rs.getObject("permanent", Boolean.class));
-		
+		Permis permis = daoPermis.avoirPourBenevole(benevole);
+		benevole.setPermis(permis);
 		return benevole;
 	}
 	

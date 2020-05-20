@@ -47,18 +47,77 @@ ALTER TABLE categorie ALTER COLUMN idcategorie RESTART WITH 6;
 
 INSERT INTO personne (idpersonne, nom, prenom, sexe, naissance, telephone, adresse, codepostal, email) VALUES 
   ( 1, 'GRASSET', 'Jérôme', 'Homme', {d  '2001-05-18' }, '655286355', 'Lion de mer', 82000, 'jean@gmail.fr'),
-  ( 2, 'LIONNE', 'Petite', 'Femme', {d  '2001-05-18' }, '655286358', 'Lion de mer', 82100, 'jean@gmail.fr'),
-  ( 3, 'Moi', 'Monsieur', 'Homme', {d  '2001-05-02' }, '655286355', 'Lion de mer', 82500, 'jean@gmail.fr');
+  ( 2, 'LIONNE', 'Petite', 'Femme', {d  '2001-05-18' }, '655286358', 'tres loin', 82100, 'jean@gmail.fr'),
+  ( 3, 'ade', 'raissa', 'Femme', {d  '2001-05-02' }, '655286355', 'France', 87000, 'aderaissa@gmail.fr'),
+  ( 4, 'youmbi', 'yvan', 'Homme', {d  '2001-05-02' }, '655286355', 'ndokoti', 81000, 'youmbi@gmail.fr'),
+  ( 5, 'ngwa', 'romeo leslie', 'Femme', {d  '2001-05-02' }, '655286355', 'loin des yeux pret du coeur', 82500, 'jean@gmail.fr'),
+  ( 6, 'simo', 'bertin ulrich', 'Homme', {d  '2001-05-02' }, '655286355', 'man c', 82500, 'jean@gmail.fr'),
+  ( 7, 'tchea gassam', 'jordan', 'Homme', {d  '2001-05-02' }, '655286355', 'rue des beaux arts', 82500, 'jean@gmail.fr'),
+  ( 8, 'yokam krev', 'murielle', 'Femme', {d  '2001-05-02' }, '655286355', 'recherche moi bien', 82500, 'jean@gmail.fr'),
+  ( 9, 'tateu', 'lindsey', 'Femme', {d  '2001-05-02' }, '655286355', 'Lion de mer', 82500, 'jean@gmail.fr'),
+  ( 10, 'mouafo', 'paul', 'Homme', {d  '2001-05-02' }, '655286355', 'la carte ne dira point', 82500, 'jean@gmail.fr'),
+  ( 11, 'assouke', 'sophia', 'Femme', {d  '2001-05-02' }, '655286355', 'reviens pas', 82500, 'jean@gmail.fr'),
+  ( 12, 'ntayi djatou', 'boris', 'Homme', {d  '2001-05-02' }, '655286355', 'attention chien mechant', 82500, 'jean@gmail.fr'),
+  ( 13, 'ntowo', 'anne', 'Femme', {d  '2001-05-02' }, '655286355', 'carrefour 2 bananes', 82500, 'jean@gmail.fr'),
+  ( 14, 'tiwa', 'savage', 'Femme', {d  '2001-05-02' }, '655286355', 'messassi', 82500, 'jean@gmail.fr'),
+  ( 15, 'tchinda', 'william', 'Homme', {d  '2001-05-02' }, '655286355', 'akwa', 82500, 'jean@gmail.fr'),
+  ( 16, 'tekeu', 'sonia', 'Femme', {d  '2001-05-02' }, '655286355', 'Lion de mer', 82500, 'jean@gmail.fr'),
+  ( 17, 'tekem', 'arthur', 'Homme', {d  '2001-05-02' }, '655286355', 'rue de la joie, limoges', 87000, 'jean@gmail.fr'),
+  ( 18, 'takam', 'esdras', 'Homme', {d  '2001-05-02' }, '655286355', 'La rue des saintes', 82500, 'jean@gmail.fr'),
+  ( 19, 'tampo', 'randi', 'Homme', {d  '2001-05-02' }, '655286355', 'assassina comploté', 82500, 'jean@gmail.fr'),
+  ( 20, 'kamwa', 'vanessa', 'Femme', {d  '2001-05-02' }, '655286355', 'manga bell rue 93', 82500, 'jean@gmail.fr'),
+  ( 21, 'siki siriki', 'megane', 'Homme', {d  '2001-05-02' }, '655286355', 'nyalla', 82500, 'jean@gmail.fr'),
+  ( 22, 'nana tchomo', 'belle', 'Femme', {d  '2001-05-02' }, '655286355', 'ndokoti', 82500, 'jean@gmail.fr'),
+  ( 23, 'sinkam', 'wilfried', 'Homme', {d  '2001-05-02' }, '655286355', 'jordanie', 82500, 'jean@gmail.fr'),
+  ( 24, 'siewe', 'sandrine', 'Femme', {d  '2001-05-02' }, '655286355', 'bertoua', 82500, 'jean@gmail.fr'),
+  ( 25, 'mussa malekoum', 'salam', 'Femme', {d  '2001-05-02' }, '655286355', 'lyon', 82500, 'jean@gmail.fr');
 
-ALTER TABLE personne ALTER COLUMN idpersonne RESTART WITH 4;
+ALTER TABLE personne ALTER COLUMN idpersonne RESTART WITH 100;
 
 -- Coureur
 
 INSERT INTO coureur (idcoureur, poste, club) VALUES 
   ( 2, 'Capitaine', '3il'),
-  ( 3, 'Equipier', '3il');
+  ( 3, 'Equipier', '3il'),
+  ( 4, 'Capitaine', 'dreamdev'),
+  ( 5, 'Equipier', 'dreamdev'),
+  ( 6, 'Capitaine', 'academy D'),
+  ( 7, 'Equipier', 'academy D'),
+  ( 8, 'Capitaine', 'les lions'),
+  ( 9, 'Equipier', 'les lions'),
+  ( 10, 'Capitaine', 'casse tete'),
+  ( 11, 'Equipier', 'casse tete'),
+  ( 12, 'Capitaine', 'password'),
+  ( 13, 'Equipier', 'password'),
+  ( 14, 'Capitaine', 'les alcooliques'),
+  ( 15, 'Equipier', 'les alcooliques');
 
-ALTER TABLE personne ALTER COLUMN idpersonne RESTART WITH 4;
+--Benevole
+
+INSERT INTO benevole (idbenevole, permanent) VALUES 
+  ( 1, 't'),
+  ( 16, 'f'),
+  ( 17, 'f'),
+  ( 18, 'f'),
+  ( 19, 't'),
+  ( 20, 'f'),
+  ( 21, 't'),
+  ( 22, 't'),
+  ( 23, 't'),
+  ( 24, 'f'),
+  ( 25, 'f');
+
+-- Permis
+
+INSERT INTO permis (idpermis, numero, datedelivrance) VALUES 
+  ( 1, 'E54654J5465', '2020-04-30'),
+  ( 18, 'E54654J5465', '2020-04-16'),
+  ( 19, 'D46546F6566', '2020-04-25'),
+  ( 20, 'R4654654D46', '2020-04-09'),
+  ( 22, 'T465465D546', '2020-04-01'),
+  ( 23, 'E5464579879', '2020-04-12'),
+  ( 24, 'A46546546S5', '2020-04-05'),
+  ( 25, 'T4565465G46', '2020-04-06');
 
 -- Telephone
 

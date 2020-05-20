@@ -55,7 +55,6 @@ public class ControllerCoureurListe {
 	public void refresh() {
 		UtilFX.selectInListView( listView, modelCoureur.getCourant1() );
 		listView.requestFocus();
-		modelCoureur.actualiserListeCoureurs(modelCoureur.getCourant1().getClub());
 	}
 
 	
@@ -63,7 +62,7 @@ public class ControllerCoureurListe {
 	
 	//@FXML
 	//private void doAjouter() {
-	//	modelCoureur.preparerAjouter();;
+	//	modelCoureur.preparerAjouter();
 	//	managerGui.showView( EnumView.CoureurInscription );
 	//}
 
@@ -92,7 +91,8 @@ public class ControllerCoureurListe {
 				if ( listView.getSelectionModel().getSelectedIndex() == -1 ) {
 					managerGui.showDialogError( "Aucun élément n'est sélectionné dans la liste.");
 				} else {
-					managerGui.showView( EnumView.CoureurForm );
+					managerGui.showDialogMessage("Les actions sont à effectuer sur tous les membres du club!\n"
+							+ "Veuillez selectionner une action sur le bouton concerné en bas.");
 				}
 			}
 		}

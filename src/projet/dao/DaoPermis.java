@@ -143,8 +143,7 @@ public class DaoPermis {
 			rs = stmt.executeQuery();
 
 			Permis permis = null;
-			rs.next();
-			permis = construirePermis(rs, benevole);
+			if(rs.next())permis = construirePermis(rs, benevole);
 			
 			return permis;
 

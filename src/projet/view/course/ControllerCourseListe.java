@@ -94,7 +94,7 @@ public class ControllerCourseListe {
 	}
 	@FXML
 	private void doApercu() {
-		modelCourse.preparerAjouter();;
+		modelCourse.preparerAjouter();
 		managerGui.showView( EnumView.CourseApercu );
 	}
 	

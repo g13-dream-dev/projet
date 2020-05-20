@@ -23,6 +23,11 @@ public class MenuBarAppli extends MenuBar {
 	private Menu	menuDonnees;
 	private Menu	menuEtats;
 	private Menu	menuTests;
+	private Menu	menuCompetition;
+	private Menu	menuCoureur;
+	private Menu	menuBenevole;
+	private Menu	menuCourse;
+	private Menu	menuPoste;
 	
 	private MenuItem itemDeconnecter;
 
@@ -95,7 +100,7 @@ public class MenuBarAppli extends MenuBar {
 		
 		// Manu Etats
 		
-		menu =  new Menu( "Etats" );;
+		menu =  new Menu( "Etats" );
 		this.getMenus().add(menu);
 		menuEtats = menu;
 		
@@ -144,12 +149,22 @@ public class MenuBarAppli extends MenuBar {
 		item.setOnAction(  (e) -> managerGui.showView( EnumView.TestDaoService )  );
 		menu.getItems().add( item );
 
+		//Menu competition
+		
+		menu =  new Menu( "Competition" );
+		this.getMenus().add(menu);
+		menuCompetition = menu;
+		
+		item = new MenuItem( "Courses" );
+		item.setOnAction(  (e) ->  
+				managerGui.showDialog( EnumView.CourseListe ) );
+		menu.getItems().add( item );
 
-		// Manu Coureur
+		// Menu Coureur
 		
 		menu =  new Menu( "Coureur" );
 		this.getMenus().add(menu);
-		menuEtats = menu;
+		menuCoureur = menu;
 		
 		item = new MenuItem( "Clubs" );
 		item.setOnAction(  (e) ->  
@@ -161,7 +176,7 @@ public class MenuBarAppli extends MenuBar {
 		
 		menu =  new Menu( "Benevole" );
 		this.getMenus().add(menu);
-		menuEtats = menu;
+		menuBenevole = menu;
 		
 		item = new MenuItem( "Liste" );
 		item.setOnAction(  (e) ->  
@@ -173,16 +188,11 @@ public class MenuBarAppli extends MenuBar {
 		
 		menu =  new Menu( "Poste" );;
 		this.getMenus().add(menu);
-		menuEtats = menu;
+		menuPoste = menu;
 		
 		item = new MenuItem( "Liste des postes" );
 		item.setOnAction(  (e) ->  
 				managerGui.showDialog( EnumView.PosteListe ) );
-		menu.getItems().add( item );
-		
-		item = new MenuItem( " Ajouter un poste" );
-		item.setOnAction(  (e) ->  
-				managerGui.showDialog( EnumView.PosteInscription ) );
 		menu.getItems().add( item );
 		
 		
@@ -210,7 +220,11 @@ public class MenuBarAppli extends MenuBar {
 		itemComptes.setVisible(false);
 		menuEtats.setVisible(false);
 		menuTests.setVisible(false);
-		menuEtats.setVisible(false);
+		menuCompetition.setVisible(false);
+		menuCoureur.setVisible(false);
+		menuBenevole.setVisible(false);
+		menuPoste.setVisible(false);
+		
 		
 		if( compteActif != null ) {
 			itemDeconnecter.setDisable(false);
@@ -223,6 +237,10 @@ public class MenuBarAppli extends MenuBar {
 				itemCategories.setVisible(true);
 				itemComptes.setVisible(true);
 				menuTests.setVisible(true);
+				menuCompetition.setVisible(true);
+				menuCoureur.setVisible(true);
+				menuBenevole.setVisible(true);
+				menuPoste.setVisible(true);
 			}
 		}
 	}

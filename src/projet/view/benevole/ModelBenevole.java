@@ -24,7 +24,6 @@ public class ModelBenevole {
 	private final ObservableList<Benevole> liste = FXCollections.observableArrayList();
 	
 	private final Benevole		courant = new Benevole();
-	private final Permis courantPermis = new Permis();
 	
 	
 	// Autres champs
@@ -47,10 +46,6 @@ public class ModelBenevole {
 		return courant;
 	}
 	
-	public Permis getCourantPermis() {
-		return courantPermis;
-	}
-	
 	// Actualisations
 	
 	public void actualiserListe() {
@@ -68,7 +63,6 @@ public class ModelBenevole {
 
 	public void preparerModifier( Benevole item ) {
 		mapper.update( courant, daoBenevole.retrouver( item.getId() ) );
-		mapper.update(courantPermis, daoPermis.avoirPourBenevole(courant));
 	}
 	
 
@@ -123,9 +117,9 @@ public class ModelBenevole {
 			message.append( "\nL'adresse mail est trop long." );
 		}
 		
-		if( courantPermis.getNumero() == null || courantPermis.getNumero().isEmpty() ) {
+		if( courant.getPermis().getNumero() == null || courant.getPermis().getNumero().isEmpty() ) {
 			message.append( "\nLe numero de permis ne doit pas etre vide." );
-		} else if ( courantPermis.getNumero().length()> 15 ) {
+		} else if ( courant.getPermis().getNumero().length()> 15 ) {
 			message.append( "\nLe numero de permis est trop long." );
 		}
 		
@@ -137,11 +131,9 @@ public class ModelBenevole {
 		// Effectue la mise à jour
 		if ( courant.getId() == null ) {
 			// Insertion
-			courant.setPermis(courantPermis);
 			courant.setId( daoBenevole.inserer( courant ) );
 		} else {
 			// modficiation
-			courant.setPermis(courantPermis);
 			daoBenevole.modifier( courant );
 		}
 	}

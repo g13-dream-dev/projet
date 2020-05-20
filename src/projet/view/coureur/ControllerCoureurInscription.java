@@ -150,6 +150,7 @@ public class ControllerCoureurInscription {
 	private void doInscrire() {
 		if ( cbEngagement1.isSelected() && cbEngagement2.isSelected()) {
 			modelCoureur.validerMiseAJour();
+			managerGui.showView(EnumView.CoureurClubListe);
 		}else {
 			throw new ExceptionValidation("Vous devez accepter le reglement!");
 		}

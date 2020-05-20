@@ -22,6 +22,7 @@
       <HBox alignment="CENTER" layoutY="263.0" prefHeight="60.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Button fx:id="buttonAjouter" mnemonicParsing="false" onAction="#doAjouter" text="Ajouter" />
+            <Button fx:id="buttonConsulter" mnemonicParsing="false" onAction="#doConsulter" text="Consulter" />
             <Button fx:id="buttonImprimer" mnemonicParsing="false" text="Imprimer" />
          </children>
       </HBox>

@@ -57,7 +57,6 @@ public class ControllerBenevoleListe  {
 		listView.requestFocus();
 	}
 	
-	
 	// Actions
 	
 	@FXML
@@ -74,7 +73,7 @@ public class ControllerBenevoleListe  {
 	
 	@FXML
 	private void doSupprimer() {
-		if ( managerGui.showDialogConfirm("Etes-vous sûr de voulir supprimer ce benevole ?" ) ) {
+		if ( managerGui.showDialogConfirm("Etes-vous sûr de vouloir supprimer ce benevole ?" ) ) {
 			modelBenevole.supprimer( listView.getSelectionModel().getSelectedItem() );
 			refresh();
 		}

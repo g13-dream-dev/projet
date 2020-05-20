@@ -2,6 +2,7 @@ package projet.data;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.StringTokenizer;
 
 import javafx.beans.Observable;
 import javafx.beans.property.Property;
@@ -91,7 +92,17 @@ public class Personne {
 	
 	@Override
 	public String toString() {
-		return getNom() + " " + getPrenom();
+		StringTokenizer p = new StringTokenizer(getPrenom(), " ");
+		int n = p.countTokens();
+		String _prenom = "",nextT = "";
+		for(int i = 0; i < n; i++) {
+			nextT = p.nextToken();
+			_prenom += (nextT.charAt(0)+"").toUpperCase();
+			for(int j = 1; j < nextT.length(); j++)_prenom+=nextT.charAt(j);
+			_prenom+=" ";
+		}
+		setPrenom(_prenom.trim());
+		return getNom().toUpperCase() + " " + getPrenom();
 	}
 	
 	

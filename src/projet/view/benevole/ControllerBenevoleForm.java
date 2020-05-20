@@ -71,7 +71,6 @@ public class ControllerBenevoleForm {
 	@FXML
 	private void initialize() {
 		Benevole courant = modelBenevole.getCourant();
-		Permis courantPermis = modelBenevole.getCourantPermis();
 		
 		//courant1 === capitaine
 		// Champs simples
@@ -82,7 +81,7 @@ public class ControllerBenevoleForm {
 		tfAdresse.textProperty().bindBidirectional(courant.adresseProperty());
 		tfCodePostal.textProperty().bindBidirectional(courant.codePostalProperty(), new ConverterStringInteger());
 		tfEmail.textProperty().bindBidirectional(courant.emailProperty());
-		tfNumero.textProperty().bindBidirectional(courantPermis.numeroProperty());
+		tfNumero.textProperty().bindBidirectional(courant.getPermis().numeroProperty());
 		brSexe = new ToggleGroup();
 		rbHomme.setToggleGroup(brSexe);
 		rbFemme.setToggleGroup(brSexe);
@@ -90,7 +89,7 @@ public class ControllerBenevoleForm {
 		
 		//champ complex
 		UtilFX.bindBidirectional(dpNaissance.getEditor(), courant.naissanceProperty(), new ConverterStringLocalDate());
-		UtilFX.bindBidirectional(dpDateDelivrance.getEditor(), courantPermis.dateDelivranceProperty(), new ConverterStringLocalDate());
+		UtilFX.bindBidirectional(dpDateDelivrance.getEditor(), courant.getPermis().dateDelivranceProperty(), new ConverterStringLocalDate());
 		brSexe.selectedToggleProperty().addListener(l ->{
 			if(brSexe.getSelectedToggle().equals(rbHomme))courant.setSexe("Homme");
 			if(brSexe.getSelectedToggle().equals(rbFemme))courant.setSexe("Femme");
@@ -110,6 +109,7 @@ public class ControllerBenevoleForm {
 	private void doInscrire() {
 		if ( cbEngagement.isSelected()) {
 			modelBenevole.validerMiseAJour();
+			managerGui.showView(EnumView.BenevoleListe);
 		}else {
 			throw new ExceptionValidation("Vous devez accepter le reglement!");
 		}
