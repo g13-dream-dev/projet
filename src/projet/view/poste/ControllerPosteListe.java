@@ -33,7 +33,7 @@ public class ControllerPosteListe {
 	@Inject
 	private IManagerGui			managerGui;
 	@Inject
-	private ModelCoureur		modelCoureur;
+	private ModelPoste		modelPoste;
 	
 	
 	// Initialisation du Controller
@@ -42,9 +42,9 @@ public class ControllerPosteListe {
 	private void initialize() {
 		
 		listView.setCellFactory( UtilFX.cellFactory( item -> item.getClub() ) );
-		modelCoureur.actualiserListeClubs();
+		modelPoste.actualiserListeClubs();
 		// Data binding
-		listView.setItems( modelCoureur.getListe() );
+		listView.setItems( modelPoste.getListe() );
 		
 		// Configuraiton des boutons
 		listView.getSelectionModel().selectedItemProperty().addListener(
@@ -57,8 +57,8 @@ public class ControllerPosteListe {
 	}
 	
 	public void refresh() {
-	modelCoureur.actualiserListeClubs();
-	UtilFX.selectInListView( listView, modelCoureur.getCourant2() );
+		modelPoste.actualiserListeClubs();
+	UtilFX.selectInListView( listView, modelPoste.getCourant2() );
 	listView.requestFocus();
 	}
 
@@ -67,7 +67,7 @@ public class ControllerPosteListe {
 	
 	@FXML
 	private void doAjouter() {
-		modelCoureur.preparerAjouter();;
+		modelPoste.preparerAjouter();;
 		managerGui.showView( EnumView.CoureurForm );
 	}
 
@@ -97,7 +97,7 @@ public class ControllerPosteListe {
 					managerGui.showDialogError( "Aucun élément n'est sélectionné dans la liste.");
 				} else {
 					System.out.println(listView.getSelectionModel().getSelectedItem().getClub());
-					modelCoureur.actualiserListeCoureurs(listView.getSelectionModel().getSelectedItem().getClub());
+					modelPoste.actualiserListeCoureurs(listView.getSelectionModel().getSelectedItem().getClub());
 					managerGui.showView( EnumView.CoureurForm );
 				}
 			}

@@ -1,5 +1,8 @@
  package projet.view.coureur;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import javafx.collections.FXCollections;
@@ -17,7 +20,7 @@ public class ModelCoureur {
 	
 	// Données observables 
 	
-	private final ObservableList<Coureur> listeClubs = FXCollections.observableArrayList();
+	private final ObservableList<String> listeClubs = FXCollections.observableArrayList();
 	private final ObservableList<Coureur> listeCoureurs = FXCollections.observableArrayList();
 	
 	private final Coureur		courant1 = new Coureur();
@@ -35,7 +38,7 @@ public class ModelCoureur {
 	
 	// Getters 
 	
-	public ObservableList<Coureur> getListe() {
+	public ObservableList<String> getClubs() {
 		return listeClubs;
 	}
 	
@@ -53,7 +56,12 @@ public class ModelCoureur {
 	// Actualisations
 	
 	public void actualiserListeClubs() {
-		listeClubs.setAll( daoCoureur.listerTout() );
+		listeClubs.clear();
+		List<Coureur> lc = new ArrayList<>();
+		lc = daoCoureur.listerTout();
+		for(int i = 0; i < lc.size(); i++) {
+			if(!listeClubs.contains(lc.get(i).getClub()))listeClubs.add(lc.get(i).getClub());
+		}
 	}
 	public void actualiserListeCoureurs(String club) {
 		listeCoureurs.setAll( daoCoureur.listerPourClub(club) );
@@ -198,8 +206,7 @@ public class ModelCoureur {
 	public void supprimer( Coureur item1, Coureur item2 ) {
 		daoCoureur.supprimer( item1.getId() );
 		daoCoureur.supprimer( item2.getId() );
-		mapper.update( courant1, UtilFX.findNext( listeClubs, item1 ) );
-		mapper.update( courant2, UtilFX.findNext( listeClubs, item2) );
+		listeClubs.removeIf( club ->(club== item1.getClub()));
 	}
 	
 }

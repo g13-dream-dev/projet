@@ -20,9 +20,9 @@ public class ControllerCoureurClubListe {
 	// Composants de la vue
 
 	@FXML
-	private ListView<Coureur>	listView;
-	@FXML
-	private Button				buttonAjouter;
+	private ListView<String>	listView;
+	//@FXML
+	//private Button				buttonAjouter;
 	@FXML
 	private Button				buttonImprimer;
 
@@ -40,10 +40,10 @@ public class ControllerCoureurClubListe {
 	@FXML
 	private void initialize() {
 		
-		listView.setCellFactory( UtilFX.cellFactory( item -> item.getClub() ) );
+		listView.setCellFactory( UtilFX.cellFactory( item -> item ) );
 		modelCoureur.actualiserListeClubs();
 		// Data binding
-		listView.setItems( modelCoureur.getListe() );
+		listView.setItems( modelCoureur.getClubs() );
 		
 		// Configuraiton des boutons
 		listView.getSelectionModel().selectedItemProperty().addListener(
@@ -55,7 +55,7 @@ public class ControllerCoureurClubListe {
 	
 	public void refresh() {
 	modelCoureur.actualiserListeClubs();
-	UtilFX.selectInListView( listView, modelCoureur.getCourant2() );
+	UtilFX.selectInListView( listView, modelCoureur.getCourant2().getClub() );
 	listView.requestFocus();
 	}
 
@@ -64,7 +64,7 @@ public class ControllerCoureurClubListe {
 	
 	@FXML
 	private void doAjouter() {
-		modelCoureur.preparerAjouter();;
+		modelCoureur.preparerAjouter();
 		managerGui.showView( EnumView.CoureurClubListe );
 	}
 
@@ -93,9 +93,8 @@ public class ControllerCoureurClubListe {
 				if ( listView.getSelectionModel().getSelectedIndex() == -1 ) {
 					managerGui.showDialogError( "Aucun élément n'est sélectionné dans la liste.");
 				} else {
-					System.out.println(listView.getSelectionModel().getSelectedItem().getClub());
-					modelCoureur.actualiserListeCoureurs(listView.getSelectionModel().getSelectedItem().getClub());
-					managerGui.showView( EnumView.CoureurClubListe );
+					modelCoureur.actualiserListeCoureurs(listView.getSelectionModel().getSelectedItem());
+					managerGui.showView( EnumView.CoureurListe );
 				}
 			}
 		}
@@ -107,10 +106,10 @@ public class ControllerCoureurClubListe {
 	private void configurerBoutons() {
 		
     	if( listView.getSelectionModel().getSelectedItems().isEmpty() ) {
-			buttonAjouter.setDisable(true);
+			//buttonAjouter.setDisable(true);
 			buttonImprimer.setDisable(true);
 		} else {
-			buttonAjouter.setDisable(false);
+			//buttonAjouter.setDisable(false);
 			buttonImprimer.setDisable(false);
 		}
 	}
