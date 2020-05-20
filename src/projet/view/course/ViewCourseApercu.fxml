@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="paneRoot" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.course.ControllerCourseApercu">
+   <children>
+      <HBox alignment="CENTER" layoutY="440.0" prefHeight="60.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button fx:id="buttonAjouter" mnemonicParsing="false" onAction="#doModifier" text="Modifier" />
+            <Button fx:id="buttonImprimer" mnemonicParsing="false" text="Supprimer" />
+         </children>
+      </HBox>
+      <VBox alignment="CENTER" layoutX="31.0" layoutY="264.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label text="Distance" />
+            <TextField fx:id="textFieldDistance" />
+            <Label text="Heure de depart" />
+            <TextField fx:id="textFieldHeureD" />
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="286.0" layoutY="264.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label text="Lieu de depart" />
+            <TextField fx:id="textFieldLieuDepart" />
+            <Label text="Lieu d'arrivée" />
+            <TextField fx:id="textFieldLieuArriv" />
+         </children>
+      </VBox>
+      <VBox layoutX="10.0" layoutY="37.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="480.0">
+         <children>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0">
+               <children>
+                  <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="104.0" styleClass="titre-vue" text="Course:">
+                     <HBox.margin>
+                        <Insets left="90.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="textFieldNom" />
+               </children>
+            </HBox>
+            <ImageView fitHeight="180.0" fitWidth="460.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </ImageView>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="230.0">
+               <children>
+                  <Label text="Selectionnez un fichier" />
+                  <Button mnemonicParsing="false" text="Folder">
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets left="120.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>
