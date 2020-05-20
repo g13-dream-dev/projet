@@ -24,6 +24,7 @@ public class ModelPoste {
 	private final Coureur		courant2 = new Coureur();
 	
 	
+	
 	// Autres champs
 	
     @Inject

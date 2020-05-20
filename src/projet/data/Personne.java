@@ -16,6 +16,7 @@ public class Personne {
 
 	// Données observables
 	
+	
 	private final Property<Integer>		id			= new SimpleObjectProperty<>();
 	private final StringProperty		nom	 		= new SimpleStringProperty();
 	private final StringProperty		prenom		= new SimpleStringProperty();
@@ -121,7 +122,7 @@ public class Personne {
 	public final String getSexe() {
 		return this.sexeProperty().get();
 	}
-	
+	;
 
 	public final void setSexe(final String sexe) {
 		this.sexeProperty().set(sexe);

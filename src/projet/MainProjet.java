@@ -30,6 +30,7 @@ public class MainProjet {
 			IContext context = new ContextLocal();
 			context.addBean( dataSource );
 			context.addBean( new IMapperImpl() );
+			
 
 			// Configure le ManagerReport
 			context.getBean( ManagerReport.class ).setDirReports( "etats" );;

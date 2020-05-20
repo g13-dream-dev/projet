@@ -12,7 +12,15 @@
 
 <AnchorPane fx:id="paneRoot" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.coureur.ControllerCoureurListe">
    <children>
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <Label alignment="CENTER" styleClass="titre-vue" text="INFOS POSTES" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+=======
       <Label alignment="CENTER" styleClass="titre-vue" text="EDITION POSTE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+>>>>>>> branch 'master' of https://github.com/g13-dream-dev/projet.git
+=======
+      <Label alignment="CENTER" styleClass="titre-vue" text="EDITION POSTE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+>>>>>>> branch 'master' of https://github.com/g13-dream-dev/projet.git
       <HBox alignment="CENTER" layoutY="75.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
             <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0">

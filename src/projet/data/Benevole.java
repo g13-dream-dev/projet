@@ -13,6 +13,7 @@ public class Benevole extends Personne {
 	private final Property<Permis> permis = new SimpleObjectProperty<>();
 
 	public Benevole() {
+		
 	}
 
 	public Benevole(int id, String nom, String prenom, String sexe, LocalDate naissance, String telephone,

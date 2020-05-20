@@ -12,6 +12,7 @@ public class Poste {
 	private final StringProperty heureD = new SimpleStringProperty();
 	private final StringProperty etat = new SimpleStringProperty();
 
+	
 	public Poste() {
 	}
 

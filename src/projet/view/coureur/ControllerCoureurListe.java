@@ -53,9 +53,9 @@ public class ControllerCoureurListe {
 	}
 	
 	public void refresh() {
-		modelCoureur.actualiserListeCoureurs("");
 		UtilFX.selectInListView( listView, modelCoureur.getCourant1() );
 		listView.requestFocus();
+		modelCoureur.actualiserListeCoureurs(modelCoureur.getCourant1().getClub());
 	}
 
 	
