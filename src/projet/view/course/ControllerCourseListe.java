@@ -64,8 +64,13 @@ public class ControllerCourseListe {
 	
 	@FXML
 	private void doAjouter() {
+<<<<<<< HEAD
 		modelCourse.preparerAjouter();;
 		managerGui.showView( EnumView.CoureurForm);
+=======
+		modelCourse.preparerAjouter();
+		managerGui.showView( EnumView.CourseForm );
+>>>>>>> branch 'master' of https://github.com/g13-dream-dev/projet.git
 	}
 
 	@FXML
@@ -75,7 +80,7 @@ public class ControllerCourseListe {
 			managerGui.showDialogError( "Aucun élément n'est sélectionné dans la liste.");
 		} else {
 			modelCourse.preparerModifier(item);
-			managerGui.showView( EnumView.CourseForm );
+			managerGui.showView(EnumView.CourseForm);
 		}
 	}
 
@@ -91,11 +96,6 @@ public class ControllerCourseListe {
 				refresh();
 			}
 		}
-	}
-	@FXML
-	private void doApercu() {
-		modelCourse.preparerAjouter();
-		managerGui.showView( EnumView.CourseApercu );
 	}
 	
 	// Gestion des évènements

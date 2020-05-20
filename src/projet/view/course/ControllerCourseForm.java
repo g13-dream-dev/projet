@@ -73,4 +73,8 @@ public class ControllerCourseForm {
 		modelCourse.validerMiseAJour();
 		managerGui.showView( EnumView.CourseListe );
 	}
+	@FXML
+	private void doAnnuler() {
+		managerGui.showView( EnumView.CourseListe );
+	}
 }

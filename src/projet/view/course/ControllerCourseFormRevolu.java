@@ -13,7 +13,7 @@ import projet.data.Course;
 import projet.view.EnumView;
 
 
-public class ControllerCourseApercu {
+public class ControllerCourseFormRevolu {
 
 	
 	// Composants de la vue
@@ -69,8 +69,8 @@ public class ControllerCourseApercu {
 	
 	// Actions
 	@FXML
-	private void doModifier() {
-		modelCourse.preparerAjouter();
-		managerGui.showView( EnumView.CourseForm );
+	private void doValider() {
+		modelCourse.validerMiseAJour();
+		managerGui.showView( EnumView.CourseListe );
 	}
 }
