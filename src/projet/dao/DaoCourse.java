@@ -35,11 +35,13 @@ public class DaoCourse {
 		
 		try {
 			cn = dataSource.getConnection();
-			sql = "INSERT INTO course (  nom, heureD, distance  ) VALUES( ?, ?, ? ) ";
+			sql = "INSERT INTO course (  nom, heureD, distance,lieudepart,lieuarriv  ) VALUES( ?, ?, ?,?,? ) ";
 			stmt = cn.prepareStatement( sql, Statement.RETURN_GENERATED_KEYS );
-			stmt.setObject( 1, course.getLibelle() );
+			stmt.setObject( 1, course.getNom() );
 			stmt.setObject( 2, course.getHeureD() );
 			stmt.setObject( 3, course.getDistance() );
+			stmt.setObject( 4, course.getLieuDepart());
+			stmt.setObject( 5, course.getLieuArriv() );
 			stmt.executeUpdate();
 
 			// Récupère l'identifiant généré par le SGBD
@@ -64,12 +66,14 @@ public class DaoCourse {
 
 		try {
 			cn = dataSource.getConnection();
-			sql = "UPDATE course SET nom = ?, heureD = ?, distance = ? WHERE idcourse =  ?";
+			sql = "UPDATE course SET nom = ?, heureD = ?, distance = ?,lieudepart=?,lieuarriv=? WHERE idcourse =  ?";
 			stmt = cn.prepareStatement( sql );
-			stmt.setObject( 1, course.getLibelle() );
+			stmt.setObject( 1, course.getNom() );
 			stmt.setObject( 2, course.getHeureD() );
 			stmt.setObject( 3, course.getDistance() );
-			stmt.setObject( 4, course.getId() );
+			stmt.setObject( 4, course.getLieuDepart() );
+			stmt.setObject( 5, course.getLieuArriv() );
+			stmt.setObject( 6, course.getId() );
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -160,9 +164,11 @@ public class DaoCourse {
 	private Course construireCourse( ResultSet rs ) throws SQLException {
 		Course course = new Course();
 		course.setId( rs.getObject( "idcourse", Integer.class ) );
-		course.setLibelle( rs.getObject( "nom", String.class ) );
+		course.setNom( rs.getObject( "nom", String.class ) );
 		course.setHeureD( rs.getObject( "heureD", String.class ) );
 		course.setDistance( rs.getObject( "distance", Integer.class ) );
+		course.setLieuDepart( rs.getObject( "lieudepart", String.class ) );
+		course.setLieuArriv( rs.getObject( "lieuarriv", String.class ) );
 		return course;
 	}
 

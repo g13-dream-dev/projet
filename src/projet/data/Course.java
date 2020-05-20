@@ -7,9 +7,11 @@ import javafx.beans.property.StringProperty;
 
 public class Course {
 	private final Property<Integer> id = new SimpleObjectProperty<>();
-	private final StringProperty libelle = new SimpleStringProperty();
+	private final StringProperty nom = new SimpleStringProperty();
 	private final Property<Integer> distance= new SimpleObjectProperty<>();
 	private final StringProperty heureD = new SimpleStringProperty();
+	private final StringProperty lieuDepart = new SimpleStringProperty();
+	private final StringProperty lieuArriv = new SimpleStringProperty();
 
 
 	public Course() {
@@ -34,20 +36,20 @@ public class Course {
 	
 
 
-	public final StringProperty libelleProperty() {
-		return this.libelle;
+	public final StringProperty nomProperty() {
+		return this.nom;
 	}
 	
 
 
-	public final String getLibelle() {
-		return this.libelleProperty().get();
+	public final String getNom() {
+		return this.nomProperty().get();
 	}
 	
 
 
-	public final void setLibelle(final String libelle) {
-		this.libelleProperty().set(libelle);
+	public final void setNom(final String nom) {
+		this.nomProperty().set(nom);
 	}
 	
 
@@ -85,6 +87,42 @@ public class Course {
 	public final void setHeureD(final String heureD) {
 		this.heureDProperty().set(heureD);
 	}
+
+
+	public final StringProperty lieuDepartProperty() {
+		return this.lieuDepart;
+	}
+	
+
+
+	public final String getLieuDepart() {
+		return this.lieuDepartProperty().get();
+	}
+	
+
+
+	public final void setLieuDepart(final String lieuDepart) {
+		this.lieuDepartProperty().set(lieuDepart);
+	}
+	
+
+
+	public final StringProperty lieuArrivProperty() {
+		return this.lieuArriv;
+	}
+	
+
+
+	public final String getLieuArriv() {
+		return this.lieuArrivProperty().get();
+	}
+	
+
+
+	public final void setLieuArriv(final String lieuArriv) {
+		this.lieuArrivProperty().set(lieuArriv);
+	}
+	
 	
 
 	
