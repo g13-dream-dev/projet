@@ -8,12 +8,7 @@ import jfox.commun.exception.ExceptionValidation;
 import jfox.javafx.util.UtilFX;
 import projet.commun.IMapper;
 import projet.dao.DaoCourse;
-import projet.dao.DaoCoureur;
-import projet.dao.DaoPermis;
 import projet.data.Course;
-import projet.data.Coureur;
-import projet.data.Permis;
-import projet.data.Personne;
 
 
 public class ModelCourse {
@@ -81,7 +76,7 @@ public class ModelCourse {
 			
 		}
 		
-		if( courant.getHeureD() == null || courant.getHeureD().isEmpty() ) {
+		if( courant.getHeureD() == null ) {
 			message.append( "\nL'heure de depart ne doit pas être vide." );
 		} 
 		
@@ -118,7 +113,7 @@ public class ModelCourse {
 		if ( courant.getId() == null ) {
 			// Insertion
 			courant.setId( daoCourse.inserer( courant ) );
-		} else {T
+		} else {
 			// modficiation
 			daoCourse.modifier( courant );
 		}

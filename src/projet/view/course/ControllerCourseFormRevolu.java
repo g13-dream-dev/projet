@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.util.converter.IntegerStringConverter;
+import javafx.util.converter.LocalTimeStringConverter;
 import jfox.javafx.util.ConverterStringInteger;
 import jfox.javafx.util.ListenerFocusValidation;
 import jfox.javafx.view.IManagerGui;
@@ -56,7 +57,7 @@ public class ControllerCourseFormRevolu {
 
 		textFieldNom.textProperty().bindBidirectional( courant.nomProperty() );
 		
-		textFieldHeureD.textProperty().bindBidirectional( courant.heureDProperty());
+		textFieldHeureD.textProperty().bindBidirectional( courant.heureDProperty(), new LocalTimeStringConverter());
 		
 		textFieldDistance.textProperty().bindBidirectional( courant.distanceProperty(), new IntegerStringConverter()  );
 		
