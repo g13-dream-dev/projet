@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalTime;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -165,7 +166,7 @@ public class DaoCourse {
 		Course course = new Course();
 		course.setId( rs.getObject( "idcourse", Integer.class ) );
 		course.setNom( rs.getObject( "nom", String.class ) );
-		course.setHeureD( rs.getObject( "heureD", String.class ) );
+		course.setHeureD( rs.getObject( "heureD", LocalTime.class ) );
 		course.setDistance( rs.getObject( "distance", Integer.class ) );
 		course.setLieuDepart( rs.getObject( "lieudepart", String.class ) );
 		course.setLieuArriv( rs.getObject( "lieuarriv", String.class ) );

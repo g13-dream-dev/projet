@@ -118,7 +118,7 @@ public class ModelCourse {
 		if ( courant.getId() == null ) {
 			// Insertion
 			courant.setId( daoCourse.inserer( courant ) );
-		} else {
+		} else {T
 			// modficiation
 			daoCourse.modifier( courant );
 		}

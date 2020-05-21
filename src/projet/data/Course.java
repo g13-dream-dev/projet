@@ -1,5 +1,7 @@
 package projet.data;
 
+import java.time.LocalTime;
+
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -9,7 +11,7 @@ public class Course {
 	private final Property<Integer> id = new SimpleObjectProperty<>();
 	private final StringProperty nom = new SimpleStringProperty();
 	private final Property<Integer> distance= new SimpleObjectProperty<>();
-	private final StringProperty heureD = new SimpleStringProperty();
+	private final Property<LocalTime> heureD = new SimpleObjectProperty();
 	private final StringProperty lieuDepart = new SimpleStringProperty();
 	private final StringProperty lieuArriv = new SimpleStringProperty();
 
@@ -72,21 +74,7 @@ public class Course {
 	
 
 
-	public final StringProperty heureDProperty() {
-		return this.heureD;
-	}
-	
 
-
-	public final String getHeureD() {
-		return this.heureDProperty().get();
-	}
-	
-
-
-	public final void setHeureD(final String heureD) {
-		this.heureDProperty().set(heureD);
-	}
 
 
 	public final StringProperty lieuDepartProperty() {
@@ -122,6 +110,24 @@ public class Course {
 	public final void setLieuArriv(final String lieuArriv) {
 		this.lieuArrivProperty().set(lieuArriv);
 	}
+
+
+	public final Property<LocalTime> heureDProperty() {
+		return this.heureD;
+	}
+	
+
+
+	public final LocalTime getHeureD() {
+		return this.heureDProperty().getValue();
+	}
+	
+
+
+	public final void setHeureD(final LocalTime heureD) {
+		this.heureDProperty().setValue(heureD);
+	}
+	
 	
 	
 

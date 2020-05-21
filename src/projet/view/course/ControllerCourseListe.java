@@ -64,13 +64,13 @@ public class ControllerCourseListe {
 	
 	@FXML
 	private void doAjouter() {
-<<<<<<< HEAD
+
 		modelCourse.preparerAjouter();;
 		managerGui.showView( EnumView.CoureurForm);
-=======
+
 		modelCourse.preparerAjouter();
 		managerGui.showView( EnumView.CourseForm );
->>>>>>> branch 'master' of https://github.com/g13-dream-dev/projet.git
+
 	}
 
 	@FXML

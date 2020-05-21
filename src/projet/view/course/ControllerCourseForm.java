@@ -7,6 +7,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.util.converter.IntegerStringConverter;
 import jfox.javafx.util.ConverterStringInteger;
+import jfox.javafx.util.ConverterStringLocalDate;
 import jfox.javafx.util.ListenerFocusValidation;
 import jfox.javafx.view.IManagerGui;
 import projet.data.Course;
@@ -56,7 +57,7 @@ public class ControllerCourseForm {
 
 		textFieldNom.textProperty().bindBidirectional( courant.nomProperty() );
 		
-		textFieldHeureD.textProperty().bindBidirectional( courant.heureDProperty());
+		//textFieldHeureD.textProperty().bindBidirectional( courant.heureDProperty(), );
 		
 		textFieldDistance.textProperty().bindBidirectional( courant.distanceProperty(), new IntegerStringConverter()  );
 		

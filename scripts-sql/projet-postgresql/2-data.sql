@@ -169,10 +169,10 @@ ALTER TABLE service ALTER COLUMN idservice RESTART WITH 5;
 -- Course
 
 INSERT INTO course ( idcourse, nom, heureD, distance,lieudepart,lieuarriv ) VALUES 
-  ( 1, 'Cheval',' 12h:45', 500 ,'bastide','carnot'),
-  ( 2, 'Voiture', ' 12h:40', 600,'nexon','carnot'),
-  ( 3, 'Limoges', ' 12h:55', 100,'maryse','bastide'),
-  ( 4, ' Brive', ' 12h:00',250 ,'borie','belair');
+  ( 1, 'Cheval','12:20:20', 500 ,'bastide','carnot'),
+  ( 2, 'Voiture','12:40:29', 600,'nexon','carnot'),
+  ( 3, 'Limoges',  '11:55:12', 100,'maryse','bastide'),
+  ( 4, ' Brive','1:00:00',250 ,'borie','belair');
 
 
 ALTER TABLE service ALTER COLUMN idservice RESTART WITH 5;
