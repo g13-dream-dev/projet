@@ -50,4 +50,9 @@ public class Plat {
 		this.nombreProperty().setValue(nombre);
 	}
 
+	@Override
+	public String toString() {
+		return getNom() +"\t"+ getNombre();
+	}
+
 }

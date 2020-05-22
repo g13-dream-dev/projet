@@ -38,7 +38,9 @@ public enum EnumView implements IEnumView {
 	CompetitionListe	( "competition/ViewCompetitionListe.fxml" ),
 	CompetitionForm	( "competition/ViewCompetitionForm.fxml" ),
 	CourseListe	( "competition/ViewCourseListe.fxml" ),
-	CourseForm       ("competition/ViewCourseForm.fxml")
+	CourseForm       ("competition/ViewCourseForm.fxml"),
+	PlatListe       ("plat/ViewPlatListe.fxml"),
+	PlatForm       ("plat/ViewPlatForm.fxml")
 	;
 
 	
