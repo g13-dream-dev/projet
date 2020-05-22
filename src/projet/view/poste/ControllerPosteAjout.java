@@ -1,3 +1,4 @@
+package projet.view.poste;
 //package projet.view.poste;
 //
 //import javax.inject.Inject;

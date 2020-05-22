@@ -14,6 +14,7 @@ public class Poste {
 
 	
 	public Poste() {
+		
 	}
 
 	public Poste(int id, String libelle, int nombrePlaces, String heureD, String etat) {
