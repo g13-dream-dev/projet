@@ -1,4 +1,4 @@
-package projet.view.course;
+package projet.view.competition;
 
 import javax.inject.Inject;
 
@@ -61,6 +61,10 @@ public class ControllerCourseListe {
 
 	
 	// Actions
+	@FXML
+	private void doRetour() {
+		managerGui.showView(EnumView.CompetitionForm);
+	}
 	
 	@FXML
 	private void doAjouter() {

@@ -155,9 +155,9 @@ public class MenuBarAppli extends MenuBar {
 		this.getMenus().add(menu);
 		menuCompetition = menu;
 		
-		item = new MenuItem( "Courses" );
+		item = new MenuItem( "Liste de competitions" );
 		item.setOnAction(  (e) ->  
-				managerGui.showDialog( EnumView.CourseListe ) );
+				managerGui.showDialog( EnumView.CompetitionListe ) );
 		menu.getItems().add( item );
 
 		// Menu Coureur

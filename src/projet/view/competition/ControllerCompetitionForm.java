@@ -1,0 +1,77 @@
+package projet.view.competition;
+
+import javax.inject.Inject;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import javafx.util.converter.IntegerStringConverter;
+import jfox.javafx.util.ConverterStringInteger;
+import jfox.javafx.util.ConverterStringLocalDate;
+import jfox.javafx.util.ListenerFocusValidation;
+import jfox.javafx.util.UtilFX;
+import jfox.javafx.view.IManagerGui;
+import projet.data.Competition;
+import projet.view.EnumView;
+
+public class ControllerCompetitionForm {
+
+	// Composants de la vue
+
+	@FXML
+	private TextField textFieldId;
+	@FXML
+	private TextField textFieldNom;
+	@FXML
+	private TextField textFieldLieu;
+	@FXML
+	private DatePicker datePickerDate;
+
+	// Autres champs
+
+	@Inject
+	private IManagerGui managerGui;
+	@Inject
+	private ModelCompetition modelCompetition;
+
+	// Initialisation du Controller
+
+	@FXML
+	private void initialize() {
+
+		// Data binding
+
+		Competition courant = modelCompetition.getCourant();
+
+		textFieldId.textProperty().bindBidirectional(courant.idProperty(), new IntegerStringConverter());
+		textFieldNom.textProperty().bindBidirectional(courant.nomProperty());
+		textFieldLieu.textProperty().bindBidirectional(courant.lieuProperty());
+		UtilFX.bindBidirectional(datePickerDate.getEditor(), courant.dateProperty(), new ConverterStringLocalDate());
+
+	}
+
+	// Actions
+	@FXML
+	private void doListerCourses() {
+		System.out.println(modelCompetition.getCourant().idProperty().getValue());
+		if (modelCompetition.getCourant().idProperty().getValue() != null) {
+			managerGui.showView(EnumView.CourseListe);
+		}else {
+			managerGui.showDialogMessage("Aucune course n'est ratachée a cette competition car elle n'est pas encore enregistrée!");
+		}
+		
+	}
+
+	@FXML
+	private void doValider() {
+		modelCompetition.validerMiseAJour();
+		managerGui.showView(EnumView.CompetitionListe);
+	}
+
+	@FXML
+	private void doAnnuler() {
+		managerGui.showView(EnumView.CompetitionListe);
+	}
+}

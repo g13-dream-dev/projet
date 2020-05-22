@@ -8,6 +8,7 @@ import org.mapstruct.MappingTarget;
 
 import projet.data.Benevole;
 import projet.data.Categorie;
+import projet.data.Competition;
 import projet.data.Compte;
 import projet.data.Coureur;
 import projet.data.Course;
@@ -35,6 +36,9 @@ public interface IMapper {
 	//@Mapping( target="categorie", expression="java( source.getCategorie() )" )
 	Memo update( @MappingTarget Memo target, Memo source );
 	Service update( @MappingTarget Service target, Service source );
+	
 	Course update( @MappingTarget Course target, Course source );
+	@Mapping( target="courses", expression="java( source.getCourses() )" )
+	Competition update( @MappingTarget Competition target, Competition source );
 	
 }
