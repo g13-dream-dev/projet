@@ -7,10 +7,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane fx:id="paneRoot" prefHeight="350.0" prefWidth="405.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.course.ControllerCourseListe">
+<AnchorPane fx:id="paneRoot" prefHeight="350.0" prefWidth="405.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.plat.ControllerPlatListe">
    <children>
-      <Label alignment="CENTER" styleClass="titre-vue" text="Courses" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
-      <HBox alignment="CENTER" layoutY="75.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+      <Label alignment="CENTER" styleClass="titre-vue" text="Plats" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+      <HBox alignment="CENTER" layoutY="75.0" prefHeight="200.0" prefWidth="405.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
             <ListView fx:id="listView" layoutX="88.0" layoutY="75.0" onMouseClicked="#gererClicSurListe" prefHeight="200.0" prefWidth="200.0">
                <opaqueInsets>

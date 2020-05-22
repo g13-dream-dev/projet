@@ -1,4 +1,4 @@
-package projet.view.course;
+package projet.view.competition;
 
 import javax.inject.Inject;
 
@@ -6,15 +6,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.util.converter.IntegerStringConverter;
-import javafx.util.converter.LocalTimeStringConverter;
 import jfox.javafx.util.ConverterStringInteger;
+import jfox.javafx.util.ConverterStringLocalDate;
 import jfox.javafx.util.ListenerFocusValidation;
 import jfox.javafx.view.IManagerGui;
 import projet.data.Course;
 import projet.view.EnumView;
 
 
-public class ControllerCourseFormRevolu {
+public class ControllerCourseForm {
 
 	
 	// Composants de la vue
@@ -57,7 +57,7 @@ public class ControllerCourseFormRevolu {
 
 		textFieldNom.textProperty().bindBidirectional( courant.nomProperty() );
 		
-		textFieldHeureD.textProperty().bindBidirectional( courant.heureDProperty(), new LocalTimeStringConverter());
+		//textFieldHeureD.textProperty().bindBidirectional( courant.heureDProperty(), );
 		
 		textFieldDistance.textProperty().bindBidirectional( courant.distanceProperty(), new IntegerStringConverter()  );
 		
@@ -72,6 +72,10 @@ public class ControllerCourseFormRevolu {
 	@FXML
 	private void doValider() {
 		modelCourse.validerMiseAJour();
+		managerGui.showView( EnumView.CourseListe );
+	}
+	@FXML
+	private void doAnnuler() {
 		managerGui.showView( EnumView.CourseListe );
 	}
 }

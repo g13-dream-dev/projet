@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="323.0" prefWidth="357.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.systeme.ControllerInfo">
+<AnchorPane prefHeight="323.0" prefWidth="357.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.systeme.ControllerInfo">
    <children>
-      <Label fx:id="labelTitre" alignment="CENTER" styleClass="titre-vue" text="Titre" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
-      <VBox alignment="CENTER" layoutY="63.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
-         <children>
-            <Label fx:id="labelMessage" styleClass="message-accueil" text="Message" />
-         </children>
-      </VBox>
+      <Label fx:id="labelTitre" alignment="CENTER" layoutY="14.0" text="Titre" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0" />
+      <Label fx:id="labelMessage" layoutX="155.0" layoutY="31.0" styleClass="message-accueil" text="Message" />
+      <ImageView fitHeight="165.0" fitWidth="341.0" layoutX="8.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
+      <Label alignment="CENTER" layoutX="77.0" layoutY="252.0" prefHeight="42.0" prefWidth="204.0" text="description" />
    </children>
 </AnchorPane>

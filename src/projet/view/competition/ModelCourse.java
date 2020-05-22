@@ -1,4 +1,4 @@
- package projet.view.course;
+ package projet.view.competition;
 
 import javax.inject.Inject;
 
@@ -28,6 +28,8 @@ public class ModelCourse {
 	private IMapper		        mapper;
     @Inject
 	private DaoCourse			daoCourse;
+    @Inject
+    private ModelCompetition modelCompetition;
     
 	
 	
@@ -45,10 +47,9 @@ public class ModelCourse {
 	// Actualisations
 	
 	public void actualiserListe() {
-		liste.setAll( daoCourse.listerTout() );
+		liste.setAll( daoCourse.listerPourCompetition(modelCompetition.getCourant()) );
 	}
 
-	
 	// Actions
 	
 	public void preparerAjouter() {
@@ -112,10 +113,10 @@ public class ModelCourse {
 		// Effectue la mise à jour
 		if ( courant.getId() == null ) {
 			// Insertion
-			courant.setId( daoCourse.inserer( courant ) );
+			daoCourse.insererPourCompetition( modelCompetition.getCourant() );
 		} else {
 			// modficiation
-			daoCourse.modifier( courant );
+			daoCourse.modifierPourCompetition( modelCompetition.getCourant() );
 		}
 	}
 	

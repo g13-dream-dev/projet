@@ -212,7 +212,4 @@ public class Personne {
 		this.telephoneProperty().set(telephone);
 	}
 	
-	
-	
-	
 }

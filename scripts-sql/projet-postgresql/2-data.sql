@@ -162,18 +162,36 @@ INSERT INTO service ( idservice, nom, anneecreation, flagsiege ) VALUES
   ( 2, 'Comptabilité', NULL, TRUE ),
   ( 3, 'Agence Limoges', 2008, FALSE ),
   ( 4, 'Agence Brive', 2014, FALSE );
-
+ALTER TABLE service ALTER COLUMN idservice RESTART WITH 5;
 
 ALTER TABLE service ALTER COLUMN idservice RESTART WITH 5;
 
+-- Competition
+
+INSERT INTO competition ( idcompetition, nom, lieu, date) VALUES 
+  ( 1, 'Mini Bol-D air', 'France | Lyon','2020-06-26'),
+  ( 2, 'Bol-D air', 'France | Lyon','2020-06-26');
+ALTER TABLE competition ALTER COLUMN idcompetition RESTART WITH 5;
+  
 -- Course
 
-INSERT INTO course ( idcourse, nom, heureD, distance,lieudepart,lieuarriv ) VALUES 
-  ( 1, 'Cheval','12:20:20', 500 ,'bastide','carnot'),
-  ( 2, 'Voiture','12:40:29', 600,'nexon','carnot'),
-  ( 3, 'Limoges',  '11:55:12', 100,'maryse','bastide'),
-  ( 4, ' Brive','1:00:00',250 ,'borie','belair');
+INSERT INTO course ( idcourse,idcompetition, nom, heureD, distance,lieudepart,lieuarriv ) VALUES 
+  ( 1, 1, 'Cheval','12:20:20', 500 ,'bastide','carnot'),
+  ( 2, 1, 'Voiture','12:40:29', 600,'nexon','carnot'),
+  ( 3, 2, 'Limoges',  '11:55:12', 100,'maryse','bastide'),
+  ( 4, 2, ' Brive','1:00:00',250 ,'borie','belair');
+ALTER TABLE course ALTER COLUMN idcourse RESTART WITH 5;
 
+-- Plat
 
-ALTER TABLE service ALTER COLUMN idservice RESTART WITH 5;
+INSERT INTO plat ( idplat, nom, nombre) VALUES 
+  ( 1, 'Macaroni au beure de vache',30),
+  ( 2, 'Merguez a l huile rouge',20),
+  ( 3, 'Riz-sauté',6),
+  ( 4, 'Marseilaise',18),
+  ( 5, 'Ndole',50),
+  ( 6, 'Oko o',25),
+  ( 7, 'Sanga',40);
+ALTER TABLE competition ALTER COLUMN idcompetition RESTART WITH 5;
+
 
