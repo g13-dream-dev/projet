@@ -3,12 +3,9 @@ package projet.view.competition;
 import javax.inject.Inject;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.util.converter.IntegerStringConverter;
-import jfox.javafx.util.ConverterStringInteger;
-import jfox.javafx.util.ConverterStringLocalDate;
-import jfox.javafx.util.ListenerFocusValidation;
+import javafx.util.converter.LocalTimeStringConverter;
 import jfox.javafx.view.IManagerGui;
 import projet.data.Course;
 import projet.view.EnumView;
@@ -52,8 +49,7 @@ public class ControllerCourseForm {
 
 		textFieldNom.textProperty().bindBidirectional(courant.nomProperty());
 
-		// textFieldHeureD.textProperty().bindBidirectional( courant.heureDProperty(),
-		// );
+		textFieldHeureD.textProperty().bindBidirectional( courant.heureDProperty(), new LocalTimeStringConverter());
 
 		textFieldDistance.textProperty().bindBidirectional(courant.distanceProperty(), new IntegerStringConverter());
 

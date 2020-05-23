@@ -82,7 +82,7 @@ public class DaoCourse {
 			}
 			sql = "INSERT INTO course (  idcompetition, nom, heureD, distance,lieudepart,lieuarriv  ) VALUES( ?, ?, ?, ?,?,? ) ";
 			stmtInsert = cn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			sql = "UPDATE telephone SET idcompetition = ?, nom = ?, heureD = ?, distance = ?, lieudepart = ?, lieuarriv = ? WHERE idcourse = ?";
+			sql = "UPDATE course SET idcompetition = ?, nom = ?, heureD = ?, distance = ?, lieudepart = ?, lieuarriv = ? WHERE idcourse = ?";
 			stmtUpdate = cn.prepareStatement(sql);
 			for (Course course : competition.getCourses()) {
 				if (course.getId() == null || course.getId() == 0) {
