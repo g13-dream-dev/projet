@@ -12,76 +12,73 @@ import jfox.javafx.view.IManagerGui;
 import projet.data.Course;
 import projet.view.EnumView;
 
-
 public class ControllerCourseListe {
-	
-	
+
 	// Composants de la vue
 
 	@FXML
-	private ListView<Course>		listView;
+	private ListView<Course> listView;
 	@FXML
-	private Button				buttonModifier;
+	private Button buttonModifier;
 	@FXML
-	private Button				buttonSupprimer;
-
+	private Button buttonSupprimer;
 
 	// Autres champs
-	
+
 	@Inject
-	private IManagerGui			managerGui;
+	private IManagerGui managerGui;
 	@Inject
-	private ModelCourse		modelCourse;
-	
-	
+	private ModelCompetition modelCompetition;
+	@Inject
+	private ModelCourse modelCourse;
+
 	// Initialisation du Controller
 
 	@FXML
 	private void initialize() {
 
 		// Data binding
-		listView.setItems( modelCourse.getListe() );
-		
-		listView.setCellFactory(  UtilFX.cellFactory( item -> item.getNom() ));
-		
+		listView.setItems(modelCourse.getListe());
+
+		listView.setCellFactory(UtilFX.cellFactory(item -> item.getNom()));
+
 		// Configuraiton des boutons
-		listView.getSelectionModel().selectedItemProperty().addListener(
-				(obs, oldVal, newVal) -> {
-					configurerBoutons();
+		listView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+			configurerBoutons();
 		});
 		configurerBoutons();
 
 	}
-	
+
 	public void refresh() {
 		modelCourse.actualiserListe();
-		UtilFX.selectInListView( listView, modelCourse.getCourant() );
+		UtilFX.selectInListView(listView, modelCourse.getCourant());
 		listView.requestFocus();
 	}
 
-	
 	// Actions
 	@FXML
 	private void doRetour() {
 		managerGui.showView(EnumView.CompetitionForm);
 	}
-	
+
 	@FXML
 	private void doAjouter() {
 
-		modelCourse.preparerAjouter();;
-		managerGui.showView( EnumView.CoureurForm);
+		modelCourse.preparerAjouter();
+		;
+		managerGui.showView(EnumView.CoureurForm);
 
 		modelCourse.preparerAjouter();
-		managerGui.showView( EnumView.CourseForm );
+		managerGui.showView(EnumView.CourseForm);
 
 	}
 
 	@FXML
 	private void doModifier() {
 		Course item = listView.getSelectionModel().getSelectedItem();
-		if ( item == null ) {
-			managerGui.showDialogError( "Aucun élément n'est sélectionné dans la liste.");
+		if (item == null) {
+			managerGui.showDialogError("Aucun élément n'est sélectionné dans la liste.");
 		} else {
 			modelCourse.preparerModifier(item);
 			managerGui.showView(EnumView.CourseForm);
@@ -91,26 +88,26 @@ public class ControllerCourseListe {
 	@FXML
 	private void doSupprimer() {
 		Course item = listView.getSelectionModel().getSelectedItem();
-		if ( item == null ) {
-			managerGui.showDialogError( "Aucun élément n'est sélectionné dans la liste.");
+		if (item == null) {
+			managerGui.showDialogError("Aucun élément n'est sélectionné dans la liste.");
 		} else {
-			boolean reponse = managerGui.showDialogConfirm( "Confirmez-vous la suppresion ?" );
-			if ( reponse ) {
-				modelCourse.supprimer( item );
+			boolean reponse = managerGui.showDialogConfirm("Confirmez-vous la suppresion ?");
+			if (reponse) {
+				modelCourse.supprimer(item);
 				refresh();
 			}
 		}
 	}
-	
+
 	// Gestion des évènements
 
 	// Clic sur la liste
 	@FXML
-	private void gererClicSurListe( MouseEvent event ) {
+	private void gererClicSurListe(MouseEvent event) {
 		if (event.getButton().equals(MouseButton.PRIMARY)) {
 			if (event.getClickCount() == 2) {
-				if ( listView.getSelectionModel().getSelectedIndex() == -1 ) {
-					managerGui.showDialogError( "Aucun élément n'est sélectionné dans la liste.");
+				if (listView.getSelectionModel().getSelectedIndex() == -1) {
+					managerGui.showDialogError("Aucun élément n'est sélectionné dans la liste.");
 				} else {
 					doModifier();
 				}
@@ -118,18 +115,30 @@ public class ControllerCourseListe {
 		}
 	}
 
-	
 	// Méthodes auxiliaires
-	
+
 	private void configurerBoutons() {
-		
-    	if( listView.getSelectionModel().getSelectedItems().isEmpty() ) {
+
+		if (listView.getSelectionModel().getSelectedItems().isEmpty()) {
 			buttonModifier.setDisable(true);
 			buttonSupprimer.setDisable(true);
 		} else {
 			buttonModifier.setDisable(false);
 			buttonSupprimer.setDisable(false);
 		}
+	}
+
+	// methodes de fonctionnalités
+	@FXML
+	private void doListerToutesLesCompetitions() {
+		modelCompetition.actualiserListe();
+		managerGui.showView(EnumView.CompetitionListe);
+	}
+
+	@FXML
+	private void doAjouterUneCompetition() {
+		modelCompetition.preparerAjouter();
+		managerGui.showView(EnumView.CompetitionForm);
 	}
 
 }

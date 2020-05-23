@@ -6,24 +6,49 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 
-<AnchorPane fx:id="paneRoot" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.coureur.ControllerCoureurListe">
+<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="arriere-plan" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.coureur.ControllerCoureurListe">
    <children>
-      <Label alignment="CENTER" styleClass="titre-vue" text="INFO EQUIPE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
-      <HBox alignment="CENTER" layoutY="75.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+      <HBox alignment="CENTER" layoutX="497.0" layoutY="114.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="336.0" AnchorPane.bottomAnchor="124.0" AnchorPane.leftAnchor="497.0" AnchorPane.rightAnchor="167.0" AnchorPane.topAnchor="114.0">
          <children>
-            <ListView fx:id="listView" layoutX="88.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#gererClicSurListe" prefHeight="100.0" prefWidth="350.0">
+            <ListView fx:id="listView" layoutX="497.0" layoutY="114.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#gererClicSurListe" prefHeight="412.0" prefWidth="336.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </ListView>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutY="263.0" prefHeight="60.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="CENTER" layoutX="497.0" layoutY="547.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="336.0" spacing="10.0" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="497.0" AnchorPane.rightAnchor="167.0">
          <children>
-            <Button fx:id="buttonSupprimer" mnemonicParsing="false" onAction="#doSupprimer" text="Supprimer" />
-            <Button fx:id="buttonModifier" mnemonicParsing="false" onAction="#doModifier" text="Modifier" />
+            <Button fx:id="buttonModifier" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#doModifier" prefWidth="118.0" text="Modifier" />
+            <Button fx:id="buttonSupprimer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#doSupprimer" prefWidth="118.0" text="Supprimer" />
          </children>
       </HBox>
+      <AnchorPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="280.0" styleClass="barre-fonctionalites">
+         <children>
+            <VBox layoutX="15.0" layoutY="239.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#doRechercherUneEquipe" prefHeight="30.0" prefWidth="250.0" text="Rechercher une équipe" />
+                  <Button disable="true" mnemonicParsing="false" onAction="#doListerToutesLesEquipes" prefHeight="30.0" prefWidth="250.0" text="Lister toutes les équipes" />
+                  <Button mnemonicParsing="false" onAction="#doAjouterUneEquipe" prefHeight="30.0" prefWidth="250.0" text="Ajouter une équipe" />
+                  <Button mnemonicParsing="false" onAction="#doAffilierUneEquipeAuneCompetition" prefHeight="30.0" prefWidth="250.0" text="Affilier une équipe à une compétition" />
+               </children>
+            </VBox>
+            <HBox layoutX="12.0" layoutY="12.0" prefHeight="37.0" prefWidth="200.0">
+               <children>
+                  <Circle fill="DODGERBLUE" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="141.0" text="Pseudo" />
+                        <Label layoutX="14.0" layoutY="18.0" prefHeight="17.0" prefWidth="141.0" text="Email" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <Label alignment="CENTER" layoutX="497.0" layoutY="47.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="336.0" styleClass="titre-vue" text="Liste des Equipes" />
    </children>
 </AnchorPane>

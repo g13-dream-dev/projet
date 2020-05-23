@@ -7,34 +7,14 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 
-<AnchorPane fx:id="paneRoot" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.competition.ControllerCourseForm">
+<AnchorPane fx:id="paneRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" styleClass="arriere-plan" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.competition.ControllerCourseForm">
    <children>
-      <HBox alignment="CENTER" layoutY="440.0" prefHeight="60.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#doAnnuler" prefWidth="100.0" text="Annuler" />
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#doValider" prefWidth="100.0" text="Valider" />
-         </children>
-      </HBox>
-      <VBox alignment="CENTER" layoutX="20.0" layoutY="264.0" prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <Label text="Distance" />
-            <TextField fx:id="textFieldDistance" />
-            <Label text="Heure de depart" />
-            <TextField fx:id="textFieldHeureD" />
-         </children>
-      </VBox>
-      <VBox alignment="CENTER" layoutX="280.0" layoutY="264.0" prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <Label text="Lieu de depart" />
-            <TextField fx:id="textFieldLieuDepart" />
-            <Label text="Lieu d'arrivée" />
-            <TextField fx:id="textFieldLieuArriv" />
-         </children>
-      </VBox>
-      <VBox layoutX="10.0" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="480.0">
+      <VBox alignment="CENTER" layoutX="415.0" layoutY="114.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="500.0">
          <children>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="460.0">
                <children>
@@ -70,7 +50,7 @@
                   <Image url="@../../../../../../Users/tchea/Desktop/1.jpg" />
                </image>
             </ImageView>
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="230.0">
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="230.0">
                <children>
                   <Label text="Selectionnez un fichier" />
                   <Button mnemonicParsing="false" text="Folder">
@@ -83,10 +63,60 @@
                   <Insets left="120.0" />
                </VBox.margin>
             </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Distance" />
+                        <TextField fx:id="textFieldDistance" />
+                        <Label text="Heure de depart" />
+                        <TextField fx:id="textFieldHeureD" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Lieu de depart" />
+                        <TextField fx:id="textFieldLieuDepart" />
+                        <Label text="Lieu d'arrivée" />
+                        <TextField fx:id="textFieldLieuArriv" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
          </children>
-         <padding>
-            <Insets left="10.0" />
-         </padding>
       </VBox>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="280.0" styleClass="barre-fonctionalites">
+         <children>
+            <VBox layoutX="15.0" layoutY="239.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" spacing="10.0">
+               <children>
+                  <Button disable="true" mnemonicParsing="false" onAction="#doListerToutesLesCompetitions" prefHeight="30.0" prefWidth="250.0" text="Lister des competitions" />
+                  <Button mnemonicParsing="false" onAction="#doAjouterUneCompetition" prefHeight="30.0" prefWidth="250.0" text="Ajouter une competition" />
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Liste des courses" />
+               </children>
+            </VBox>
+            <HBox layoutX="12.0" layoutY="12.0" prefHeight="37.0" prefWidth="200.0">
+               <children>
+                  <Circle fill="DODGERBLUE" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="141.0" text="Pseudo" />
+                        <Label layoutX="14.0" layoutY="18.0" prefHeight="17.0" prefWidth="141.0" text="Email" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <Label alignment="CENTER" layoutX="497.0" layoutY="47.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="336.0" styleClass="titre-vue" text="Edition D'une Course" />
+      <FlowPane layoutX="497.0" layoutY="547.0" prefHeight="37.0" prefWidth="336.0">
+         <children>
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#doAnnuler" prefHeight="25.0" prefWidth="168.0" text="Annuler" />
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#doValider" prefHeight="25.0" prefWidth="168.0" text="Valider">
+               <FlowPane.margin>
+                  <Insets />
+               </FlowPane.margin>
+            </Button>
+         </children>
+      </FlowPane>
    </children>
 </AnchorPane>

@@ -3,14 +3,10 @@ package projet.view.competition;
 import javax.inject.Inject;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.util.converter.IntegerStringConverter;
-import jfox.javafx.util.ConverterStringInteger;
 import jfox.javafx.util.ConverterStringLocalDate;
-import jfox.javafx.util.ListenerFocusValidation;
 import jfox.javafx.util.UtilFX;
 import jfox.javafx.view.IManagerGui;
 import projet.data.Competition;
@@ -58,10 +54,11 @@ public class ControllerCompetitionForm {
 		System.out.println(modelCompetition.getCourant().idProperty().getValue());
 		if (modelCompetition.getCourant().idProperty().getValue() != null) {
 			managerGui.showView(EnumView.CourseListe);
-		}else {
-			managerGui.showDialogMessage("Aucune course n'est ratachée a cette competition car elle n'est pas encore enregistrée!");
+		} else {
+			managerGui.showDialogMessage(
+					"Aucune course n'est ratachée a cette competition car elle n'est pas encore enregistrée!");
 		}
-		
+
 	}
 
 	@FXML
@@ -73,5 +70,18 @@ public class ControllerCompetitionForm {
 	@FXML
 	private void doAnnuler() {
 		managerGui.showView(EnumView.CompetitionListe);
+	}
+
+	// methodes de fonctionnalités
+	@FXML
+	private void doListerToutesLesCompetitions() {
+		modelCompetition.actualiserListe();
+		managerGui.showView(EnumView.CompetitionListe);
+	}
+
+	@FXML
+	private void doAjouterUneCompetition() {
+		modelCompetition.preparerAjouter();
+		managerGui.showView(EnumView.CompetitionForm);
 	}
 }

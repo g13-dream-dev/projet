@@ -63,6 +63,7 @@ public class ModelBenevole {
 
 	public void preparerModifier( Benevole item ) {
 		mapper.update( courant, daoBenevole.retrouver( item.getId() ) );
+		mapper.update(courant.getPermis(), daoPermis.avoirPourBenevole(courant));
 	}
 	
 
@@ -117,6 +118,7 @@ public class ModelBenevole {
 			message.append( "\nL'adresse mail est trop long." );
 		}
 		
+		if(courant.getPermis() != null)
 		if( courant.getPermis().getNumero() == null || courant.getPermis().getNumero().isEmpty() ) {
 			message.append( "\nLe numero de permis ne doit pas etre vide." );
 		} else if ( courant.getPermis().getNumero().length()> 15 ) {

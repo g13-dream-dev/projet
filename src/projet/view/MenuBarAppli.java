@@ -21,16 +21,16 @@ public class MenuBarAppli extends MenuBar {
 	private Menu menuDonnees;
 	private Menu menuEtats;
 	private Menu menuTests;
-	private Menu menuCompetition;
-	private Menu menuCoureur;
-	private Menu menuBenevole;
-	private Menu menuPoste;
-	private Menu menuPlat;
 
 	private MenuItem itemDeconnecter;
 
 	private MenuItem itemCategories;
 	private MenuItem itemComptes;
+	private MenuItem itemCompetition;
+	private MenuItem itemCoureur;
+	private MenuItem itemBenevole;
+	private MenuItem itemPoste;
+	private MenuItem itemPlat;
 
 	@Inject
 	private IManagerGui managerGui;
@@ -51,7 +51,6 @@ public class MenuBarAppli extends MenuBar {
 		// Manu Système
 
 		menu = new Menu("Système");
-		;
 		this.getMenus().add(menu);
 
 		item = new MenuItem("Se déconnecter");
@@ -66,34 +65,41 @@ public class MenuBarAppli extends MenuBar {
 		// Manu Données
 
 		menu = new Menu("Données");
-		;
 		this.getMenus().add(menu);
 		menuDonnees = menu;
 
-		item = new MenuItem("Mémos");
-		item.setOnAction((e) -> managerGui.showView(EnumView.MemoListe));
+		item = new MenuItem("Competitions");
+		item.setOnAction((e) -> managerGui.showView(EnumView.CompetitionListe));
 		menu.getItems().add(item);
+		itemCompetition = item;
 
-		item = new MenuItem("Services");
-		item.setOnAction((e) -> managerGui.showView(EnumView.ServiceListe));
+		item = new MenuItem("Coureurs");
+		item.setOnAction((e) -> managerGui.showView(EnumView.CoureurClubListe));
 		menu.getItems().add(item);
+		itemCoureur = item;
 
-		item = new MenuItem("Personnes");
-		item.setOnAction((e) -> managerGui.showView(EnumView.PersonneListe));
+		item = new MenuItem("Benevoles");
+		item.setOnAction((e) -> managerGui.showView(EnumView.BenevoleListe));
 		menu.getItems().add(item);
+		itemBenevole = item;
 
-		item = new MenuItem("Catégories");
-		item.setOnAction((e) -> managerGui.showView(EnumView.CategorieListe));
+		item = new MenuItem("Postes");
+		item.setOnAction((e) -> managerGui.showView(EnumView.PosteListe));
 		menu.getItems().add(item);
-		itemCategories = item;
+		itemPoste = item;
 
+		item = new MenuItem("Plat");
+		item.setOnAction((e) -> managerGui.showView(EnumView.PlatListe));
+		menu.getItems().add(item);
+		itemPlat = item;
+		
 		item = new MenuItem("Comptes");
-		item.setOnAction((e) -> managerGui.showView(EnumView.CompteListe));
+		item.setOnAction((e) -> managerGui.showView(EnumView.PlatListe));
 		menu.getItems().add(item);
 		itemComptes = item;
 
 		// Manu Etats
-
+/*
 		menu = new Menu("Etats");
 		this.getMenus().add(menu);
 		menuEtats = menu;
@@ -138,55 +144,10 @@ public class MenuBarAppli extends MenuBar {
 		item = new MenuItem("DaoService");
 		item.setOnAction((e) -> managerGui.showView(EnumView.TestDaoService));
 		menu.getItems().add(item);
-
-		// Menu competition
-
-		menu = new Menu("Competition");
-		this.getMenus().add(menu);
-		menuCompetition = menu;
-
-		item = new MenuItem("Liste des competitions");
-		item.setOnAction((e) -> managerGui.showDialog(EnumView.CompetitionListe));
-		menu.getItems().add(item);
-
-		// Menu Coureur
-
-		menu = new Menu("Coureur");
-		this.getMenus().add(menu);
-		menuCoureur = menu;
-
-		item = new MenuItem("liste des Clubs");
-		item.setOnAction((e) -> managerGui.showDialog(EnumView.CoureurClubListe));
-		menu.getItems().add(item);
-
-		// Menu Benevole
-
-		menu = new Menu("Benevole");
-		this.getMenus().add(menu);
-		menuBenevole = menu;
-
-		item = new MenuItem("Liste des benevoles");
-		item.setOnAction((e) -> managerGui.showDialog(EnumView.BenevoleListe));
-		menu.getItems().add(item);
-
-		// Menu Poste
-
-		menu = new Menu("Poste");
-		this.getMenus().add(menu);
-		menuPoste = menu;
-
-		item = new MenuItem("Liste des postes");
-		item.setOnAction((e) -> managerGui.showDialog(EnumView.PosteListe));
-		menu.getItems().add(item);
-
-		// Menu Poste
-
-		menu = new Menu("Plat");
-		this.getMenus().add(menu);
-		menuPlat = menu;
+*/
 
 		item = new MenuItem("Liste des plats");
-		item.setOnAction((e) -> managerGui.showDialog(EnumView.PlatListe));
+		item.setOnAction((e) -> managerGui.showView(EnumView.PlatListe));
 		menu.getItems().add(item);
 
 		// Configuration initiale du menu
@@ -206,33 +167,26 @@ public class MenuBarAppli extends MenuBar {
 		itemDeconnecter.setDisable(true);
 
 		menuDonnees.setVisible(false);
-		itemCategories.setVisible(false);
 		itemComptes.setVisible(false);
-		menuEtats.setVisible(false);
-		menuTests.setVisible(false);
-		menuCompetition.setVisible(false);
-		menuCoureur.setVisible(false);
-		menuBenevole.setVisible(false);
-		menuPoste.setVisible(false);
-		menuPlat.setVisible(false);
+		itemCompetition.setVisible(false);
+		itemCoureur.setVisible(false);
+		itemBenevole.setVisible(false);
+		itemPoste.setVisible(false);
+		itemPlat.setVisible(false);
 
 		if (compteActif != null) {
 			itemDeconnecter.setDisable(false);
 			if (compteActif.isInRole(Roles.UTILISATEUR)) {
 				menuDonnees.setVisible(true);
-				menuEtats.setVisible(true);
 			}
 			if (compteActif.isInRole(Roles.ADMINISTRATEUR)) {
 				menuDonnees.setVisible(true);
-				itemCategories.setVisible(true);
 				itemComptes.setVisible(true);
-				menuTests.setVisible(true);
-				menuCompetition.setVisible(true);
-				menuCoureur.setVisible(true);
-				menuBenevole.setVisible(true);
-				menuPoste.setVisible(true);
-				menuEtats.setVisible(true);
-				menuPlat.setVisible(true);
+				itemCompetition.setVisible(true);
+				itemCoureur.setVisible(true);
+				itemBenevole.setVisible(true);
+				itemPoste.setVisible(true);
+				itemPlat.setVisible(true);
 			}
 		}
 	}

@@ -63,7 +63,7 @@ CREATE TABLE memo (
 	statut			SMALLINT		NOT NULL	DEFAULT 0,
 	effectif		INT,
 	budget			DOUBLE PRECISION,
-	echeance		Date,
+	echeance		DATE,
 	CHECK( statut BETWEEN 0 AND 2 ),	
 	PRIMARY KEY (idmemo)
 );

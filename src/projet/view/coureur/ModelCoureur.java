@@ -186,7 +186,7 @@ public class ModelCoureur {
 			message.append( "\nErreur pour Equipier : L'adresse mail est trop long." );
 		}
 		
-		if(!courant1.getClub().equals(courant2.getClub())) {
+		if(!courant1.getClub().isEmpty() && !courant2.getClub().isEmpty() && !courant1.getClub().equals(courant2.getClub())) {
 			message.append("\nErreur Capitaine et Equipier : Les coureurs doivent etres du meme club.");
 		}
 

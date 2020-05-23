@@ -123,5 +123,18 @@ public class ControllerCompetitionListe {
 			buttonSupprimer.setDisable(false);
 		}
 	}
+	
+	//methodes de fonctionnalités
+	@FXML
+	private void doListerToutesLesCompetitions() {
+		modelCompetition.actualiserListe();
+		managerGui.showView(EnumView.CompetitionListe);
+	}
+	
+	@FXML
+	private void doAjouterUneCompetition() {
+		modelCompetition.preparerAjouter();
+		managerGui.showView(EnumView.CompetitionForm);
+	}
 
 }

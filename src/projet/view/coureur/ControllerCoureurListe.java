@@ -13,84 +13,77 @@ import projet.data.Coureur;
 import projet.view.EnumView;
 import projet.view.coureur.ModelCoureur;
 
-
 public class ControllerCoureurListe {
-	
-	
+
 	// Composants de la vue
 
 	@FXML
-	private ListView<Coureur>	listView;
+	private ListView<Coureur> listView;
 	@FXML
-	private Button				buttonModifier;
+	private Button buttonModifier;
 	@FXML
-	private Button				buttonSupprimer;
-
+	private Button buttonSupprimer;
 
 	// Autres champs
-	
+
 	@Inject
-	private IManagerGui			managerGui;
+	private IManagerGui managerGui;
 	@Inject
-	private ModelCoureur		modelCoureur;
-	
-	
+	private ModelCoureur modelCoureur;
+
 	// Initialisation du Controller
 
 	@FXML
 	private void initialize() {
-		
-		listView.setCellFactory( UtilFX.cellFactory( item -> item.toString() ) );
+
+		listView.setCellFactory(UtilFX.cellFactory(item -> item.toString()));
 		// Data binding
-		listView.setItems( modelCoureur.getCoureurs() );
+		listView.setItems(modelCoureur.getCoureurs());
 		// Configuraiton des boutons
-		listView.getSelectionModel().selectedItemProperty().addListener(
-				(obs, oldVal, newVal) -> {
-					configurerBoutons();
+		listView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+			configurerBoutons();
 		});
 		configurerBoutons();
-		
+
 	}
-	
+
 	public void refresh() {
-		UtilFX.selectInListView( listView, modelCoureur.getCourant1() );
+		UtilFX.selectInListView(listView, modelCoureur.getCourant1());
 		listView.requestFocus();
 	}
 
-	
 	// Actions
-	
-	//@FXML
-	//private void doAjouter() {
-	//	modelCoureur.preparerAjouter();
-	//	managerGui.showView( EnumView.CoureurInscription );
-	//}
+
+	// @FXML
+	// private void doAjouter() {
+	// modelCoureur.preparerAjouter();
+	// managerGui.showView( EnumView.CoureurInscription );
+	// }
 
 	@FXML
 	private void doModifier() {
-		modelCoureur.preparerModifier( listView.getItems().get(0),listView.getItems().get(1) );
-		managerGui.showView( EnumView.CoureurForm );
+		modelCoureur.preparerModifier(listView.getItems().get(0), listView.getItems().get(1));
+		managerGui.showView(EnumView.CoureurForm);
 	}
 
 	@FXML
 	private void doSupprimer() {
-		if ( managerGui.showDialogConfirm( "Confirmez-vous la suppresion ?" ) ) {
-			modelCoureur.supprimer( listView.getItems().get(0),listView.getItems().get(1) );
+		if (managerGui.showDialogConfirm("Confirmez-vous la suppresion ?")) {
+			modelCoureur.supprimer(listView.getItems().get(0), listView.getItems().get(1));
 			refresh();
 			managerGui.showView(EnumView.CoureurClubListe);
 		}
 	}
-	
-	
+
 	// Gestion des évènements
 
 	// Clic sur la liste
 	@FXML
-	private void gererClicSurListe( MouseEvent event ) {
+	private void gererClicSurListe(MouseEvent event) {
 		if (event.getButton().equals(MouseButton.PRIMARY)) {
 			if (event.getClickCount() == 2) {
-				if ( listView.getSelectionModel().getSelectedIndex() == -1 ) {
-					managerGui.showDialogError( "Aucun élément n'est sélectionné dans la liste.");
+				if (listView.getSelectionModel().getSelectedIndex() == -1) {
+					managerGui.showDialogError("Aucun élément n'est sélectionné dans la liste.");
 				} else {
 					managerGui.showDialogMessage("Les actions sont à effectuer sur tous les membres du club!\n"
 							+ "Veuillez selectionner une action sur le bouton concerné en bas.");
@@ -99,18 +92,41 @@ public class ControllerCoureurListe {
 		}
 	}
 
-	
 	// Méthodes auxiliaires
-	
+
 	private void configurerBoutons() {
-		
-    	if( listView.getSelectionModel().getSelectedItems().isEmpty() ) {
+
+		if (listView.getSelectionModel().getSelectedItems().isEmpty()) {
 			buttonModifier.setDisable(true);
 			buttonSupprimer.setDisable(true);
 		} else {
 			buttonModifier.setDisable(false);
 			buttonSupprimer.setDisable(false);
 		}
+	}
+
+	// methodes de fonctionnalités
+
+	@FXML
+	private void doRechercherUneEquipe() {
+
+	}
+
+	@FXML
+	private void doListerToutesLesEquipes() {
+		modelCoureur.actualiserListeClubs();
+		managerGui.showView(EnumView.CoureurClubListe);
+	}
+
+	@FXML
+	private void doAjouterUneEquipe() {
+		modelCoureur.preparerAjouter();
+		managerGui.showView(EnumView.CoureurForm);
+	}
+
+	@FXML
+	private void doAffilierUneEquipeAuneCompetition() {
+
 	}
 
 }

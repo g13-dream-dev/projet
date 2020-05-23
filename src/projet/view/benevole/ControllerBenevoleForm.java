@@ -99,7 +99,7 @@ public class ControllerBenevoleForm {
 	
 	
 	public void refresh() {
-		
+		modelBenevole.actualiserListe();
 	}
 	
 
@@ -109,10 +109,34 @@ public class ControllerBenevoleForm {
 	private void doInscrire() {
 		if ( cbEngagement.isSelected()) {
 			modelBenevole.validerMiseAJour();
+			refresh();
 			managerGui.showView(EnumView.BenevoleListe);
 		}else {
 			throw new ExceptionValidation("Vous devez accepter le reglement!");
 		}
 	}
+	
+	//methodes de fonctionnalités
+		@FXML
+		private void doListerTousLesBenevoles() {
+			modelBenevole.actualiserListe();
+			managerGui.showView(EnumView.BenevoleListe);
+		}
+		
+		@FXML
+		private void doAjouterUnBenevole() {
+			modelBenevole.preparerAjouter();
+			managerGui.showView(EnumView.BenevoleForm);
+		}
+		
+		@FXML
+		private void doAfilierUnBenevoleAunPoste() {
+			
+		}
+		
+		@FXML
+		private void doAfilierUnBenevoleAuneCompetition() {
+			
+		}
 	
 }
