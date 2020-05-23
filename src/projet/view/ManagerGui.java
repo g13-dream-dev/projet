@@ -39,11 +39,11 @@ public class ManagerGui extends ManagerGuiAbstract {
 		
 		// Configure le stage
 		stage.setTitle( "Gestion d'évènements (CKC)" );
-		stage.setWidth(800);
+		stage.setWidth(1000);
 		stage.setHeight(640);
-		stage.setMinWidth(400);
-		stage.setMinHeight(300);
-		stage.getIcons().add(new Image(getClass().getResource("icone1.png").toExternalForm()));
+		stage.setMinWidth(1000);
+		stage.setMinHeight(640);
+		stage.getIcons().add(new Image(getClass().getResource("icone.png").toExternalForm()));
 		
 		// Configuration par défaut pour les boîtes de dialogue
 		typeConfigDialogDefault = ConfigDialog.class;
