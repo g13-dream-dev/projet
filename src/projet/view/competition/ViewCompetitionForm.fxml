@@ -11,16 +11,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 
-<AnchorPane fx:id="paneRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.competition.ControllerCompetitionForm">
+<AnchorPane fx:id="paneRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" styleClass="arriere-plan" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.competition.ControllerCompetitionForm">
    <children>
-      <HBox alignment="CENTER" layoutY="440.0" prefHeight="60.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#doAnnuler" prefWidth="100.0" text="Annuler" />
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#doValider" prefWidth="100.0" text="Valider" />
-         </children>
-      </HBox>
-      <VBox alignment="CENTER" layoutX="75.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="350.0">
+      <VBox alignment="CENTER" layoutX="497.0" layoutY="114.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="336.0">
          <children>
             <GridPane alignment="CENTER">
               <columnConstraints>
@@ -44,13 +39,41 @@
                   <DatePicker fx:id="datePickerDate" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#doListerCourses" prefHeight="25.0" prefWidth="350.0" text="Liste des courses" underline="true">
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#doListerCourses" prefHeight="25.0" prefWidth="336.0" text="Liste des courses" underline="true">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
             </Button>
          </children>
       </VBox>
-      <Label layoutX="190.0" layoutY="23.0" text="EDITION DE COMPETITION" />
+      <Label alignment="CENTER" layoutX="497.0" layoutY="47.0" prefHeight="47.0" prefWidth="336.0" styleClass="titre-vue" text="Edition D'une Compétition" />
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="280.0" styleClass="barre-fonctionalites">
+         <children>
+            <VBox layoutX="15.0" layoutY="239.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#doListerToutesLesCompetitions" prefHeight="30.0" prefWidth="250.0" text="Lister des competitions" />
+                  <Button disable="true" mnemonicParsing="false" onAction="#doAjouterUneCompetition" prefHeight="30.0" prefWidth="250.0" text="Ajouter une competition" />
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Liste des courses" />
+               </children>
+            </VBox>
+            <HBox layoutX="12.0" layoutY="12.0" prefHeight="37.0" prefWidth="200.0">
+               <children>
+                  <Circle fill="DODGERBLUE" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="141.0" text="Pseudo" />
+                        <Label layoutX="14.0" layoutY="18.0" prefHeight="17.0" prefWidth="141.0" text="Email" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <HBox alignment="CENTER" layoutX="497.0" layoutY="547.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="336.0" spacing="10.0">
+         <children>
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#doAnnuler" prefWidth="160.0" text="Annuler" />
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#doValider" prefWidth="160.0" text="Valider" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

@@ -30,7 +30,7 @@ public enum EnumView implements IEnumView {
 	EtatPersonnesParCateogire2	( "personne/ViewEtatPersonnesParCategorie2.fxml" ),
 	CoureurListe		( "coureur/ViewCoureurListe.fxml" ),
 	CoureurClubListe		( "coureur/ViewCoureurClubListe.fxml" ),
-	CoureurForm       ("coureur/ViewCoureurInscription.fxml"),
+	CoureurForm       ("coureur/ViewCoureurForm.fxml"),
 	BenevoleForm		( "benevole/ViewBenevoleInscription.fxml" ),
 	BenevoleListe		( "benevole/ViewBenevoleListe.fxml" ),
 	PosteListe	( "poste/ViewPosteListe.fxml" ),

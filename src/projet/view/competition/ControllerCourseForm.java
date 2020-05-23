@@ -13,36 +13,31 @@ import jfox.javafx.view.IManagerGui;
 import projet.data.Course;
 import projet.view.EnumView;
 
-
 public class ControllerCourseForm {
 
-	
 	// Composants de la vue
-	
-	@FXML
-	private TextField		textFieldId;
-	@FXML
-	private TextField		textFieldNom;
-	@FXML
-	private TextField		textFieldHeureD;
-	@FXML
-	private TextField		textFieldDistance;
-	@FXML
-	private TextField		textFieldLieuDepart;
-	@FXML
-	private TextField		textFieldLieuArriv;
-	
-	
-	
 
-	
+	@FXML
+	private TextField textFieldId;
+	@FXML
+	private TextField textFieldNom;
+	@FXML
+	private TextField textFieldHeureD;
+	@FXML
+	private TextField textFieldDistance;
+	@FXML
+	private TextField textFieldLieuDepart;
+	@FXML
+	private TextField textFieldLieuArriv;
+
 	// Autres champs
-	
-	@Inject
-	private IManagerGui		managerGui;
-	@Inject
-	private ModelCourse	modelCourse;
 
+	@Inject
+	private IManagerGui managerGui;
+	@Inject
+	private ModelCompetition modelCompetition;
+	@Inject
+	private ModelCourse modelCourse;
 
 	// Initialisation du Controller
 
@@ -50,32 +45,46 @@ public class ControllerCourseForm {
 	private void initialize() {
 
 		// Data binding
-		
+
 		Course courant = modelCourse.getCourant();
 
-		textFieldId.textProperty().bindBidirectional( courant.idProperty(), new IntegerStringConverter()  );
+		textFieldId.textProperty().bindBidirectional(courant.idProperty(), new IntegerStringConverter());
 
-		textFieldNom.textProperty().bindBidirectional( courant.nomProperty() );
-		
-		//textFieldHeureD.textProperty().bindBidirectional( courant.heureDProperty(), );
-		
-		textFieldDistance.textProperty().bindBidirectional( courant.distanceProperty(), new IntegerStringConverter()  );
-		
-		textFieldLieuDepart.textProperty().bindBidirectional( courant.lieuDepartProperty());
-		
-		textFieldLieuArriv.textProperty().bindBidirectional( courant.lieuArrivProperty());
-		
+		textFieldNom.textProperty().bindBidirectional(courant.nomProperty());
+
+		// textFieldHeureD.textProperty().bindBidirectional( courant.heureDProperty(),
+		// );
+
+		textFieldDistance.textProperty().bindBidirectional(courant.distanceProperty(), new IntegerStringConverter());
+
+		textFieldLieuDepart.textProperty().bindBidirectional(courant.lieuDepartProperty());
+
+		textFieldLieuArriv.textProperty().bindBidirectional(courant.lieuArrivProperty());
+
 	}
-	
-	
+
 	// Actions
 	@FXML
 	private void doValider() {
 		modelCourse.validerMiseAJour();
-		managerGui.showView( EnumView.CourseListe );
+		managerGui.showView(EnumView.CourseListe);
 	}
+
 	@FXML
 	private void doAnnuler() {
-		managerGui.showView( EnumView.CourseListe );
+		managerGui.showView(EnumView.CourseListe);
+	}
+
+	// methodes de fonctionnalités
+	@FXML
+	private void doListerToutesLesCompetitions() {
+		modelCompetition.actualiserListe();
+		managerGui.showView(EnumView.CompetitionListe);
+	}
+
+	@FXML
+	private void doAjouterUneCompetition() {
+		modelCompetition.preparerAjouter();
+		managerGui.showView(EnumView.CompetitionForm);
 	}
 }

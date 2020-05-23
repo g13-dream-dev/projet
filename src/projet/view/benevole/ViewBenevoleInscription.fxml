@@ -6,6 +6,8 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -13,133 +15,138 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.benevole.ControllerBenevoleForm">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.benevole.ControllerBenevoleForm">
    <children>
-      <Label alignment="CENTER" styleClass="titre-vue" text="INSCRIPTION BENEVOLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
-      <GridPane layoutX="52.0" layoutY="128.0" prefHeight="232.0" prefWidth="300.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <Button layoutX="497.0" layoutY="547.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#doInscrire" prefHeight="25.0" prefWidth="336.0" text="Valider" />
+      <TabPane layoutX="497.0" layoutY="114.0" prefHeight="412.0" prefWidth="336.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Information de base">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane layoutX="8.0" layoutY="57.0" prefHeight="246.0" prefWidth="321.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="113.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" prefWidth="223.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Nom :" GridPane.rowIndex="1" />
+                              <Label text="Prenom :" GridPane.rowIndex="2" />
+                              <Label text="Naissance :" GridPane.rowIndex="3" />
+                              <Label text="Téléphone :" GridPane.rowIndex="4" />
+                              <Label text="Adresse :" GridPane.rowIndex="5" />
+                              <Label text="Adresse mail :" GridPane.rowIndex="7" />
+                              <TextField fx:id="tfNom" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="tfPrenom" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <DatePicker fx:id="dpNaissance" prefHeight="25.0" prefWidth="226.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="tfTelephone" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="tfAdresse" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                 <children>
+                                    <TextField fx:id="tfCodePostal" prefHeight="25.0" prefWidth="67.0" />
+                                 </children>
+                                 <padding>
+                                    <Insets top="3.0" />
+                                 </padding>
+                              </HBox>
+                              <TextField fx:id="tfEmail" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                              <Label text="ID :" />
+                              <TextField fx:id="tfId" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="65.0" GridPane.columnIndex="1" />
+                              <Label text="Sexe :" GridPane.halignment="LEFT" GridPane.rowIndex="8" />
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                                 <children>
+                                    <RadioButton id="BRsexe" fx:id="rbHomme" mnemonicParsing="false" text="HOMME">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </RadioButton>
+                                    <RadioButton fx:id="rbFemme" mnemonicParsing="false" text="FEMME">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </RadioButton>
+                                 </children>
+                              </HBox>
+                              <Label text="CP :" GridPane.rowIndex="6">
+                                 <padding>
+                                    <Insets top="3.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Permis de conduire et autres">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane layoutX="6.0" layoutY="52.0" prefHeight="255.0" prefWidth="325.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="138.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="198.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints maxHeight="78.0" minHeight="1.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="114.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="131.0" minHeight="10.0" prefHeight="104.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="131.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Numéro :" GridPane.halignment="LEFT" />
+                              <TextField fx:id="tfNumero" GridPane.columnIndex="1" />
+                              <Label text="Date de délivrance (Prefecture)" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                              <DatePicker fx:id="dpDateDelivrance" prefHeight="10.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <CheckBox fx:id="cbPermanent" mnemonicParsing="false" text="Est-ce un benevole permanent ?" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <CheckBox fx:id="cbEngagement" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="68.0" prefWidth="335.0" text="En cochant cette case j'affirme avoir luet accepter le reglement et la facon dontmes données personnelles seront traitéespar CKC.voir reglement et traitement des donnees" textAlignment="JUSTIFY" wrapText="true" GridPane.rowIndex="3" />
+                              <Label text="A joindre au bulletin d'inscription :" wrapText="true" GridPane.rowIndex="4" />
+                              <Label text="&gt;permis de conduire si renseigné" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="280.0" styleClass="barre-fonctionalites">
          <children>
-            <Label text="Nom :" GridPane.rowIndex="1" />
-            <Label text="Prenom :" GridPane.rowIndex="2" />
-            <Label text="Naissance :" GridPane.rowIndex="3" />
-            <Label text="Téléphone :" GridPane.rowIndex="4" />
-            <Label text="Adresse :" GridPane.rowIndex="5" />
-            <Label text="Adresse mail :" GridPane.rowIndex="7" />
-            <TextField fx:id="tfNom" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="tfPrenom" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <DatePicker fx:id="dpNaissance" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="tfTelephone" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="tfAdresse" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <VBox layoutX="15.0" layoutY="239.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" spacing="10.0">
                <children>
-                  <Label text="CP :">
-                     <padding>
-                        <Insets top="3.0" />
-                     </padding>
-                  </Label>
-                  <TextField fx:id="tfCodePostal" prefHeight="25.0" prefWidth="67.0" />
-               </children>
-               <padding>
-                  <Insets top="3.0" />
-               </padding>
-            </HBox>
-            <TextField fx:id="tfEmail" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <Label text="ID :" />
-            <TextField fx:id="tfId" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="65.0" GridPane.columnIndex="1" />
-         </children>
-      </GridPane>
-      <GridPane layoutX="400.0" layoutY="128.0" prefHeight="232.0" prefWidth="300.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="57.0" minHeight="0.0" prefHeight="47.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="78.0" minHeight="1.0" prefHeight="24.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="114.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label text="Sexe :" GridPane.halignment="CENTER" />
-            <HBox prefHeight="30.0" prefWidth="240.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-               <children>
-                  <RadioButton id="BRsexe" fx:id="rbHomme" mnemonicParsing="false" text="HOMME">
-                     <HBox.margin>
-                        <Insets left="75.0" />
-                     </HBox.margin>
-                  </RadioButton>
-                  <RadioButton fx:id="rbFemme" mnemonicParsing="false" text="FEMME">
-                     <HBox.margin>
-                        <Insets left="20.0" />
-                     </HBox.margin>
-                  </RadioButton>
-               </children>
-            </HBox>
-            <Label text="PERMIS DE CONDUIRE" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <Label text="Numéro :" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <TextField fx:id="tfNumero" GridPane.rowIndex="4" />
-            <Label text="Date de délivrance (Prefecture)" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-            <DatePicker fx:id="dpDateDelivrance" prefHeight="10.0" prefWidth="300.0" GridPane.rowIndex="6" />
-         </children>
-      </GridPane>
-      <GridPane layoutX="32.0" layoutY="393.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="700.0" style="-fx-background-color: gray;">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <VBox prefHeight="148.0" prefWidth="358.0">
-               <children>
-                  <Label text="A joindre au bulletin d'inscription :">
-                     <VBox.margin>
-                        <Insets left="4.0" />
-                     </VBox.margin></Label>
-                  <Label text="&gt;permis de conduire si renseigné">
-                     <VBox.margin>
-                        <Insets left="4.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#doInscrire" prefHeight="30.0" prefWidth="350.0" text="Valider">
-                     <VBox.margin>
-                        <Insets left="4.0" top="25.0" />
-                     </VBox.margin>
-                  </Button>
+                  <Button mnemonicParsing="false" onAction="#doListerTousLesBenevoles" prefHeight="30.0" prefWidth="250.0" text="Lister tous les bénévoles" />
+                  <Button disable="true" mnemonicParsing="false" onAction="#doAjouterUnBenevole" prefHeight="30.0" prefWidth="250.0" text="Ajouter un bénévole" />
+                  <Button mnemonicParsing="false" onAction="#doAfilierUnBenevoleAuneCompetition" prefHeight="30.0" prefWidth="250.0" text="Afilier un bénévole à une compétition" />
+                  <Button mnemonicParsing="false" onAction="#doAfilierUnBenevoleAunPoste" prefHeight="30.0" prefWidth="250.0" text="Afilier un bénévole à un poste" />
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+            <HBox layoutX="12.0" layoutY="12.0" prefHeight="37.0" prefWidth="200.0">
                <children>
-                  <CheckBox fx:id="cbPermanent" mnemonicParsing="false" text="Est-ce un benevole permanent ?">
-                     <VBox.margin>
-                        <Insets left="10.0" top="8.0" />
-                     </VBox.margin>
-                  </CheckBox>
-                  <CheckBox fx:id="cbEngagement" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="68.0" prefWidth="300.0" text="En cochant cette case j'affirme avoir luet accepter le reglement et la facon dontmes données personnelles seront traitéespar CKC.voir reglement et traitement des donnees" wrapText="true">
-                     <VBox.margin>
-                        <Insets left="10.0" top="8.0" />
-                     </VBox.margin>
-                  </CheckBox>
+                  <Circle fill="DODGERBLUE" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="141.0" text="Pseudo" />
+                        <Label layoutX="14.0" layoutY="18.0" prefHeight="17.0" prefWidth="141.0" text="Email" />
+                     </children>
+                  </AnchorPane>
                </children>
-            </VBox>
+            </HBox>
          </children>
-      </GridPane>
+      </AnchorPane>
+      <Label alignment="CENTER" layoutX="507.0" layoutY="57.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="336.0" styleClass="titre-vue" text="Edition de Bénévole" />
    </children>
 </AnchorPane>
