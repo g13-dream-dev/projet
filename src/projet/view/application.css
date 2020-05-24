@@ -4,6 +4,7 @@
     -fx-font-family: Amaze;
     -fx-font-weight: bold;
     -fx-text-fill: rgba(255,255,255,1);
+    -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.9),10,0,0,0);
 }
 
 

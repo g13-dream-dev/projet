@@ -72,12 +72,6 @@ public class ControllerPlatListe  {
 	// Actions
 
 	@FXML
-	private void doAjouter() {
-		modelPlat.preparerAjouter();
-		managerGui.showView( EnumView.PlatForm );
-	}
-
-	@FXML
 	private void doModifier() {
 		modelPlat.preparerModifier( listView.getSelectionModel().getSelectedItem() );
 		managerGui.showView( EnumView.PlatForm );
@@ -119,6 +113,30 @@ public class ControllerPlatListe  {
 			buttonModifier.setDisable(false);
 			buttonSupprimer.setDisable(false);
 		}
+	}
+	
+	//Méthodes de fonctionnalites
+	
+	@FXML
+	private void doRechercherUnPlat(){
+		
+	}
+	
+	@FXML
+	private void doListerTousLesPlats() {
+		modelPlat.actualiserListe();
+		managerGui.showView(EnumView.PlatListe);
+	}
+	
+	@FXML
+	private void doAjouterUnplat() {
+		modelPlat.preparerAjouter();
+		managerGui.showView(EnumView.PlatForm);
+	}
+	
+	@FXML
+	private void doReserverDesPLatsSupplementaire() {
+		
 	}
 
 }

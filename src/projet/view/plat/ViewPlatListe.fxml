@@ -6,25 +6,44 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 
-<AnchorPane prefHeight="350.0" prefWidth="405.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.plat.ControllerPlatListe">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" styleClass="arriere-plan" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.plat.ControllerPlatListe">
    <children>
-      <Label alignment="CENTER" styleClass="titre-vue" text="Plats" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
-      <HBox alignment="CENTER" layoutY="75.0" prefHeight="200.0" prefWidth="405.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="280.0" styleClass="barre-fonctionalites">
          <children>
-            <ListView fx:id="listView" layoutX="88.0" layoutY="75.0" onMouseClicked="#gererClicSurListe" prefHeight="200.0" prefWidth="200.0">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </ListView>
+            <VBox layoutX="15.0" layoutY="239.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#doRechercherUnPlat" prefHeight="30.0" prefWidth="250.0" text="Rechercher un plat" />
+                  <Button disable="true" mnemonicParsing="false" onAction="#doListerTousLesPlats" prefHeight="30.0" prefWidth="250.0" text="Lister tous les plats" />
+                  <Button mnemonicParsing="false" onAction="#doAjouterUnplat" prefHeight="30.0" prefWidth="250.0" text="Ajouter un plat" />
+                  <Button mnemonicParsing="false" onAction="#doReserverDesPLatsSupplementaire" prefHeight="30.0" prefWidth="250.0" text="Reserver des plats supplémentaire" />
+               </children>
+            </VBox>
+            <HBox layoutX="12.0" layoutY="12.0" prefHeight="37.0" prefWidth="200.0">
+               <children>
+                  <Circle fill="DODGERBLUE" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="141.0" text="Pseudo" />
+                        <Label layoutX="14.0" layoutY="18.0" prefHeight="17.0" prefWidth="141.0" text="Email" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children></AnchorPane>
+      <Label alignment="CENTER" layoutX="497.0" layoutY="47.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="336.0" styleClass="titre-vue" text="Liste des Plats" />
+      <HBox alignment="CENTER" layoutX="497.0" layoutY="547.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="336.0" spacing="10.0">
+         <children>
+            <Button fx:id="buttonModifier" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#doModifier" prefHeight="25.0" prefWidth="160.0" text="Modifier" />
+            <Button fx:id="buttonSupprimer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#doSupprimer" prefHeight="25.0" prefWidth="160.0" text="Supprimer" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutY="263.0" prefHeight="60.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Button mnemonicParsing="false" onAction="#doAjouter" text="Ajouter" />
-            <Button fx:id="buttonModifier" mnemonicParsing="false" onAction="#doModifier" text="Modifier" />
-            <Button fx:id="buttonSupprimer" mnemonicParsing="false" onAction="#doSupprimer" text="Supprimer" />
-         </children>
-      </HBox>
+      <ListView fx:id="listView" layoutX="497.0" layoutY="114.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#gererClicSurListe" prefHeight="412.0" prefWidth="336.0" style="-fx-background-color: rgba(255,255,255,0.5);" styleClass="listView">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </ListView>
    </children>
 </AnchorPane>
