@@ -27,7 +27,9 @@ public class ModelCompetition {
     @Inject
 	private IMapper		        mapper;
     @Inject
-	private DaoCompetition			daoCompetition;
+	private DaoCompetition		daoCompetition;
+    @Inject
+    private ModelCourse modelCourse;
     
 	
 	
@@ -52,11 +54,13 @@ public class ModelCompetition {
 	
 	public void preparerAjouter() {
 		mapper.update( courant, new Competition() );
+		modelCourse.actualiserNombreCourses();
 	}
 	
 
 	public void preparerModifier( Competition item ) {
 		mapper.update( courant, daoCompetition.retrouver( item.getId() ) );
+		modelCourse.actualiserNombreCourses();
 	}
 	
 

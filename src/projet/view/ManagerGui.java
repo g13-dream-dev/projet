@@ -40,9 +40,9 @@ public class ManagerGui extends ManagerGuiAbstract {
 		// Configure le stage
 		stage.setTitle( "Gestion d'évènements (CKC)" );
 		stage.setWidth(1000);
-		stage.setHeight(640);
+		stage.setHeight(700);
 		stage.setMinWidth(1000);
-		stage.setMinHeight(640);
+		stage.setMinHeight(700);
 		stage.setResizable(false);
 		stage.getIcons().add(new Image(getClass().getResource("icone.png").toExternalForm()));
 		

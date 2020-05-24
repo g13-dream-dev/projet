@@ -2,6 +2,10 @@
 
 import javax.inject.Inject;
 
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import jfox.commun.exception.ExceptionValidation;
@@ -19,6 +23,7 @@ public class ModelCourse {
 	private final ObservableList<Course> liste = FXCollections.observableArrayList();
 	
 	private final Course		courant = new Course();
+	private final StringProperty nombreCourses = new SimpleStringProperty();
 	
 	
 	
@@ -43,18 +48,24 @@ public class ModelCourse {
 		return courant;
 	}
 	
+	public StringProperty nombreCoursesProperty(){
+		return nombreCourses;
+	}
 	
 	// Actualisations
 	
 	public void actualiserListe() {
 		liste.setAll( daoCourse.listerPourCompetition(modelCompetition.getCourant()) );
 	}
+	
+	public void actualiserNombreCourses() {
+		nombreCourses.setValue(daoCourse.nombreDeCoursePourCompetition(modelCompetition.getCourant()));
+	}
 
 	// Actions
 	
 	public void preparerAjouter() {
 		mapper.update( courant, new Course() );
-		
 	}
 	
 

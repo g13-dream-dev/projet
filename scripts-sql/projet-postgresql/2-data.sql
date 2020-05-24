@@ -2,6 +2,14 @@ SET search_path TO dreamdev;
 
 
 -- Supprimer toutes les données
+DELETE FROM permis;
+DELETE FROM benevole;
+DELETE FROM coureur;
+DELETE FROM course;
+DELETE FROM competition;
+DELETE FROM plat;
+DELETE FROM poste;
+
 DELETE FROM service;
 DELETE FROM concerner;
 DELETE FROM memo;
@@ -10,6 +18,8 @@ DELETE FROM personne;
 DELETE FROM categorie;
 DELETE FROM role;
 DELETE FROM compte;
+
+
 
 
 -- Compte

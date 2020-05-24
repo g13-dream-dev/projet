@@ -1,5 +1,7 @@
 package projet.data;
 
+import java.time.LocalTime;
+
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -9,7 +11,7 @@ public class Poste {
 	private final Property<Integer> id = new SimpleObjectProperty<>();
 	private final StringProperty libelle = new SimpleStringProperty();
 	private final Property<Integer> nombrePlaces = new SimpleObjectProperty<>();
-	private final StringProperty heureD = new SimpleStringProperty();
+	private final Property<LocalTime> heureD = new SimpleObjectProperty<>();
 	private final StringProperty etat = new SimpleStringProperty();
 
 	
@@ -17,7 +19,7 @@ public class Poste {
 		
 	}
 
-	public Poste(int id, String libelle, int nombrePlaces, String heureD, String etat) {
+	public Poste(int id, String libelle, int nombrePlaces, LocalTime heureD, String etat) {
 		setId(id);
 		setLibelle(libelle);
 		setNombrePlaces(nombrePlaces);
@@ -69,18 +71,18 @@ public class Poste {
 	}
 	
 
-	public final StringProperty heureDProperty() {
+	public final Property<LocalTime> heureDProperty() {
 		return this.heureD;
 	}
 	
 
-	public final String getHeureD() {
-		return this.heureDProperty().get();
+	public final LocalTime getHeureD() {
+		return this.heureDProperty().getValue();
 	}
 	
 
-	public final void setHeureD(final String heureD) {
-		this.heureDProperty().set(heureD);
+	public final void setHeureD(final LocalTime heureD) {
+		this.heureDProperty().setValue(heureD);
 	}
 	
 
@@ -97,6 +99,13 @@ public class Poste {
 	public final void setEtat(final String etat) {
 		this.etatProperty().set(etat);
 	}
+
+	@Override
+	public String toString() {
+		return getLibelle() + " (" + getNombrePlaces() + " places) : " + getEtat();
+	}
+	
+	
 	
 	
 }

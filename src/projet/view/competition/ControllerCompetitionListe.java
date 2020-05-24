@@ -66,7 +66,6 @@ public class ControllerCompetitionListe {
 	private void doAjouter() {
 		modelCompetition.preparerAjouter();
 		managerGui.showView( EnumView.CompetitionForm );
-
 	}
 
 	@FXML

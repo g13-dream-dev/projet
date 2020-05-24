@@ -39,7 +39,7 @@
                   <DatePicker fx:id="datePickerDate" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#doListerCourses" prefHeight="25.0" prefWidth="336.0" text="Liste des courses" underline="true">
+            <Button fx:id="listerCourses" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#doListerCourses" prefHeight="25.0" prefWidth="336.0" text="Liste des courses" underline="true">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>

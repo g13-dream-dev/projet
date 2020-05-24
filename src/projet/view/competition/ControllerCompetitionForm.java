@@ -2,7 +2,11 @@ package projet.view.competition;
 
 import javax.inject.Inject;
 
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.util.converter.IntegerStringConverter;
@@ -24,6 +28,8 @@ public class ControllerCompetitionForm {
 	private TextField textFieldLieu;
 	@FXML
 	private DatePicker datePickerDate;
+	@FXML
+	private Button listerCourses;
 
 	// Autres champs
 
@@ -31,6 +37,8 @@ public class ControllerCompetitionForm {
 	private IManagerGui managerGui;
 	@Inject
 	private ModelCompetition modelCompetition;
+	@Inject
+	private ModelCourse modelCourse;
 
 	// Initialisation du Controller
 
@@ -40,12 +48,13 @@ public class ControllerCompetitionForm {
 		// Data binding
 
 		Competition courant = modelCompetition.getCourant();
+		
 
 		textFieldId.textProperty().bindBidirectional(courant.idProperty(), new IntegerStringConverter());
 		textFieldNom.textProperty().bindBidirectional(courant.nomProperty());
 		textFieldLieu.textProperty().bindBidirectional(courant.lieuProperty());
 		UtilFX.bindBidirectional(datePickerDate.getEditor(), courant.dateProperty(), new ConverterStringLocalDate());
-
+		listerCourses.textProperty().bindBidirectional(modelCourse.nombreCoursesProperty());
 	}
 
 	// Actions

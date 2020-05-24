@@ -16,6 +16,7 @@ import projet.data.Memo;
 import projet.data.Permis;
 import projet.data.Personne;
 import projet.data.Plat;
+import projet.data.Poste;
 import projet.data.Service;
 
 
@@ -37,6 +38,8 @@ public interface IMapper {
 	Course update( @MappingTarget Course target, Course source );
 	@Mapping( target="courses", expression="java( source.getCourses() )" )
 	Competition update( @MappingTarget Competition target, Competition source );
+	
+	Poste update( @MappingTarget Poste target, Poste source ); 
 	
 	Plat update( @MappingTarget Plat target, Plat source );
 	

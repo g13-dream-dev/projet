@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="arriere-plan" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.coureur.ControllerCoureurClubListe">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" styleClass="arriere-plan" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.coureur.ControllerCoureurClubListe">
    <children>
       <HBox alignment="CENTER" layoutX="497.0" layoutY="114.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="336.0" AnchorPane.bottomAnchor="124.0" AnchorPane.leftAnchor="497.0" AnchorPane.rightAnchor="167.0" AnchorPane.topAnchor="114.0">
          <children>
@@ -25,7 +25,7 @@
             <Button fx:id="buttonModifier" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#doConsulter" prefWidth="336.0" text="Consulter" />
          </children>
       </HBox>
-      <AnchorPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="280.0" styleClass="barre-fonctionalites">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="280.0" styleClass="barre-fonctionalites">
          <children>
             <VBox layoutX="15.0" layoutY="239.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" spacing="10.0">
                <children>

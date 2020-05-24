@@ -1,88 +1,99 @@
-/*
- * package projet.view.poste;
- * 
- * import javax.inject.Inject;
- * 
- * import javafx.fxml.FXML; import javafx.scene.control.Button; import
- * javafx.scene.control.ListView; import javafx.scene.input.MouseButton; import
- * javafx.scene.input.MouseEvent; import jfox.javafx.util.UtilFX; import
- * jfox.javafx.view.IManagerGui; import projet.data.Coureur; import
- * projet.data.Poste; import projet.view.EnumView; import
- * projet.view.coureur.ModelCoureur;
- * 
- * 
- * public class ControllerPosteForm {
- * 
- * 
- * 
- * // Composants de la vue
- * 
- * @FXML private ListView<Poste> listView;
- * 
- * @FXML private Button buttonModifier;
- * 
- * @FXML private Button buttonSupprimer;
- * 
- * @FXML private Button buttonAjouter;
- * 
- * 
- * // Autres champs
- * 
- * @Inject private IManagerGui managerGui;
- * 
- * @Inject private ModelPoste modelPoste;
- * 
- * 
- * // Initialisation du Controller
- * 
- * @FXML private void initialize() {
- * 
- * 
- * listView.setCellFactory( UtilFX.cellFactory( item -> item.toString() ) ); //
- * Data binding listView.setItems( modelPoste.getPostes() ); // Configuraiton
- * des boutons listView.getSelectionModel().selectedItemProperty().addListener(
- * (obs, oldVal, newVal) -> { configurerBoutons(); }); configurerBoutons();
- * 
- * }
- * 
- * public void refresh() { modelPoste.actualiserListePostes("");
- * UtilFX.selectInListView( listView, modelPoste.getCourant1() );
- * listView.requestFocus(); }
- * 
- * 
- * // Actions
- * 
- * //@FXML //private void doAjouter() { // modelCoureur.preparerAjouter();; //
- * managerGui.showView( EnumView.CoureurInscription ); //}
- * 
- * @FXML private void doModifier() { modelCoureur.preparerModifier(
- * listView.getItems().get(0),listView.getItems().get(1) ); managerGui.showView(
- * EnumView.CoureurForm ); }
- * 
- * @FXML private void doSupprimer() { if ( managerGui.showDialogConfirm(
- * "Confirmez-vous la suppresion ?" ) ) { modelCoureur.supprimer(
- * listView.getItems().get(0),listView.getItems().get(1) ); refresh(); } }
- * 
- * 
- * // Gestion des évènements
- * 
- * // Clic sur la liste
- * 
- * @FXML private void gererClicSurListe( MouseEvent event ) { if
- * (event.getButton().equals(MouseButton.PRIMARY)) { if (event.getClickCount()
- * == 2) { if ( listView.getSelectionModel().getSelectedIndex() == -1 ) {
- * managerGui.showDialogError(
- * "Aucun élément n'est sélectionné dans la liste."); } else {
- * managerGui.showView( EnumView.CoureurForm ); } } } }
- * 
- * 
- * // Méthodes auxiliaires
- * 
- * private void configurerBoutons() {
- * 
- * if( listView.getSelectionModel().getSelectedItems().isEmpty() ) {
- * buttonModifier.setDisable(true); buttonSupprimer.setDisable(true); } else {
- * buttonModifier.setDisable(false); buttonSupprimer.setDisable(false); } }
- * 
- * }
- */
+package projet.view.poste;
+
+import java.util.ArrayList;
+
+import javax.inject.Inject;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.util.converter.IntegerStringConverter;
+import javafx.util.converter.LocalTimeStringConverter;
+import jfox.javafx.util.ConverterStringInteger;
+import jfox.javafx.view.IManagerGui;
+import projet.data.Poste;
+import projet.view.EnumView;
+
+public class ControllerPosteForm {
+
+	// Composants de la vue
+
+	@FXML
+	private TextField textFieldId;
+	@FXML
+	private TextField textFieldLibelle;
+	@FXML
+	private TextField textFieldNombrePlaces;
+	@FXML
+	private TextField textFieldHeureD;
+	@FXML
+	private ComboBox<String> comboBoxEtat;
+
+	// Autres champs
+
+	private Poste courant;
+
+	@Inject
+	private IManagerGui managerGui;
+	@Inject
+	private ModelPoste modelPoste;
+
+	// Initialisation du Controller
+
+	@FXML
+	private void initialize() {
+
+		courant = modelPoste.getCourant();
+
+		// Data binding
+		courant = modelPoste.getCourant();
+		textFieldId.textProperty().bindBidirectional(courant.idProperty(), new ConverterStringInteger());
+		textFieldLibelle.textProperty().bindBidirectional(courant.libelleProperty());
+		textFieldNombrePlaces.textProperty().bindBidirectional(courant.nombrePlacesProperty(), new IntegerStringConverter());
+		textFieldHeureD.textProperty().bindBidirectional(courant.heureDProperty(), new LocalTimeStringConverter());
+		ObservableList<String> etats = FXCollections.observableArrayList();
+		etats.add("Non débutée"); etats.add("En cours"); etats.add("Achevée");
+		comboBoxEtat.setItems(etats);
+		comboBoxEtat.valueProperty().bindBidirectional(courant.etatProperty());
+	}
+
+	// Actions
+
+	@FXML
+	private void doAnnuler() {
+		managerGui.showView(EnumView.PosteListe);
+	}
+
+	@FXML
+	private void doValider() {
+		modelPoste.validerMiseAJour();
+		managerGui.showView(EnumView.PosteListe);
+	}
+
+	//Méthodes de fonctionnalites
+	
+		@FXML
+		private void doRechercherUnPoste(){
+			
+		}
+		
+		@FXML
+		private void doListerTousLesPostes() {
+			modelPoste.actualiserListe();
+			managerGui.showView(EnumView.PosteListe);
+		}
+		
+		@FXML
+		private void doAjouterUnPoste() {
+			modelPoste.preparerAjouter();
+			managerGui.showView(EnumView.PosteForm);
+		}
+		
+		@FXML
+		private void doAttribuerDesPostesAuxBenevoles() {
+			
+		}
+
+}

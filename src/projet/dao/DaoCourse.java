@@ -205,6 +205,32 @@ public class DaoCourse {
 			UtilJdbc.close( rs, stmt, cn );
 		}
 	}
+	
+	public String nombreDeCoursePourCompetition( Competition competition) {
+
+		Connection			cn 		= null;
+		PreparedStatement	stmt	= null;
+		ResultSet 			rs		= null;
+		String				sql;
+
+		try {
+			cn = dataSource.getConnection();
+			sql = "SELECT * FROM course WHERE idcompetition = ?";
+			stmt = cn.prepareStatement( sql );
+			stmt.setInt(1, competition.getId());
+			rs = stmt.executeQuery();
+
+			int nb_courses = 0;
+			while (rs.next()) {
+				nb_courses++;
+			}
+			return nb_courses + " Courses pour cette compétition";
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			UtilJdbc.close( rs, stmt, cn );
+		}
+	}
 
 
 	public List<Course> listerTout() {
