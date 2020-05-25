@@ -120,6 +120,7 @@ CREATE TABLE benevole(
 	idbenevole 		INT NOT NULL,
 	permanent 			BOOLEAN NOT NULL,
 	PRIMARY KEY (idbenevole),
+	FOREIGN KEY(idcompetition),
 	FOREIGN KEY (idbenevole) REFERENCES personne(idpersonne)
 )WITHOUT OIDS;
 
@@ -156,6 +157,7 @@ CREATE TABLE coureur(
 	poste 			VARCHAR(10) NOT NULL,
 	club			VARCHAR(30) NOT NULL,
 	PRIMARY KEY (idcoureur),
+	FOREIGN KEY(idcompetition),
 	FOREIGN KEY (idcoureur) REFERENCES personne(idpersonne)
 )WITHOUT OIDS;
 

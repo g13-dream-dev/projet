@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
@@ -19,6 +20,7 @@ import projet.data.Compte;
 import projet.data.Coureur;
 import projet.data.Personne;
 import projet.view.EnumView;
+import projet.view.competition.ModelCompetition;
 import projet.view.personne.ModelPersonne;
 
 public class ControllerCoureurForm {
@@ -77,6 +79,8 @@ public class ControllerCoureurForm {
 	private CheckBox cbEngagement1;
 	@FXML
 	private CheckBox cbEngagement2;
+	@FXML
+	private ComboBox liste;
 
 	// Autres champs
 
@@ -84,6 +88,8 @@ public class ControllerCoureurForm {
 	private IManagerGui managerGui;
 	@Inject
 	private ModelCoureur modelCoureur;
+	 @Inject
+	private ModelCompetition			listeCompetition;
 
 	// Initialisation du Controller
 
@@ -105,6 +111,7 @@ public class ControllerCoureurForm {
 		brSexe1 = new ToggleGroup();
 		rbHomme1.setToggleGroup(brSexe1);
 		rbFemme1.setToggleGroup(brSexe1);
+		liste.setItems(listeCompetition.liste);
 
 		// champ complex
 		UtilFX.bindBidirectional(dpNaissance1.getEditor(), courant1.naissanceProperty(),

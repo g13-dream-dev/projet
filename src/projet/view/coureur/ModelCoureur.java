@@ -13,6 +13,7 @@ import projet.commun.IMapper;
 import projet.dao.DaoCoureur;
 import projet.data.Coureur;
 import projet.data.Personne;
+import projet.view.competition.ModelCompetition;
 
 
 public class ModelCoureur {
@@ -33,6 +34,8 @@ public class ModelCoureur {
 	private IMapper		        mapper;
     @Inject
 	private DaoCoureur			daoCoureur;
+    @Inject
+   	private ModelCompetition			listeCompetition;
     
 	
 	

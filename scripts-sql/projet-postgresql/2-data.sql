@@ -86,36 +86,36 @@ ALTER TABLE personne ALTER COLUMN idpersonne RESTART WITH 100;
 
 -- Coureur
 
-INSERT INTO coureur (idcoureur, poste, club) VALUES 
-  ( 2, 'Capitaine', '3il'),
-  ( 3, 'Equipier', '3il'),
-  ( 4, 'Capitaine', 'dreamdev'),
-  ( 5, 'Equipier', 'dreamdev'),
-  ( 6, 'Capitaine', 'academy D'),
-  ( 7, 'Equipier', 'academy D'),
-  ( 8, 'Capitaine', 'les lions'),
-  ( 9, 'Equipier', 'les lions'),
-  ( 10, 'Capitaine', 'casse tete'),
-  ( 11, 'Equipier', 'casse tete'),
-  ( 12, 'Capitaine', 'password'),
-  ( 13, 'Equipier', 'password'),
-  ( 14, 'Capitaine', 'les alcooliques'),
-  ( 15, 'Equipier', 'les alcooliques');
+INSERT INTO coureur (idcoureur, poste, club,idcompetition) VALUES 
+  ( 2, 'Capitaine', '3il',1),
+  ( 3, 'Equipier', '3il',2),
+  ( 4, 'Capitaine', 'dreamdev',3),
+  ( 5, 'Equipier', 'dreamdev',4),
+  ( 6, 'Capitaine', 'academy D',5),
+  ( 7, 'Equipier', 'academy D',6),
+  ( 8, 'Capitaine', 'les lions',7),
+  ( 9, 'Equipier', 'les lions',8),
+  ( 10, 'Capitaine', 'casse tete',9),
+  ( 11, 'Equipier', 'casse tete',10),
+  ( 12, 'Capitaine', 'password',11),
+  ( 13, 'Equipier', 'password',12),
+  ( 14, 'Capitaine', 'les alcooliques',13),
+  ( 15, 'Equipier', 'les alcooliques',14);
 
 --Benevole
 
-INSERT INTO benevole (idbenevole, permanent) VALUES 
-  ( 1, 't'),
-  ( 16, 'f'),
-  ( 17, 'f'),
-  ( 18, 'f'),
-  ( 19, 't'),
-  ( 20, 'f'),
-  ( 21, 't'),
-  ( 22, 't'),
-  ( 23, 't'),
-  ( 24, 'f'),
-  ( 25, 'f');
+INSERT INTO benevole (idbenevole, permanent,idcompetition) VALUES 
+  ( 1, 't',1),
+  ( 16, 'f',2),
+  ( 17, 'f',3),
+  ( 18, 'f',4),
+  ( 19, 't',5),
+  ( 20, 'f',7),
+  ( 21, 't',11),
+  ( 22, 't',15),
+  ( 23, 't',21),
+  ( 24, 'f',22),
+  ( 25, 'f',23);
 
 -- Permis
 
