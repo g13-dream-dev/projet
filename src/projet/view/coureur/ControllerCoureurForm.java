@@ -16,6 +16,7 @@ import jfox.javafx.util.ConverterStringInteger;
 import jfox.javafx.util.ConverterStringLocalDate;
 import jfox.javafx.util.UtilFX;
 import jfox.javafx.view.IManagerGui;
+import projet.data.Competition;
 import projet.data.Compte;
 import projet.data.Coureur;
 import projet.data.Personne;
@@ -80,7 +81,7 @@ public class ControllerCoureurForm {
 	@FXML
 	private CheckBox cbEngagement2;
 	@FXML
-	private ComboBox liste;
+	private ComboBox<Competition> comboBoxCompetitions;
 
 	// Autres champs
 
@@ -88,8 +89,8 @@ public class ControllerCoureurForm {
 	private IManagerGui managerGui;
 	@Inject
 	private ModelCoureur modelCoureur;
-	 @Inject
-	private ModelCompetition			listeCompetition;
+	@Inject
+	private ModelCompetition			modelCompetition;
 
 	// Initialisation du Controller
 
@@ -111,7 +112,14 @@ public class ControllerCoureurForm {
 		brSexe1 = new ToggleGroup();
 		rbHomme1.setToggleGroup(brSexe1);
 		rbFemme1.setToggleGroup(brSexe1);
-		liste.setItems(listeCompetition.liste);
+		modelCompetition.actualiserListe();
+		System.out.println(modelCompetition.getListe().get(0).toString());
+		comboBoxCompetitions.setItems(modelCompetition.getListe());
+		comboBoxCompetitions.setCellFactory(UtilFX.cellFactory(item -> item.getNom()));
+		comboBoxCompetitions.getSelectionModel().selectedItemProperty().addListener((l)->{
+			courant1.setCompetition(comboBoxCompetitions.getSelectionModel().getSelectedItem());
+			courant2.setCompetition(comboBoxCompetitions.getSelectionModel().getSelectedItem());
+		});
 
 		// champ complex
 		UtilFX.bindBidirectional(dpNaissance1.getEditor(), courant1.naissanceProperty(),

@@ -28,6 +28,7 @@ public class DaoBenevole {
 	private DaoPersonne daoPersonne;
 	@Inject
 	private DaoPermis daoPermis;
+	@Inject DaoCompetition daoCompetition;
 	// Actions
 
 	public int inserer(Benevole benevole)  {
@@ -41,10 +42,11 @@ public class DaoBenevole {
 			cn = dataSource.getConnection();
 
 			// Insère le benevole
-			sql = "INSERT INTO benevole ( idbenevole, permanent) VALUES ( ?, ?)";
+			sql = "INSERT INTO benevole ( idbenevole, permanent, idcompetition) VALUES ( ?, ?, ?)";
 			stmt = cn.prepareStatement( sql, Statement.RETURN_GENERATED_KEYS  );
 			stmt.setObject(	1, benevole.getId() );
 			stmt.setObject(	2, benevole.isPermanent() );
+			stmt.setObject(	3, benevole.getCompetition().getId() );
 			stmt.executeUpdate();
 			
 			if(benevole.getPermis() != null && benevole.getPermis().getNumero() != null) {
@@ -73,10 +75,11 @@ public class DaoBenevole {
 			cn = dataSource.getConnection();
 
 			// Modifie le benevole
-			sql = "UPDATE benevole SET permanent = ? WHERE idbenevole =  ?";
+			sql = "UPDATE benevole SET permanent = ?, idcompetition = ? WHERE idbenevole =  ?";
 			stmt = cn.prepareStatement( sql );
 			stmt.setObject( 1, benevole.isPermanent());
-			stmt.setObject( 2, benevole.getId() );
+			stmt.setObject( 2, benevole.getCompetition().getId());
+			stmt.setObject( 3, benevole.getId() );
 			stmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -208,6 +211,7 @@ public class DaoBenevole {
 		benevole.setTelephone(personne.getTelephone());
 		benevole.setEmail(personne.getEmail());
 		benevole.setPermanent(rs.getObject("permanent", Boolean.class));
+		benevole.setCompetition(daoCompetition.retrouver(rs.getObject("idcompetition", Integer.class)));
 		Permis permis = daoPermis.avoirPourBenevole(benevole);
 		if(permis == null)permis = new Permis();
 		benevole.setPermis(permis);

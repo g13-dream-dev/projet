@@ -30,7 +30,7 @@
                      <children>
                         <TabPane prefHeight="322.0" prefWidth="340.0" tabClosingPolicy="UNAVAILABLE">
                           <tabs>
-                            <Tab text="Untitled Tab 1">
+                            <Tab text="Informations personnelles">
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="307.0" prefWidth="333.0">
                                        <children>
@@ -73,7 +73,7 @@
                                     </AnchorPane>
                               </content>
                             </Tab>
-                            <Tab text="Untitled Tab 2">
+                            <Tab text="Informations pratiques">
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="311.0" prefWidth="333.0">
                                        <children>
@@ -264,6 +264,6 @@
             </HBox>
          </children>
       </AnchorPane>
-      <ComboBox layoutX="497.0" layoutY="105.0" prefHeight="25.0" prefWidth="336.0" />
+      <ComboBox fx:id="comboBoxCompetitions" layoutX="497.0" layoutY="105.0" prefHeight="25.0" prefWidth="336.0" />
    </children>
 </AnchorPane>

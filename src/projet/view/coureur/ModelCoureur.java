@@ -192,6 +192,10 @@ public class ModelCoureur {
 		if(!courant1.getClub().isEmpty() && !courant2.getClub().isEmpty() && !courant1.getClub().equals(courant2.getClub())) {
 			message.append("\nErreur Capitaine et Equipier : Les coureurs doivent etres du meme club.");
 		}
+		
+		if(courant1.getCompetition() == null || courant2.getCompetition() == null) {
+			message.append("Vous devez selectionner une competition.");
+		}
 
 		if ( message.length() > 0 ) {
 			throw new ExceptionValidation( message.toString().substring(1) );

@@ -53,6 +53,22 @@ INSERT INTO categorie (idcategorie, libelle ) VALUES
 ALTER TABLE categorie ALTER COLUMN idcategorie RESTART WITH 6;
 
 
+-- Competition
+
+INSERT INTO competition ( idcompetition, nom, lieu, date) VALUES 
+  ( 1, 'Mini Bol-D air', 'France | Lyon','2020-06-26'),
+  ( 2, 'Bol-D air', 'France | Lyon','2020-06-26');
+ALTER TABLE competition ALTER COLUMN idcompetition RESTART WITH 5;
+  
+-- Course
+
+INSERT INTO course ( idcourse,idcompetition, nom, heureD, distance,lieudepart,lieuarriv ) VALUES 
+  ( 1, 1, 'Cheval','12:20:20', 500 ,'bastide','carnot'),
+  ( 2, 1, 'Voiture','12:40:29', 600,'nexon','carnot'),
+  ( 3, 2, 'Limoges',  '11:55:12', 100,'maryse','bastide'),
+  ( 4, 2, ' Brive','1:00:00',250 ,'borie','belair');
+ALTER TABLE course ALTER COLUMN idcourse RESTART WITH 5;
+
 -- Personne
 
 INSERT INTO personne (idpersonne, nom, prenom, sexe, naissance, telephone, adresse, codepostal, email) VALUES 
@@ -87,35 +103,35 @@ ALTER TABLE personne ALTER COLUMN idpersonne RESTART WITH 100;
 -- Coureur
 
 INSERT INTO coureur (idcoureur, poste, club,idcompetition) VALUES 
-  ( 2, 'Capitaine', '3il',1),
-  ( 3, 'Equipier', '3il',2),
-  ( 4, 'Capitaine', 'dreamdev',3),
-  ( 5, 'Equipier', 'dreamdev',4),
-  ( 6, 'Capitaine', 'academy D',5),
-  ( 7, 'Equipier', 'academy D',6),
-  ( 8, 'Capitaine', 'les lions',7),
-  ( 9, 'Equipier', 'les lions',8),
-  ( 10, 'Capitaine', 'casse tete',9),
-  ( 11, 'Equipier', 'casse tete',10),
-  ( 12, 'Capitaine', 'password',11),
-  ( 13, 'Equipier', 'password',12),
-  ( 14, 'Capitaine', 'les alcooliques',13),
-  ( 15, 'Equipier', 'les alcooliques',14);
+  ( 2, 'Capitaine', '3il', 1),
+  ( 3, 'Equipier', '3il', 1),
+  ( 4, 'Capitaine', 'dreamdev', 2),
+  ( 5, 'Equipier', 'dreamdev', 2),
+  ( 6, 'Capitaine', 'academy D', 2),
+  ( 7, 'Equipier', 'academy D', 2),
+  ( 8, 'Capitaine', 'les lions', 2),
+  ( 9, 'Equipier', 'les lions', 2),
+  ( 10, 'Capitaine', 'casse tete', 1),
+  ( 11, 'Equipier', 'casse tete', 1),
+  ( 12, 'Capitaine', 'password', 1),
+  ( 13, 'Equipier', 'password', 1),
+  ( 14, 'Capitaine', 'les alcooliques', 2),
+  ( 15, 'Equipier', 'les alcooliques', 2);
 
 --Benevole
 
 INSERT INTO benevole (idbenevole, permanent,idcompetition) VALUES 
-  ( 1, 't',1),
-  ( 16, 'f',2),
-  ( 17, 'f',3),
-  ( 18, 'f',4),
-  ( 19, 't',5),
-  ( 20, 'f',7),
-  ( 21, 't',11),
-  ( 22, 't',15),
-  ( 23, 't',21),
-  ( 24, 'f',22),
-  ( 25, 'f',23);
+  ( 1, 't', 1),
+  ( 16, 'f', 2),
+  ( 17, 'f', 2),
+  ( 18, 'f', 1),
+  ( 19, 't', 1),
+  ( 20, 'f', 2),
+  ( 21, 't', 1),
+  ( 22, 't', 2),
+  ( 23, 't', 1),
+  ( 24, 'f', 1),
+  ( 25, 'f', 2);
 
 -- Permis
 
@@ -175,22 +191,6 @@ INSERT INTO service ( idservice, nom, anneecreation, flagsiege ) VALUES
 ALTER TABLE service ALTER COLUMN idservice RESTART WITH 5;
 
 ALTER TABLE service ALTER COLUMN idservice RESTART WITH 5;
-
--- Competition
-
-INSERT INTO competition ( idcompetition, nom, lieu, date) VALUES 
-  ( 1, 'Mini Bol-D air', 'France | Lyon','2020-06-26'),
-  ( 2, 'Bol-D air', 'France | Lyon','2020-06-26');
-ALTER TABLE competition ALTER COLUMN idcompetition RESTART WITH 5;
-  
--- Course
-
-INSERT INTO course ( idcourse,idcompetition, nom, heureD, distance,lieudepart,lieuarriv ) VALUES 
-  ( 1, 1, 'Cheval','12:20:20', 500 ,'bastide','carnot'),
-  ( 2, 1, 'Voiture','12:40:29', 600,'nexon','carnot'),
-  ( 3, 2, 'Limoges',  '11:55:12', 100,'maryse','bastide'),
-  ( 4, 2, ' Brive','1:00:00',250 ,'borie','belair');
-ALTER TABLE course ALTER COLUMN idcourse RESTART WITH 5;
 
 -- Plat
 

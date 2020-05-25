@@ -26,6 +26,8 @@ public class DaoCoureur {
 	private DataSource		dataSource;
 	@Inject
 	private DaoPersonne daoPersonne;
+	@Inject
+	private DaoCompetition daoCompetition;
 	// Actions
 
 	public int inserer(Coureur coureur)  {
@@ -39,11 +41,12 @@ public class DaoCoureur {
 			cn = dataSource.getConnection();
 
 			// Insère le coureur
-			sql = "INSERT INTO coureur ( idcoureur, club, poste) VALUES ( ?, ?, ?)";
+			sql = "INSERT INTO coureur ( idcoureur, club, poste, idcompetition) VALUES ( ?, ?, ?, ?)";
 			stmt = cn.prepareStatement( sql, Statement.RETURN_GENERATED_KEYS  );
 			stmt.setObject(	1, coureur.getId() );
 			stmt.setString(	2, coureur.getClub() );
 			stmt.setString(	3, coureur.getPoste() );
+			stmt.setObject(4, coureur.getCompetition().getId());
 			stmt.executeUpdate();
  
 			// Récupère l'identifiant généré par le SGBD
@@ -72,11 +75,12 @@ public class DaoCoureur {
 			cn = dataSource.getConnection();
 
 			// Modifie le coureur
-			sql = "UPDATE coureur SET club = ?, poste = ? WHERE idcoureur =  ?";
+			sql = "UPDATE coureur SET club = ?, poste = ?, idcompetition = ? WHERE idcoureur =  ?";
 			stmt = cn.prepareStatement( sql );
 			stmt.setObject( 1, coureur.getClub());
 			stmt.setObject( 2, coureur.getPoste());
-			stmt.setObject( 3, coureur.getId() );
+			stmt.setObject( 3, coureur.getCompetition().getId());
+			stmt.setObject( 4, coureur.getId() );
 			stmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -210,6 +214,7 @@ public class DaoCoureur {
 		coureur.setEmail(personne.getEmail());
 		coureur.setClub(rs.getObject("club", String.class));
 		coureur.setPoste(rs.getObject("poste", String.class));
+		coureur.setCompetition(daoCompetition.retrouver(rs.getObject("idcompetition", Integer.class)));
 		
 		return coureur;
 	}
