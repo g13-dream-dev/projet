@@ -30,23 +30,20 @@ public class DaoPermis {
 
 		Connection cn = null;
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
 		String sql;
 
 		try {
 			cn = dataSource.getConnection();
 			sql = "INSERT INTO permis ( idpermis, numero, datedelivrance ) VALUES (?,?,?)";
-			stmt = cn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			stmt = cn.prepareStatement(sql);
 
 			stmt.setObject(1, benevole.getId());
 			stmt.setObject(2, benevole.getPermis().getNumero());
 			stmt.setObject(3, benevole.getPermis().getDateDelivrance());
 			stmt.executeUpdate();
 
-			// Récupère l'identifiant généré par le SGBD 
-			rs = stmt.getGeneratedKeys();
-			rs.next();
-			benevole.getPermis().setId(rs.getObject(1, Integer.class));
+			// Récupère l'identifiant
+			benevole.getPermis().setId(benevole.getId());
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
@@ -77,7 +74,7 @@ public class DaoPermis {
 			}
 			
 
-			sql = "INSERT INTO telephone ( idpermis, numero, datedelivrance ) VALUES (?,?,?)";
+			sql = "INSERT INTO permis ( idpermis, numero, datedelivrance ) VALUES (?,?,?)";
 			stmtInsert = cn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			sql = "UPDATE permis SET idpermis = ?, numero = ?, datedelivrance = ? WHERE idpermis = ?";
 			stmtUpdate = cn.prepareStatement(sql);

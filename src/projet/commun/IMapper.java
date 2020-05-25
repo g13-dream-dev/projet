@@ -29,14 +29,12 @@ public interface IMapper {
 	Coureur update( @MappingTarget Coureur target, Coureur source );
 	
 	Permis update( @MappingTarget Permis target, Permis source );
-	@Mapping( target="permis", expression="java( source.getPermis() )" )
 	Benevole update( @MappingTarget Benevole target, Benevole source );
 	
 	Memo update( @MappingTarget Memo target, Memo source );
 	Service update( @MappingTarget Service target, Service source );
 	
 	Course update( @MappingTarget Course target, Course source );
-	@Mapping( target="courses", expression="java( source.getCourses() )" )
 	Competition update( @MappingTarget Competition target, Competition source );
 	
 	Poste update( @MappingTarget Poste target, Poste source ); 

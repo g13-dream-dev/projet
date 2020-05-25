@@ -210,7 +210,6 @@ public class DaoBenevole {
 		benevole.setPermanent(rs.getObject("permanent", Boolean.class));
 		Permis permis = daoPermis.avoirPourBenevole(benevole);
 		if(permis == null)permis = new Permis();
-		System.out.println(permis.getNumero());
 		benevole.setPermis(permis);
 		return benevole;
 	}
