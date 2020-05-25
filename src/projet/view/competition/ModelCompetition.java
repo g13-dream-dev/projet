@@ -54,7 +54,6 @@ public class ModelCompetition {
 	
 	public void preparerAjouter() {
 		mapper.update( courant, new Competition() );
-		modelCourse.actualiserNombreCourses();
 	}
 	
 

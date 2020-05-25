@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -11,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" styleClass="arriere-plan" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.systeme.ControllerInfo">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" styleClass="arriere-plan" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.systeme.ControllerInfo">
    <children>
       <Label fx:id="labelTitre" alignment="CENTER" layoutX="424.0" layoutY="36.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" text="Titre" AnchorPane.leftAnchor="424.0" AnchorPane.rightAnchor="423.0" AnchorPane.topAnchor="36.0">
          <font>
@@ -36,9 +35,6 @@
                            <VBox.margin>
                               <Insets left="10.0" />
                            </VBox.margin>
-                           <image>
-                              <Image url="@../../../../../../Users/tchea/Downloads/estee-janssens-zEqkUMiMxMI-unsplash.jpg" />
-                           </image>
                         </ImageView>
                         <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" text="Nom fonctionalité">
                            <VBox.margin>
@@ -53,9 +49,6 @@
                            <VBox.margin>
                               <Insets left="10.0" />
                            </VBox.margin>
-                           <image>
-                              <Image url="@../../../../../../Users/tchea/Downloads/estee-janssens-zEqkUMiMxMI-unsplash.jpg" />
-                           </image>
                         </ImageView>
                         <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" text="Nom fonctionalité">
                            <VBox.margin>
@@ -70,9 +63,6 @@
                            <VBox.margin>
                               <Insets left="10.0" />
                            </VBox.margin>
-                           <image>
-                              <Image url="@../../../../../../Users/tchea/Downloads/estee-janssens-zEqkUMiMxMI-unsplash.jpg" />
-                           </image>
                         </ImageView>
                         <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" text="Nom fonctionalité">
                            <VBox.margin>
@@ -87,9 +77,6 @@
                            <VBox.margin>
                               <Insets left="10.0" />
                            </VBox.margin>
-                           <image>
-                              <Image url="@../../../../../../Users/tchea/Downloads/estee-janssens-zEqkUMiMxMI-unsplash.jpg" />
-                           </image>
                         </ImageView>
                         <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" text="Nom fonctionalité">
                            <VBox.margin>

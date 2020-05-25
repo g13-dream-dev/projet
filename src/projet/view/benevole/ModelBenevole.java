@@ -57,7 +57,6 @@ public class ModelBenevole {
 	
 	public void preparerAjouter() {
 		mapper.update( courant, new Benevole() );
-		mapper.update(courant.getPermis(), new Permis());
 	}
 	
 
