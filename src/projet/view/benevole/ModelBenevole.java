@@ -59,10 +59,12 @@ public class ModelBenevole {
 		mapper.update( courant, new Benevole() );
 	}
 	
-
 	public void preparerModifier( Benevole item ) {
 		mapper.update( courant, daoBenevole.retrouver( item.getId() ) );
 		mapper.update(courant.getPermis(), daoPermis.avoirPourBenevole(courant));
+		System.out.println(courant.getId());
+		System.out.println(courant.getPermis().getNumero());
+		System.out.println(daoPermis.avoirPourBenevole(courant).getNumero());
 	}
 	
 
