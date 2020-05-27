@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
@@ -17,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.benevole.ControllerBenevoleForm">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.benevole.ControllerBenevoleForm">
    <children>
       <Button layoutX="497.0" layoutY="547.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#doInscrire" prefHeight="25.0" prefWidth="336.0" text="Valider" />
       <TabPane layoutX="497.0" layoutY="114.0" prefHeight="412.0" prefWidth="336.0" tabClosingPolicy="UNAVAILABLE">
@@ -147,6 +148,7 @@
             </HBox>
          </children>
       </AnchorPane>
-      <Label alignment="CENTER" layoutX="507.0" layoutY="57.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="336.0" styleClass="titre-vue" text="Edition de Bénévole" />
+      <Label alignment="CENTER" layoutX="497.0" layoutY="32.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="336.0" styleClass="titre-vue" text="Edition de Bénévole" />
+      <ComboBox fx:id="comboBoxCompetitions" layoutX="494.0" layoutY="68.0" prefHeight="26.0" prefWidth="336.0" />
    </children>
 </AnchorPane>
