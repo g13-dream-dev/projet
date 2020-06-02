@@ -94,12 +94,11 @@ public class ControllerBenevoleForm {
 		rbFemme.setToggleGroup(brSexe);
 		cbPermanent.selectedProperty().bindBidirectional( courant.permanentProperty() );
 		modelCompetition.actualiserListe();
-		System.out.println(modelCompetition.getListe().get(0).toString());
 		comboBoxCompetitions.setItems(modelCompetition.getListe());
 		comboBoxCompetitions.setCellFactory(UtilFX.cellFactory(item -> item.getNom()));
+		comboBoxCompetitions.getSelectionModel().select(courant.getCompetition());
 		comboBoxCompetitions.getSelectionModel().selectedItemProperty().addListener((l)->{
 			courant.setCompetition(comboBoxCompetitions.getSelectionModel().getSelectedItem());
-			
 		});
 		
 		//champ complex

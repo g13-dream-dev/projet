@@ -116,6 +116,7 @@ public class ControllerCoureurForm {
 		System.out.println(modelCompetition.getListe().get(0).toString());
 		comboBoxCompetitions.setItems(modelCompetition.getListe());
 		comboBoxCompetitions.setCellFactory(UtilFX.cellFactory(item -> item.getNom()));
+		comboBoxCompetitions.getSelectionModel().select(courant1.getCompetition());
 		comboBoxCompetitions.getSelectionModel().selectedItemProperty().addListener((l)->{
 			courant1.setCompetition(comboBoxCompetitions.getSelectionModel().getSelectedItem());
 			courant2.setCompetition(comboBoxCompetitions.getSelectionModel().getSelectedItem());
@@ -157,7 +158,7 @@ public class ControllerCoureurForm {
 	}
 
 	public void refresh() {
-
+		
 	}
 
 	// Actions
