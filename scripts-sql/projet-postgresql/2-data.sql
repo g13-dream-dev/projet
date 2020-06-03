@@ -215,8 +215,21 @@ INSERT INTO plat ( idplat, nom, nombre) VALUES
   ( 5, 'Ndole',50),
   ( 6, 'Oko o',25),
   ( 7, 'Sanga',40);
+<<<<<<< HEAD
 ALTER TABLE plat ALTER COLUMN idplat RESTART WITH 8;
 
 
+=======
+ALTER TABLE competition ALTER COLUMN idcompetition RESTART WITH 5;
+-- Materiel
+
+INSERT INTO materiel ( idmateriel, nom, nombre) VALUES 
+  ( 1, 'dossards',30),
+  ( 2, 'canoes',20),
+  ( 3, 'gilets',6),
+  ( 4, 'pagaies',18),
+  
+ALTER TABLE competition ALTER COLUMN idcompetition RESTART WITH 5;
+>>>>>>> branch 'master' of https://github.com/g13-dream-dev/projet.git
 
 

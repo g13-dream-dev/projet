@@ -12,6 +12,7 @@ import projet.data.Competition;
 import projet.data.Compte;
 import projet.data.Coureur;
 import projet.data.Course;
+import projet.data.Materiel;
 import projet.data.Memo;
 import projet.data.Permis;
 import projet.data.Personne;
@@ -40,5 +41,7 @@ public interface IMapper {
 	Poste update( @MappingTarget Poste target, Poste source ); 
 	
 	Plat update( @MappingTarget Plat target, Plat source );
+	
+	Materiel update( @MappingTarget Materiel target, Materiel source );
 	
 }

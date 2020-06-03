@@ -42,7 +42,9 @@ public enum EnumView implements IEnumView {
 	PlatListe       ("plat/ViewPlatListe.fxml"),
 	PlatForm       ("plat/ViewPlatForm.fxml"),
 	PosteRechercher     ("poste/ViewPosteRechercher.fxml"),
-	PosteAttribuerBenevole	("poste/ViewAttribuerBenevole.fxml");
+	PosteAttribuerBenevole	("poste/ViewAttribuerBenevole.fxml"),
+	MaterielListe       ("materiel/ViewMaterielListe.fxml"),
+	MaterielForm       ("materiel/ViewMaterielForm.fxml")
 	;
 
 	
