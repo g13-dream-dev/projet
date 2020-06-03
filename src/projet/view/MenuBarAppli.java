@@ -31,6 +31,7 @@ public class MenuBarAppli extends MenuBar {
 	private MenuItem itemBenevole;
 	private MenuItem itemPoste;
 	private MenuItem itemPlat;
+	private MenuItem itemMateriel;
 
 	@Inject
 	private IManagerGui managerGui;
@@ -92,6 +93,11 @@ public class MenuBarAppli extends MenuBar {
 		item.setOnAction((e) -> managerGui.showView(EnumView.PlatListe));
 		menu.getItems().add(item);
 		itemPlat = item;
+		
+		item = new MenuItem("Materiel");
+		item.setOnAction((e) -> managerGui.showView(EnumView.MaterielListe));
+		menu.getItems().add(item);
+		itemMateriel = item;
 		
 		item = new MenuItem("Comptes");
 		item.setOnAction((e) -> managerGui.showView(EnumView.PlatListe));
