@@ -9,7 +9,7 @@
 
 
 .message-accueil {
-    -fx-background-color: rgba(141,141,199);
+    -fx-background-color: rgb(141,141,199);
     -fx-padding: 10;
     -fx-border-color: white; 
     -fx-border-width: 1;

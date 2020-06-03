@@ -11,6 +11,7 @@ public class Benevole extends Personne {
 
 	private final BooleanProperty permanent = new SimpleBooleanProperty();
 	private final Property<Permis> permis = new SimpleObjectProperty<>();
+	private final Property<Competition> competition = new SimpleObjectProperty<>();
 
 	public Benevole() {
 		
@@ -49,7 +50,19 @@ public class Benevole extends Personne {
 	public final void setPermanent(final boolean permanent) {
 		this.permanentProperty().set(permanent);
 	}
+
+	public final Property<Competition> competitionProperty() {
+		return this.competition;
+	}
 	
+
+	public final Competition getCompetition() {
+		return this.competitionProperty().getValue();
+	}
 	
+
+	public final void setCompetition(final Competition competition) {
+		this.competitionProperty().setValue(competition);
+	}
 
 }

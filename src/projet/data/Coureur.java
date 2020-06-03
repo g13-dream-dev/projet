@@ -2,6 +2,8 @@ package projet.data;
 
 import java.time.LocalDate;
 
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -9,6 +11,7 @@ public class Coureur extends Personne {
 
 	private final StringProperty		club	 	= new SimpleStringProperty();
 	private final StringProperty		poste		= new SimpleStringProperty();
+	private final Property<Competition> competition = new SimpleObjectProperty<>();
 	public Coureur() {
 	}
 
@@ -52,6 +55,19 @@ public class Coureur extends Personne {
 		
 		return getPoste().toUpperCase()+": "+super.toString();
 	}
+
+	public final Property<Competition> competitionProperty() {
+		return this.competition;
+	}
 	
 
+	public final Competition getCompetition() {
+		return this.competitionProperty().getValue();
+	}
+	
+
+	public final void setCompetition(final Competition competition) {
+		this.competitionProperty().setValue(competition);
+	}
+	
 }

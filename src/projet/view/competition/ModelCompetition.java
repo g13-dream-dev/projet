@@ -16,7 +16,7 @@ public class ModelCompetition {
 	
 	// Données observables 
 	
-	private final ObservableList<Competition> liste = FXCollections.observableArrayList();
+	public final ObservableList<Competition> liste = FXCollections.observableArrayList();
 	
 	private final Competition		courant = new Competition();
 	
@@ -54,7 +54,6 @@ public class ModelCompetition {
 	
 	public void preparerAjouter() {
 		mapper.update( courant, new Competition() );
-		modelCourse.actualiserNombreCourses();
 	}
 	
 

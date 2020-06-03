@@ -13,7 +13,11 @@ import projet.commun.IMapper;
 import projet.dao.DaoCoureur;
 import projet.data.Coureur;
 import projet.data.Personne;
+<<<<<<< HEAD
 import projet.data.Poste;
+=======
+import projet.view.competition.ModelCompetition;
+>>>>>>> branch 'master' of https://github.com/g13-dream-dev/projet.git
 
 
 public class ModelCoureur {
@@ -35,6 +39,8 @@ public class ModelCoureur {
 	private IMapper		        mapper;
     @Inject
 	private DaoCoureur			daoCoureur;
+    @Inject
+   	private ModelCompetition			listeCompetition;
     
 	
 	
@@ -190,6 +196,10 @@ public class ModelCoureur {
 		
 		if(!courant1.getClub().isEmpty() && !courant2.getClub().isEmpty() && !courant1.getClub().equals(courant2.getClub())) {
 			message.append("\nErreur Capitaine et Equipier : Les coureurs doivent etres du meme club.");
+		}
+		
+		if(courant1.getCompetition() == null || courant2.getCompetition() == null) {
+			message.append("Vous devez selectionner une competition.");
 		}
 
 		if ( message.length() > 0 ) {

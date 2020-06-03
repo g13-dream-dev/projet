@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
@@ -16,9 +17,11 @@ import jfox.javafx.util.ConverterStringLocalDate;
 import jfox.javafx.util.UtilFX;
 import jfox.javafx.view.IManagerGui;
 import projet.data.Benevole;
+import projet.data.Competition;
 import projet.data.Coureur;
 import projet.data.Permis;
 import projet.view.EnumView;
+import projet.view.competition.ModelCompetition;
 import projet.view.personne.ModelPersonne;
 
 public class ControllerBenevoleForm {
@@ -56,6 +59,8 @@ public class ControllerBenevoleForm {
 	private DatePicker		dpDateDelivrance;  
 	@FXML
 	private CheckBox		cbEngagement;
+	@FXML
+	private ComboBox<Competition> comboBoxCompetitions;
 	
 
 	
@@ -65,6 +70,8 @@ public class ControllerBenevoleForm {
 	private IManagerGui		managerGui;
 	@Inject
 	private ModelBenevole		modelBenevole;
+	@Inject
+	private ModelCompetition			modelCompetition;
 	
 	// Initialisation du Controller
 	
@@ -86,6 +93,13 @@ public class ControllerBenevoleForm {
 		rbHomme.setToggleGroup(brSexe);
 		rbFemme.setToggleGroup(brSexe);
 		cbPermanent.selectedProperty().bindBidirectional( courant.permanentProperty() );
+		modelCompetition.actualiserListe();
+		comboBoxCompetitions.setItems(modelCompetition.getListe());
+		comboBoxCompetitions.setCellFactory(UtilFX.cellFactory(item -> item.getNom()));
+		comboBoxCompetitions.getSelectionModel().select(courant.getCompetition());
+		comboBoxCompetitions.getSelectionModel().selectedItemProperty().addListener((l)->{
+			courant.setCompetition(comboBoxCompetitions.getSelectionModel().getSelectedItem());
+		});
 		
 		//champ complex
 		UtilFX.bindBidirectional(dpNaissance.getEditor(), courant.naissanceProperty(), new ConverterStringLocalDate());
