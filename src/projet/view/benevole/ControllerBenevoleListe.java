@@ -133,7 +133,7 @@ public class ControllerBenevoleListe {
 	
 	@FXML
 	private void doAjouterUnBenevole() {
-		modelBenevole.preparerAjouter();
+		//modelBenevole.preparerAjouter();
 		managerGui.showView(EnumView.BenevoleForm);
 	}
 	

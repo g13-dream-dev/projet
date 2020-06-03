@@ -12,6 +12,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
+import javafx.fxml.FXML;
 import jfox.dao.jdbc.UtilJdbc;
 import projet.data.Poste;
 
@@ -129,6 +130,35 @@ public class DaoPoste {
 			UtilJdbc.close( rs, stmt, cn );
 		}
 	}
+	
+	@FXML
+	public List<Poste> listerRecherche(String txt) {
+
+		Connection			cn 		= null;
+		PreparedStatement	stmt 	= null;
+		ResultSet 			rs		= null;
+		String				sql;
+
+		try {
+			cn = dataSource.getConnection();
+			sql = "SELECT * FROM poste WHERE libelle LIKE ?  ORDER BY libelle, etat, nombreplaces";
+			stmt = cn.prepareStatement( sql );
+			stmt.setString(1,'%'+txt+'%');
+			rs = stmt.executeQuery();
+
+			List<Poste> postes = new LinkedList<>();
+			while (rs.next()) {
+				postes.add( construirePoste( rs ) );
+			}
+			return postes;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			UtilJdbc.close( rs, stmt, cn );
+		}
+	}
+
 
 
 	public List<Poste> listerTout() {

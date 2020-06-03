@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import jfox.javafx.util.UtilFX;
@@ -16,7 +18,7 @@ import projet.data.Poste;
 import projet.view.EnumView;
 
 
-public class ControllerPosteListe  {
+public class ControllerPosteRechercher  {
 	
 	
 	// Composants de la vue
@@ -24,11 +26,17 @@ public class ControllerPosteListe  {
 	@FXML
 	private ListView<Poste>	listView;
 	@FXML
+	private ListView<Poste>	listViewRecherche;
+	@FXML
 	private Button				buttonModifier;
 	@FXML
 	private Button				buttonSupprimer;
 	@FXML
 	private Button				buttonMemos;
+	@FXML
+	private ImageView 			buttonSearch;
+	@FXML
+	private TextField 			textFieldMot;
 
 	
 	// Autres champs
@@ -49,7 +57,8 @@ public class ControllerPosteListe  {
 		// Configuration de l'objet ListView
 		
 		// Data binding
-		listView.setItems( modelPoste.getListe() );
+		modelPoste.viderListe();
+		listView.setItems( modelPoste.getListe());
 
 		// Affichage
 		listView.setCellFactory( UtilFX.cellFactory( item -> item.toString() ) );		
@@ -60,12 +69,24 @@ public class ControllerPosteListe  {
 					 configurerBoutons();					
 		});
 		configurerBoutons();
+		
+		//configuration de l'object listviewRecherche
+		// Data binding
+		listViewRecherche.setItems( modelPoste.getListeTrie());
+		// Affichage
+		listViewRecherche.setCellFactory( UtilFX.cellFactory( item -> item.toString() ) );
+		listViewRecherche.setVisible(false);
+		textFieldMot.textProperty().bindBidirectional(modelPoste.motProperty());
 	}
 	
 	public void refresh() {
-		modelPoste.actualiserListe();
-		UtilFX.selectInListView(listView, modelPoste.getCourant() );
-		listView.requestFocus();
+		
+		
+			//modelPoste.actualiserListe(Mot.getText());
+			UtilFX.selectInListView(listView, modelPoste.getCourant() );
+			listView.requestFocus();
+		
+
 	}
 
 	
@@ -76,6 +97,7 @@ public class ControllerPosteListe  {
 		modelPoste.preparerModifier( listView.getSelectionModel().getSelectedItem() );
 		managerGui.showView( EnumView.PosteForm );
 	}
+	
 
 	@FXML
 	private void doSupprimer() {
@@ -99,6 +121,13 @@ public class ControllerPosteListe  {
 					doModifier();
 				}
 			}
+			if(event.getClickCount() == 1) {
+				if(listViewRecherche.getSelectionModel().getSelectedIndex() == -1) {
+					managerGui.showDialogError( "Aucun élément n'est sélectionné parmis les suggestions.");
+				}else {
+					selectionnerPoste();
+				}
+			}
 		}
 	}
 
@@ -115,13 +144,26 @@ public class ControllerPosteListe  {
 		}
 	}
 	
+	private void selectionnerPoste() {
+		modelPoste.viderListe();
+		modelPoste.getListe().add(listViewRecherche.getSelectionModel().getSelectedItem());
+		modelPoste.viderListetrie();
+		listViewRecherche.setVisible(false);
+		textFieldMot.setText("");
+	}
+	
 	//Méthodes de fonctionnalites
 	
 	@FXML
 	private void doRechercherUnPoste(){
-		//modelPoste.actualiserListe();
-		managerGui.showView(EnumView.PosteRechercher);
+		//elle est differente des autres methodes 
+		//car celle ci fait rellement la recherche 
+		//elle est rattaché a l'image view;
 		
+		//daoPoste.listerRecherche(Mot.toString());
+		//modelPoste.actualiserListe();
+		if(modelPoste.actualiserListeRecherche())listViewRecherche.setVisible(true);
+		else listViewRecherche.setVisible(false);
 	}
 	
 	@FXML

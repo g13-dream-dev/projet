@@ -97,6 +97,9 @@ public class MenuBarAppli extends MenuBar {
 		item.setOnAction((e) -> managerGui.showView(EnumView.PlatListe));
 		menu.getItems().add(item);
 		itemComptes = item;
+		
+		
+		
 
 		// Manu Etats
 /*
@@ -149,6 +152,11 @@ public class MenuBarAppli extends MenuBar {
 		item = new MenuItem("Liste des plats");
 		item.setOnAction((e) -> managerGui.showView(EnumView.PlatListe));
 		menu.getItems().add(item);
+		
+		
+		//Menu aide
+		menu = new Menu("Aide ?");
+		this.getMenus().add(menu);
 
 		// Configuration initiale du menu
 		configurerMenu(modelConnexion.getCompteActif());

@@ -76,6 +76,8 @@ public class ControllerPosteForm {
 	
 		@FXML
 		private void doRechercherUnPoste(){
+			modelPoste.actualiserListe();
+			managerGui.showView(EnumView.PosteRechercher);
 			
 		}
 		

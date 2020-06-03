@@ -13,6 +13,7 @@ import projet.commun.IMapper;
 import projet.dao.DaoCoureur;
 import projet.data.Coureur;
 import projet.data.Personne;
+import projet.data.Poste;
 
 
 public class ModelCoureur {
@@ -22,6 +23,7 @@ public class ModelCoureur {
 	
 	private final ObservableList<String> listeClubs = FXCollections.observableArrayList();
 	private final ObservableList<Coureur> listeCoureurs = FXCollections.observableArrayList();
+	private final ObservableList<Coureur> listetrie = FXCollections.observableArrayList(); 
 	
 	private final Coureur		courant1 = new Coureur();
 	private final Coureur		courant2 = new Coureur();
@@ -219,6 +221,28 @@ public class ModelCoureur {
 		daoCoureur.supprimer( item1.getId() );
 		daoCoureur.supprimer( item2.getId() );
 		listeClubs.removeIf( club ->(club== item1.getClub()));
+	}
+
+	public void viderListe() {
+		// TODO Auto-generated method stub
+		listeClubs.clear();
+		
+	}
+
+	public void viderListetrie() {
+		// TODO Auto-generated method stub
+		listetrie.clear();
+		
+	}
+	
+	//getters et setters
+
+	public ObservableList<Coureur> getListe() {
+		// TODO Auto-generated method stub
+		return listeCoureurs;
+	}
+	public ObservableList<Coureur> getListeTrie(){ 
+		return listetrie;
 	}
 	
 }

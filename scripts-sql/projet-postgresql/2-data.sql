@@ -31,6 +31,20 @@ INSERT INTO compte (idcompte, pseudo, motdepasse, email ) VALUES
 
 ALTER TABLE compte ALTER COLUMN idcompte RESTART WITH 4;
 
+--postes
+
+INSERT INTO poste (libelle, etat, heured, nombreplaces) VALUES 
+  ('porter les sacs',En cours, 12:20,20),
+    ('porter les maillots',En cours, 12:20,20),
+      ('donner du sucre',En cours, 14:20,10),
+        ('donner les repas',En cours, 15:20,400);
+	
+
+  
+
+
+
+
 
 -- Role
 
@@ -52,6 +66,7 @@ INSERT INTO categorie (idcategorie, libelle ) VALUES
  
 ALTER TABLE categorie ALTER COLUMN idcategorie RESTART WITH 6;
 
+*
 
 -- Personne
 
