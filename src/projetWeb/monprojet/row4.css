@@ -1,0 +1,82 @@
+body{
+
+background-color: rgb(0,61,139);
+background-image:url(boldair.jpg);
+
+}
+form {
+  /* Uniquement centrer le formulaire sur la page */
+  margin: 100px;
+  margin-left:60%
+  width: 380px;
+  height: 200px;
+  padding: 5em;
+
+  /* Encadré pour voir les limites du formulaire */
+  padding: 5em;
+  border: 0px solid #CCC;
+  border-radius: 0em;
+  background-color: rgba(0,61,13,0);
+
+
+}
+
+.brrr{
+
+border-radius: 0em;
+background-color: rgb(0,61,139,0.4);
+
+
+
+  margin: -80px;
+margin-left: 500px;
+}
+div#crcl_jaune{
+    position: absolute;
+    background: rgb(0,0,0);
+    opacity: 0.4;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    margin: -30px;
+    margin-left: 20px;
+    border: 1px rgba(255,255,255,0.7) solid;
+
+
+}
+
+
+
+.wow{
+  padding: 5em;
+  border: 1px solid #CCC;
+  border-radius: 0em;
+  background-color: rgba(0,61,139,0.4);
+  margin: 500px;
+
+  opacity: 0.95;
+  width: 380px;
+  height: 200px;
+  float:left;
+
+
+
+  margin: 0px;
+  margin-left: 100px;
+}
+
+button {
+  /* Pour s'assurer que tous les champs texte ont la même police.
+     Par défaut, les textarea ont une police monospace */
+  font: 1em sans-serif;
+
+  /* Pour que tous les champs texte aient la même dimension */
+  width: 300px;
+  height: 50px;
+  margin: 10px;
+  margin-left: 50px;
+  box-sizing: border-box;
+
+  /* Pour harmoniser le look & feel des bordures des champs texte */
+  border: 1px solid #999;
+}
