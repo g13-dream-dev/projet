@@ -174,6 +174,16 @@ CREATE TABLE plat(
 	PRIMARY KEY (idplat)
 )WITHOUT OIDS;
 
+------------------------------------------------------------
+-- Table: attribuer
+------------------------------------------------------------
+
+CREATE TABLE attribuer(
+	idposte		INT,
+	idbenevole		INT,
+	FOREIGN KEY (idposte) REFERENCES personne(idposte),
+	FOREIGN KEY (idbenevole) REFERENCES personne(idbenevole)
+)WITHOUT OIDS;
 
 
 -- Vues

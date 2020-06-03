@@ -205,8 +205,6 @@ INSERT INTO service ( idservice, nom, anneecreation, flagsiege ) VALUES
   ( 4, 'Agence Brive', 2014, FALSE );
 ALTER TABLE service ALTER COLUMN idservice RESTART WITH 5;
 
-ALTER TABLE service ALTER COLUMN idservice RESTART WITH 5;
-
 -- Plat
 
 INSERT INTO plat ( idplat, nom, nombre) VALUES 
@@ -217,6 +215,8 @@ INSERT INTO plat ( idplat, nom, nombre) VALUES
   ( 5, 'Ndole',50),
   ( 6, 'Oko o',25),
   ( 7, 'Sanga',40);
-ALTER TABLE competition ALTER COLUMN idcompetition RESTART WITH 5;
+ALTER TABLE plat ALTER COLUMN idplat RESTART WITH 8;
+
+
 
 

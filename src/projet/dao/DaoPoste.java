@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 
 import javafx.fxml.FXML;
 import jfox.dao.jdbc.UtilJdbc;
+import projet.data.Benevole;
 import projet.data.Poste;
 
 
@@ -179,6 +180,52 @@ public class DaoPoste {
 				postes.add( construirePoste( rs ) );
 			}
 			return postes;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			UtilJdbc.close( rs, stmt, cn );
+		}
+	}
+	
+	public boolean attribuerBenevoleAuPoste( Poste poste , Benevole benevole) {
+
+		Connection			cn		= null;
+		PreparedStatement	stmt	= null;
+		ResultSet 			rs		= null;
+		String				sql;
+
+		try {
+			
+			cn = dataSource.getConnection();
+			sql = "SELECT count(idposte) as n from attribuer where idposte = ?";
+			stmt = cn.prepareStatement( sql );
+			stmt.setObject(1, poste.getId());
+			rs = stmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getObject("n", Integer.class) < poste.getNombrePlaces()) {
+					sql = "SELECT idbenevole FROM attribuer where idbenevole = ?";
+					stmt = cn.prepareStatement(sql);
+					stmt.setObject(1, benevole.getId());
+					rs = stmt.executeQuery();
+					if(!rs.next()) {
+						sql = "INSERT INTO attribuer (idposte, idbenevole) VALUES(?,?)";
+						stmt = cn.prepareStatement(sql);
+						stmt.setObject(1, poste.getId());
+						stmt.setObject(2, benevole.getId());
+						stmt.executeUpdate();
+					}
+				}else {
+					return false;
+				}
+			}else {
+				sql = "INSERT INTO attribuer (idposte, idbenevole) VALUES(?,?)";
+				stmt = cn.prepareStatement(sql);
+				stmt.setObject(1, poste.getId());
+				stmt.setObject(2, benevole.getId());
+				stmt.executeUpdate();
+			}
+			return true;
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
