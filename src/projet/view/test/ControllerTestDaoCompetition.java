@@ -5,10 +5,10 @@ import javax.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import jfox.javafx.util.UtilFX;
-import projet.dao.DaoMemo;
+import projet.dao.DaoCompetition;
 
 
-public class ControllerTestDaoMemo {
+public class ControllerTestDaoCompetition {
 	
 	
 	// Composants visuales
@@ -20,7 +20,7 @@ public class ControllerTestDaoMemo {
 	// Autres champs
 	
 	@Inject
-	private DaoMemo			dao;
+	private DaoCompetition	dao;
 	
 	private final int		id = 1;	
 	

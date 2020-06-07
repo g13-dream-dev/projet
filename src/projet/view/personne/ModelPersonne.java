@@ -8,9 +8,7 @@ import jfox.commun.exception.ExceptionValidation;
 import jfox.javafx.util.UtilFX;
 import projet.commun.IMapper;
 import projet.dao.DaoPersonne;
-import projet.data.Categorie;
 import projet.data.Personne;
-import projet.data.Telephone;
 
 
 public class ModelPersonne {

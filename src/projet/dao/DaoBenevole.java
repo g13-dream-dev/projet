@@ -194,6 +194,35 @@ public class DaoBenevole {
 			UtilJdbc.close( rs, stmt, cn );
 		}
 	}
+	public List<Benevole> listerAvecSansPoste(Boolean avec)   {
+
+		Connection			cn		= null;
+		PreparedStatement	stmt	= null;
+		ResultSet 			rs 		= null;
+		String				sql;
+
+		try {
+			cn = dataSource.getConnection();
+
+			if(avec)
+				sql = "SELECT idbenevole FROM attribuer";
+			else
+				sql = "SELECT idbenevole FROM attribuer WHERE idbenevole NOT IN (select idbenevole from benevole) ";
+			stmt = cn.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			
+			List<Benevole> benevoles = new ArrayList<>();
+			while (rs.next()) {
+				benevoles.add( retrouver(rs.getObject("idbenevole", Integer.class)));
+			}
+			return benevoles;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			UtilJdbc.close( rs, stmt, cn );
+		}
+	}
 	
 	// Méthodes auxiliaires
 	

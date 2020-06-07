@@ -3,16 +3,10 @@ package projet.view.personne;
 import javax.inject.Inject;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import jfox.javafx.control.EditingCell;
 import jfox.javafx.util.ConverterStringInteger;
 import jfox.javafx.view.IManagerGui;
-import projet.data.Categorie;
 import projet.data.Personne;
-import projet.data.Telephone;
 import projet.view.EnumView;
 
 
@@ -27,16 +21,6 @@ public class ControllerPersonneForm  {
 	private TextField			textFieldNom;
 	@FXML	
 	private TextField			textFieldPrenom;
-    //@FXML
-    //private ComboBox<Categorie>	comboBoxCategorie;
-	@FXML
-	private TableView<Telephone>	tableViewTelphones;
-	@FXML
-	private TableColumn<Telephone, Integer> columnId;
-	@FXML
-	private TableColumn<Telephone, String> columnLibelle;
-	@FXML
-	private TableColumn<Telephone, String> columnNumero;
 
 	
 	// Autres champs
@@ -63,18 +47,7 @@ public class ControllerPersonneForm  {
 		// Data binding
 		//comboBoxCategorie.setItems(  modelPersonne.getCategories());
         //comboBoxCategorie.valueProperty().bindBidirectional( courant.categorieProperty() );
- 		
-		
-		// Configuration du TableView
-
-		// Data binding
-		
-		columnId.setCellValueFactory( t -> t.getValue().idProperty() );
-		columnLibelle.setCellValueFactory( t -> t.getValue().libelleProperty() );
-		columnNumero.setCellValueFactory( t -> t.getValue().numeroProperty() );
-
-		columnLibelle.setCellFactory(  p -> new EditingCell<>() );
-		columnNumero.setCellFactory(  p -> new EditingCell<>() );		
+ 			
 	
 	}
 	

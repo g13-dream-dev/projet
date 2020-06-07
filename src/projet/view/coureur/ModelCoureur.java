@@ -11,15 +11,7 @@ import jfox.commun.exception.ExceptionValidation;
 import projet.commun.IMapper;
 import projet.dao.DaoCoureur;
 import projet.data.Coureur;
-<<<<<<< HEAD
 import projet.view.competition.ModelCompetition;
-=======
-import projet.data.Personne;
-
-import projet.data.Poste;
-import projet.view.competition.ModelCompetition;
-
->>>>>>> branch 'master' of https://github.com/g13-dream-dev/projet.git
 
 
 public class ModelCoureur {

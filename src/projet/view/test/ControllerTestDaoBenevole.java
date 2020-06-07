@@ -5,10 +5,10 @@ import javax.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import jfox.javafx.util.UtilFX;
-import projet.dao.DaoService;
+import projet.dao.DaoBenevole;
 
 
-public class ControllerTestDaoService {
+public class ControllerTestDaoBenevole {
 	
 	
 	// Composants visuales
@@ -20,7 +20,7 @@ public class ControllerTestDaoService {
 	// Autres champs
 	
 	@Inject
-	private DaoService			dao;
+	private DaoBenevole			dao;
 	
 	private final int		id = 1;	
 	

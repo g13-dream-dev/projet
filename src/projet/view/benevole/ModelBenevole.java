@@ -22,6 +22,7 @@ public class ModelBenevole {
 	// Données observables 
 	
 	private final ObservableList<Benevole> liste = FXCollections.observableArrayList();
+	private final ObservableList<Benevole> listeSurCritere = FXCollections.observableArrayList();
 	
 	private final Benevole		courant = new Benevole();
 	
@@ -42,6 +43,10 @@ public class ModelBenevole {
 		return liste;
 	}
 	
+	public ObservableList<Benevole> getListeSurCritere() {
+		return liste;
+	}
+	
 	public Benevole getCourant() {
 		return courant;
 	}
@@ -50,6 +55,9 @@ public class ModelBenevole {
 	
 	public void actualiserListe() {
 		liste.setAll( daoBenevole.listerTout() );
+	}
+	public void actualiserListeSurCritere(Boolean avec) {
+		liste.setAll( daoBenevole.listerAvecSansPoste(avec) );
 	}
 
 	

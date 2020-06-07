@@ -38,12 +38,13 @@ public class DaoPoste {
 		
 		try {
 			cn = dataSource.getConnection();
-			sql = "INSERT INTO poste (  libelle, etat, heured, nombreplaces ) VALUES( ?, ?, ?, ?) ";
+			sql = "INSERT INTO poste (  libelle, etat, heured, nombreplaces, placesoccupees ) VALUES( ?, ?, ?, ?, ?) ";
 			stmt = cn.prepareStatement( sql, Statement.RETURN_GENERATED_KEYS );
 			stmt.setObject( 1, poste.getLibelle() );
 			stmt.setObject( 2, poste.getEtat() );
 			stmt.setObject( 3, poste.getHeureD() );
 			stmt.setObject( 4, poste.getNombrePlaces() );
+			stmt.setObject( 5, poste.getPlacesOccupees() );
 			stmt.executeUpdate();
 
 			// Récupère l'identifiant généré par le SGBD
@@ -68,13 +69,14 @@ public class DaoPoste {
 
 		try {
 			cn = dataSource.getConnection();
-			sql = "UPDATE poste SET libelle = ?, etat = ?, heured = ?, nombreplaces = ? WHERE idposte =  ?";
+			sql = "UPDATE poste SET libelle = ?, etat = ?, heured = ?, nombreplaces = ?, placesoccupees = ? WHERE idposte =  ?";
 			stmt = cn.prepareStatement( sql );
 			stmt.setObject( 1, poste.getLibelle() );
 			stmt.setObject( 2, poste.getEtat() );
-			stmt.setObject( 3, poste.getNombrePlaces() );
-			stmt.setObject( 4, poste.getHeureD() );
-			stmt.setObject( 5, poste.getId() );
+			stmt.setObject( 3, poste.getHeureD() );
+			stmt.setObject( 4, poste.getNombrePlaces() );
+			stmt.setObject( 5, poste.getPlacesOccupees() );
+			stmt.setObject( 6, poste.getId() );
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -132,7 +134,6 @@ public class DaoPoste {
 		}
 	}
 	
-	@FXML
 	public List<Poste> listerRecherche(String txt) {
 
 		Connection			cn 		= null;
@@ -171,7 +172,7 @@ public class DaoPoste {
 
 		try {
 			cn = dataSource.getConnection();
-			sql = "SELECT * FROM poste ORDER BY libelle, etat, nombreplaces";
+			sql = "SELECT * FROM poste ORDER BY libelle, etat, nombreplaces, placesoccupees";
 			stmt = cn.prepareStatement( sql );
 			rs = stmt.executeQuery();
 
@@ -187,46 +188,101 @@ public class DaoPoste {
 			UtilJdbc.close( rs, stmt, cn );
 		}
 	}
+	public List<Poste> listerPourBenevole(Benevole benevole) {
+
+		Connection			cn 		= null;
+		PreparedStatement	stmt 	= null;
+		ResultSet 			rs		= null;
+		String				sql;
+
+		try {
+			cn = dataSource.getConnection();
+			sql = "SELECT idposte FROM attribuer WHERE idbenevole = ?";
+			stmt = cn.prepareStatement( sql );
+			stmt.setObject(1, benevole.getId());
+			rs = stmt.executeQuery();
+
+			List<Poste> postes = new LinkedList<>();
+			while (rs.next()) {
+				postes.add( retrouver( rs.getInt("idposte") ) );
+			}
+			return postes;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			UtilJdbc.close( rs, stmt, cn );
+		}
+	}
+	public boolean estDejaAttribue(Poste poste, Benevole benevole) {
+
+		Connection			cn 		= null;
+		PreparedStatement	stmt 	= null;
+		ResultSet 			rs		= null;
+		String				sql;
+
+		try {
+			cn = dataSource.getConnection();
+			sql = "SELECT count(idbenevole) AS n FROM attribuer WHERE idposte = ? AND idbenevole = ?";
+			stmt = cn.prepareStatement( sql );
+			stmt.setObject(1, poste.getId());
+			stmt.setObject(2, benevole.getId());
+			rs = stmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getInt("n") > 0)return true;
+			}
+			return false;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			UtilJdbc.close( rs, stmt, cn );
+		}
+	}
 	
-	public boolean attribuerBenevoleAuPoste( Poste poste , Benevole benevole) {
+	public void attribuerBenevoleAuPoste( Poste poste , Benevole benevole) {
 
 		Connection			cn		= null;
+		PreparedStatement	stmt	= null;
+		String				sqlAttribuer;
+
+		try {
+			
+			cn = dataSource.getConnection();
+			sqlAttribuer = "INSERT INTO attribuer (idposte, idbenevole) VALUES(?,?)";
+			stmt = cn.prepareStatement(sqlAttribuer);
+			stmt.setObject(1, poste.getId());
+			stmt.setObject(2, benevole.getId());
+			stmt.executeUpdate();
+			
+			poste.setPlacesOccupees(poste.getPlacesOccupees()+1);
+			modifier(poste);
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			UtilJdbc.close( stmt, cn );
+		}
+	}
+	
+	public int nombrePostePour( Benevole Benevole ) {
+
+		Connection			cn 		= null;
 		PreparedStatement	stmt	= null;
 		ResultSet 			rs		= null;
 		String				sql;
 
 		try {
-			
 			cn = dataSource.getConnection();
-			sql = "SELECT count(idposte) as n from attribuer where idposte = ?";
+			sql = "SELECT count(idbenevole) as n FROM attribuer WHERE idbenevole = ?";
 			stmt = cn.prepareStatement( sql );
-			stmt.setObject(1, poste.getId());
+			stmt.setInt(1, Benevole.getId());
 			rs = stmt.executeQuery();
 			if(rs.next()) {
-				if(rs.getObject("n", Integer.class) < poste.getNombrePlaces()) {
-					sql = "SELECT idbenevole FROM attribuer where idbenevole = ?";
-					stmt = cn.prepareStatement(sql);
-					stmt.setObject(1, benevole.getId());
-					rs = stmt.executeQuery();
-					if(!rs.next()) {
-						sql = "INSERT INTO attribuer (idposte, idbenevole) VALUES(?,?)";
-						stmt = cn.prepareStatement(sql);
-						stmt.setObject(1, poste.getId());
-						stmt.setObject(2, benevole.getId());
-						stmt.executeUpdate();
-					}
-				}else {
-					return false;
-				}
-			}else {
-				sql = "INSERT INTO attribuer (idposte, idbenevole) VALUES(?,?)";
-				stmt = cn.prepareStatement(sql);
-				stmt.setObject(1, poste.getId());
-				stmt.setObject(2, benevole.getId());
-				stmt.executeUpdate();
+				int n = rs.getInt("n");
+				return n;
 			}
-			return true;
-
+			return 0;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
@@ -242,6 +298,7 @@ public class DaoPoste {
 		poste.setId( rs.getObject( "idposte", Integer.class ) );
 		poste.setLibelle( rs.getObject( "libelle", String.class ) );
 		poste.setNombrePlaces(rs.getObject("nombreplaces", Integer.class));
+		poste.setPlacesOccupees(rs.getObject("placesoccupees", Integer.class));
 		poste.setHeureD(rs.getObject("heureD",LocalTime.class));
 		poste.setEtat(rs.getObject("etat",String.class));
 		return poste;

@@ -5,10 +5,10 @@ import javax.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import jfox.javafx.util.UtilFX;
-import projet.dao.DaoCategorie;
+import projet.dao.DaoCoureur;
 
 
-public class ControllerTestDaoCategorie {
+public class ControllerTestDaoCoureur {
 	
 	
 	// Composants visuales
@@ -20,9 +20,9 @@ public class ControllerTestDaoCategorie {
 	// Autres champs
 	
 	@Inject
-	private DaoCategorie	dao;
+	private DaoCoureur			dao;
 	
-	private final int		id = 1;	
+	private final int		id = 2;	
 	
 	
 	// Actions
@@ -35,7 +35,7 @@ public class ControllerTestDaoCategorie {
 			textArea.appendText( "\n"  );
 		}
 		textArea.appendText( "\n"  );
-		textArea.appendText(  "Test n°1 OK \n");;
+		textArea.appendText(  "Test n°1 OK \n");
 	}
 	
 	@FXML
@@ -43,14 +43,14 @@ public class ControllerTestDaoCategorie {
 		textArea.clear();
 		textArea.appendText( UtilFX.objectToString( dao.retrouver( id ) ) );
 		textArea.appendText( "\n\n"  );
-		textArea.appendText(  "Test n°2 OK \n");;
+		textArea.appendText(  "Test n°2 OK \n");
 	}
 	
 	@FXML
 	private void doModifier() {
 		textArea.clear();
 		dao.modifier( dao.retrouver( id ) );
-		textArea.appendText(  "Test n°3 OK \n");;
+		textArea.appendText(  "Test n°3 OK \n");
 	}
 	
 	@FXML
@@ -60,7 +60,7 @@ public class ControllerTestDaoCategorie {
 		textArea.appendText( UtilFX.objectToString( dao.retrouver( idNouveau ) ) );
 		dao.supprimer( idNouveau );
 		textArea.appendText( "\n\n"  );
-		textArea.appendText(  "Test n°4 OK \n");;
+		textArea.appendText(  "Test n°4 OK \n");
 	}
 	
 }

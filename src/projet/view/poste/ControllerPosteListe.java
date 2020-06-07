@@ -52,7 +52,7 @@ public class ControllerPosteListe  {
 		listView.setItems( modelPoste.getListe() );
 
 		// Affichage
-		listView.setCellFactory( UtilFX.cellFactory( item -> item.toString() ) );		
+		listView.setCellFactory( UtilFX.cellFactory( item -> item.toString() ) );
 
 		// Comportement si modificaiton de la séleciton
 		listView.getSelectionModel().getSelectedItems().addListener( 
@@ -138,7 +138,7 @@ public class ControllerPosteListe  {
 	
 	@FXML
 	private void doAttribuerDesPostesAuxBenevoles() {
-		
+		managerGui.showView(EnumView.PosteAttribuerBenevole);
 	}
 
 }

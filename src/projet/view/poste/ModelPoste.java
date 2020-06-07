@@ -11,7 +11,10 @@ import jfox.commun.exception.ExceptionValidation;
 import jfox.javafx.util.UtilFX;
 import projet.commun.IMapper;
 import projet.dao.DaoPoste;
+import projet.data.Benevole;
 import projet.data.Poste;
+import projet.view.ManagerGui;
+import projet.view.benevole.ModelBenevole;
 
 
 public class ModelPoste {
@@ -20,8 +23,7 @@ public class ModelPoste {
 	// Données observables 
 	
 	private final ObservableList<Poste> liste = FXCollections.observableArrayList(); 
-	private final ObservableList<Poste> listetrie = FXCollections.observableArrayList(); 
-	
+	private final ObservableList<Poste> listetrie = FXCollections.observableArrayList();
 	
 
 	
@@ -34,6 +36,8 @@ public class ModelPoste {
 	// Autres champs
     @Inject
 	private IMapper			mapper;
+    @Inject
+    private ManagerGui managerGui;
     @Inject
 	private DaoPoste		daoPoste;
 	
@@ -64,10 +68,6 @@ public class ModelPoste {
 	
 	// Actualisations
 	
-
-		
- 	
-	
 	public void actualiserListe() {
 		liste.setAll(daoPoste.listerTout());
 		
@@ -80,12 +80,6 @@ public class ModelPoste {
 		if(listetrie.size()>0)return true;
 		return false;
 	}
-//	
-//	
-//	public void actualiserRecherche() {
-//		liste.setAll( daoPoste.listerRecherche("sac"));
-//	}
-	
 	
 	// Actions
 	
@@ -139,6 +133,25 @@ public class ModelPoste {
 			// modficiation
 			daoPoste.modifier( courant );
 		}
+	}
+	
+	public void affecter(Poste poste, Benevole benevole) {
+		// Vérifie la validité des données
+		StringBuilder message = new StringBuilder();
+		
+		if( poste.getPlacesOccupees() == poste.getNombrePlaces()) {
+			message.append( "\nil n'y a plus de places libres pour ce post" );
+		}
+		if ( daoPoste.estDejaAttribue(poste, benevole)) {
+			message.append( "\nLe bénévole a déjà été affecté à ce poste." );
+		}
+		
+		if ( message.length() > 0 ) {
+			throw new ExceptionValidation( message.toString().substring(1) );
+		}else {
+			daoPoste.attribuerBenevoleAuPoste(poste, benevole);
+		}
+		
 	}
 	
 	

@@ -7,18 +7,15 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
 import projet.data.Benevole;
-import projet.data.Categorie;
 import projet.data.Competition;
 import projet.data.Compte;
 import projet.data.Coureur;
 import projet.data.Course;
 import projet.data.Materiel;
-import projet.data.Memo;
 import projet.data.Permis;
 import projet.data.Personne;
 import projet.data.Plat;
 import projet.data.Poste;
-import projet.data.Service;
 
 
 @Mapper
@@ -31,9 +28,6 @@ public interface IMapper {
 	
 	Permis update( @MappingTarget Permis target, Permis source );
 	Benevole update( @MappingTarget Benevole target, Benevole source );
-	
-	Memo update( @MappingTarget Memo target, Memo source );
-	Service update( @MappingTarget Service target, Service source );
 	
 	Course update( @MappingTarget Course target, Course source );
 	Competition update( @MappingTarget Competition target, Competition source );

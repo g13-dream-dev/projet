@@ -103,29 +103,26 @@ public class MenuBarAppli extends MenuBar {
 		item.setOnAction((e) -> managerGui.showView(EnumView.PlatListe));
 		menu.getItems().add(item);
 		itemComptes = item;
-		
-		
-		
 
 		// Manu Etats
-/*
+
 		menu = new Menu("Etats");
 		this.getMenus().add(menu);
 		menuEtats = menu;
 
-		item = new MenuItem("Personnes par catégorie v1");
-		item.setOnAction((e) -> managerGui.showDialog(EnumView.EtatPersonnesParCateogire1));
+		item = new MenuItem("Liste simple des coureurs");
+		item.setOnAction((e) -> managerReport.showViewer(EnumReport.EtatCoureurListeSimple, null));
 		menu.getItems().add(item);
 
-		item = new MenuItem("Personnes par catégorie v2");
-		item.setOnAction((e) -> managerGui.showDialog(EnumView.EtatPersonnesParCateogire2));
+		item = new MenuItem("Liste simple des bénévoles");
+		item.setOnAction((e) -> managerReport.showViewer(EnumReport.EtatBenevoleListeSimple, null));
 		menu.getItems().add(item);
 
-		item = new MenuItem("Liste des personnes (PDF)");
-		item.setOnAction((e) -> managerReport.openFilePdf(EnumReport.PersonnesListeSimple, null));
+		item = new MenuItem("Liste simple des compétitions");
+		item.setOnAction((e) -> managerReport.openFilePdf(EnumReport.EtatCompetitionListeSimple, null));
 		menu.getItems().add(item);
 
-		item = new MenuItem("Liste des personnes (viewer)");
+		/*item = new MenuItem("Liste des personnes (viewer)");
 		item.setOnAction((e) -> managerReport.showViewer(EnumReport.PersonnesListeSimple, null));
 		menu.getItems().add(item);
 
@@ -133,7 +130,7 @@ public class MenuBarAppli extends MenuBar {
 		item.setOnAction((e) ->
 //				managerReport.print( EnumReport.AnnuaireTelephone, null ) );
 		managerReport.showViewer(EnumReport.AnnuaireTelephone, null));
-		menu.getItems().add(item);
+		menu.getItems().add(item);*/
 
 		// Manu Tests
 
@@ -142,21 +139,16 @@ public class MenuBarAppli extends MenuBar {
 		this.getMenus().add(menu);
 		menuTests = menu;
 
-		item = new MenuItem("DaoCategorie");
-		item.setOnAction((e) -> managerGui.showView(EnumView.TestDaoCategorie));
+		item = new MenuItem("DaoCompetition");
+		item.setOnAction((e) -> managerGui.showView(EnumView.TestDaoCompetition));
 		menu.getItems().add(item);
 
-		item = new MenuItem("DaoMemo");
-		item.setOnAction((e) -> managerGui.showView(EnumView.TestDaoMemo));
+		item = new MenuItem("DaoCoureur");
+		item.setOnAction((e) -> managerGui.showView(EnumView.TestDaoCoureur));
 		menu.getItems().add(item);
 
-		item = new MenuItem("DaoService");
-		item.setOnAction((e) -> managerGui.showView(EnumView.TestDaoService));
-		menu.getItems().add(item);
-*/
-
-		item = new MenuItem("Liste des plats");
-		item.setOnAction((e) -> managerGui.showView(EnumView.PlatListe));
+		item = new MenuItem("DaoBenevole");
+		item.setOnAction((e) -> managerGui.showView(EnumView.TestDaoBenevole));
 		menu.getItems().add(item);
 		
 		

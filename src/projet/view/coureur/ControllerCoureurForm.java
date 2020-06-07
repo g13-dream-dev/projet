@@ -112,8 +112,8 @@ public class ControllerCoureurForm {
 		brSexe1 = new ToggleGroup();
 		rbHomme1.setToggleGroup(brSexe1);
 		rbFemme1.setToggleGroup(brSexe1);
+		
 		modelCompetition.actualiserListe();
-		System.out.println(modelCompetition.getListe().get(0).toString());
 		comboBoxCompetitions.setItems(modelCompetition.getListe());
 		comboBoxCompetitions.setCellFactory(UtilFX.cellFactory(item -> item.getNom()));
 		comboBoxCompetitions.getSelectionModel().select(courant1.getCompetition());

@@ -11,6 +11,7 @@ public class Poste {
 	private final Property<Integer> id = new SimpleObjectProperty<>();
 	private final StringProperty libelle = new SimpleStringProperty();
 	private final Property<Integer> nombrePlaces = new SimpleObjectProperty<>();
+	private final Property<Integer> placesOccupees = new SimpleObjectProperty<>();
 	private final Property<LocalTime> heureD = new SimpleObjectProperty<>();
 	private final StringProperty etat = new SimpleStringProperty();
 
@@ -23,6 +24,7 @@ public class Poste {
 		setId(id);
 		setLibelle(libelle);
 		setNombrePlaces(nombrePlaces);
+		setPlacesOccupees(0);
 		setHeureD(heureD);
 		setEtat(etat);
 	}
@@ -102,8 +104,23 @@ public class Poste {
 
 	@Override
 	public String toString() {
-		return getLibelle() + " (" + getNombrePlaces() + " places) : " + getEtat();
+		return getLibelle() + " (" + getNombrePlaces() + " places / libre : "+(getNombrePlaces()-getPlacesOccupees())+") : " + getEtat();
 	}
+
+	public final Property<Integer> placesOccupeesProperty() {
+		return this.placesOccupees;
+	}
+	
+
+	public final Integer getPlacesOccupees() {
+		return this.placesOccupeesProperty().getValue();
+	}
+	
+
+	public final void setPlacesOccupees(final Integer placesOccupees) {
+		this.placesOccupeesProperty().setValue(placesOccupees);
+	}
+	
 	
 	
 	
