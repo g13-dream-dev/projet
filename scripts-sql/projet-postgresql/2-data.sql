@@ -185,11 +185,11 @@ ALTER TABLE plat ALTER COLUMN idplat RESTART WITH 8;
 
 -- Materiel
 
-INSERT INTO materiel ( idmateriel, nom, nombre) VALUES 
-  ( 1, 'dossards',30),
-  ( 2, 'canoes',20),
-  ( 3, 'gilets',6),
-  ( 4, 'pagaies',18);
+INSERT INTO materiel ( idmateriel, nom, nombre, nombredistribue) VALUES 
+  ( 1, 'dossards',30, 0),
+  ( 2, 'canoes',20, 0),
+  ( 3, 'gilets',6, 0),
+  ( 4, 'pagaies',18, 0);
 ALTER TABLE materiel ALTER COLUMN idmateriel RESTART WITH 5;
 
 

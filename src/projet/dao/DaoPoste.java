@@ -161,8 +161,6 @@ public class DaoPoste {
 		}
 	}
 
-
-
 	public List<Poste> listerTout() {
 
 		Connection			cn 		= null;

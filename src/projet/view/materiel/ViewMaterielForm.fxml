@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane fx:id="paneRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" styleClass="arriere-plan" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.materiel.ControllerMaterielForm">
+<AnchorPane fx:id="paneRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" styleClass="arriere-plan" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.materiel.ControllerMaterielForm">
    <children>
       <HBox alignment="CENTER" layoutX="497.0" layoutY="547.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="336.0" AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="497.0" AnchorPane.rightAnchor="167.0">
          <children>
@@ -48,9 +48,9 @@
             <VBox layoutX="15.0" layoutY="239.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" spacing="10.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#doRechercherUnMateriel" prefHeight="30.0" prefWidth="250.0" text="Rechercher un materiel" />
-                  <Button disable="true" mnemonicParsing="false" onAction="#doListerTousLesMateriaux" prefHeight="30.0" prefWidth="250.0" text="Lister tous les materiaux" />
-                  <Button mnemonicParsing="false" onAction="#doAjouterUnmateriel" prefHeight="30.0" prefWidth="250.0" text="Ajouter un materiel" />
-                  <Button mnemonicParsing="false" onAction="#doAttribuer" prefHeight="30.0" prefWidth="250.0" text="Attribuer un materiel a un coureur" />
+                  <Button mnemonicParsing="false" onAction="#doListerTousLeMateriel" prefHeight="30.0" prefWidth="250.0" text="Lister tous le matériel" />
+                  <Button disable="true" mnemonicParsing="false" onAction="#doAjouterUnmateriel" prefHeight="30.0" prefWidth="250.0" text="Ajouter un matériel" />
+                  <Button mnemonicParsing="false" onAction="#doDistribuerMateriel" prefHeight="30.0" prefWidth="250.0" text="Distribuer le matériel aux coureurs" />
                </children>
             </VBox>
             <HBox layoutX="12.0" layoutY="12.0" prefHeight="37.0" prefWidth="200.0">

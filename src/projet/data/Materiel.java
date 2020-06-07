@@ -9,9 +9,17 @@ public class Materiel {
 	private final Property<Integer> id = new SimpleObjectProperty<>();
 	private final StringProperty nom = new SimpleStringProperty();
 	private final Property<Integer> nombre = new SimpleObjectProperty<>();
+	private final Property<Integer> nombreDistribue = new SimpleObjectProperty<>();
 
 	public Materiel() {
 
+	}
+	
+	public Materiel(int id, String nom, int nombre) {
+		setId(id);
+		setNom(nom);
+		setNombre(nombre);
+		setNombreDistribue(0);
 	}
 
 	public final Property<Integer> idProperty() {
@@ -52,7 +60,22 @@ public class Materiel {
 
 	@Override
 	public String toString() {
-		return getNom() +"\t"+ getNombre();
+		return getNom() +"\t(Nombre total : "+ getNombre()+ " / nombre restant : " + (getNombre()-getNombreDistribue());
 	}
+
+	public final Property<Integer> nombreDistribueProperty() {
+		return this.nombreDistribue;
+	}
+	
+
+	public final Integer getNombreDistribue() {
+		return this.nombreDistribueProperty().getValue();
+	}
+	
+
+	public final void setNombreDistribue(final Integer nombreDistribue) {
+		this.nombreDistribueProperty().setValue(nombreDistribue);
+	}
+	
 
 }

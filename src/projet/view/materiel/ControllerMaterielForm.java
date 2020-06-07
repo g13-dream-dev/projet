@@ -62,11 +62,12 @@ public class ControllerMaterielForm {
 
 	@FXML
 	private void doRechercherUnMateriel() {
-
+		modelMateriel.actualiserListe();
+		managerGui.showView(EnumView.MaterielRechercher);
 	}
 
 	@FXML
-	private void doListerTousLesMateriaux() {
+	private void doListerTousLeMateriel() {
 		modelMateriel.actualiserListe();
 		managerGui.showView(EnumView.MaterielListe);
 	}
@@ -78,8 +79,8 @@ public class ControllerMaterielForm {
 	}
 
 	@FXML
-	private void doAttribuer() {
-
+	private void doDistribuerMateriel() {
+		managerGui.showView(EnumView.MaterielDistribuer);
 	}
 
 }

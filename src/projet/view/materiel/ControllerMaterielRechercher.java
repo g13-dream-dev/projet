@@ -5,8 +5,9 @@ import javax.inject.Inject;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import jfox.javafx.util.UtilFX;
@@ -15,7 +16,7 @@ import projet.data.Materiel;
 import projet.view.EnumView;
 
 
-public class ControllerMaterielListe  {
+public class ControllerMaterielRechercher  {
 	
 	
 	// Composants de la vue
@@ -23,11 +24,17 @@ public class ControllerMaterielListe  {
 	@FXML
 	private ListView<Materiel>	listView;
 	@FXML
+	private ListView<Materiel>	listViewRecherche;
+	@FXML
 	private Button				buttonModifier;
 	@FXML
 	private Button				buttonSupprimer;
 	@FXML
 	private Button				buttonMemos;
+	@FXML
+	private ImageView 			buttonSearch;
+	@FXML
+	private TextField 			textFieldMot;
 
 	
 	// Autres champs
@@ -46,7 +53,8 @@ public class ControllerMaterielListe  {
 		// Configuration de l'objet ListView
 		
 		// Data binding
-		listView.setItems( modelMateriel.getListe() );
+		modelMateriel.viderListe();
+		listView.setItems( modelMateriel.getListe());
 
 		// Affichage
 		listView.setCellFactory( UtilFX.cellFactory( item -> item.toString() ) );		
@@ -57,12 +65,24 @@ public class ControllerMaterielListe  {
 					 configurerBoutons();					
 		});
 		configurerBoutons();
+		
+		//configuration de l'object listviewRecherche
+		// Data binding
+		listViewRecherche.setItems( modelMateriel.getListeTrie());
+		// Affichage
+		listViewRecherche.setCellFactory( UtilFX.cellFactory( item -> item.toString() ) );
+		listViewRecherche.setVisible(false);
+		textFieldMot.textProperty().bindBidirectional(modelMateriel.motProperty());
 	}
 	
 	public void refresh() {
-		modelMateriel.actualiserListe();
-		UtilFX.selectInListView(listView, modelMateriel.getCourant() );
-		listView.requestFocus();
+		
+		
+			//modelMateriel.actualiserListe(Mot.getText());
+			UtilFX.selectInListView(listView, modelMateriel.getCourant() );
+			listView.requestFocus();
+		
+
 	}
 
 	
@@ -73,6 +93,7 @@ public class ControllerMaterielListe  {
 		modelMateriel.preparerModifier( listView.getSelectionModel().getSelectedItem() );
 		managerGui.showView( EnumView.MaterielForm );
 	}
+	
 
 	@FXML
 	private void doSupprimer() {
@@ -96,6 +117,13 @@ public class ControllerMaterielListe  {
 					doModifier();
 				}
 			}
+			if(event.getClickCount() == 1) {
+				if(listViewRecherche.getSelectionModel().getSelectedIndex() == -1) {
+					managerGui.showDialogError( "Aucun élément n'est sélectionné parmis les suggestions.");
+				}else {
+					selectionnerMateriel();
+				}
+			}
 		}
 	}
 
@@ -112,12 +140,24 @@ public class ControllerMaterielListe  {
 		}
 	}
 	
+	private void selectionnerMateriel() {
+		modelMateriel.viderListe();
+		modelMateriel.getListe().add(listViewRecherche.getSelectionModel().getSelectedItem());
+		modelMateriel.viderListetrie();
+		listViewRecherche.setVisible(false);
+		textFieldMot.setText("");
+	}
+	
 	//Méthodes de fonctionnalites
 	
 	@FXML
 	private void doRechercherUnMateriel(){
-		modelMateriel.actualiserListe();
-		managerGui.showView(EnumView.MaterielRechercher);
+		//elle est differente des autres methodes 
+		//car celle ci fait rellement la recherche 
+		//elle est rattaché a l'image view;
+		
+		if(modelMateriel.actualiserListeRecherche())listViewRecherche.setVisible(true);
+		else listViewRecherche.setVisible(false);
 	}
 	
 	@FXML
@@ -125,13 +165,13 @@ public class ControllerMaterielListe  {
 		modelMateriel.actualiserListe();
 		managerGui.showView(EnumView.MaterielListe);
 	}
-	
+
 	@FXML
 	private void doAjouterUnmateriel() {
 		modelMateriel.preparerAjouter();
 		managerGui.showView(EnumView.MaterielForm);
 	}
-	
+
 	@FXML
 	private void doDistribuerMateriel() {
 		managerGui.showView(EnumView.MaterielDistribuer);

@@ -35,10 +35,11 @@ public enum EnumView implements IEnumView {
 	PosteRechercher     ("poste/ViewPosteRechercher.fxml"),
 	PosteAttribuerBenevole	("poste/ViewAttribuerBenevole.fxml"),
 	MaterielListe       ("materiel/ViewMaterielListe.fxml"),
-	MaterielForm       ("materiel/ViewMaterielForm.fxml")
+	MaterielForm       ("materiel/ViewMaterielForm.fxml"),
+	MaterielRechercher     ("materiel/ViewMaterielRechercher.fxml"),
+	MaterielDistribuer	("materiel/ViewDistribuerMateriel.fxml"),
 	;
 
-	
 	// Champs
 	
 	private String		path;
