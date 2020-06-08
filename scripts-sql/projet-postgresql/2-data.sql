@@ -20,9 +20,11 @@ DELETE FROM plat;
 -- Compte
 
 INSERT INTO compte (idcompte, pseudo, motdepasse, email ) VALUES 
-  (1, 'geek', 'geek', 'geek@3il.fr' ),
-  (2, 'chef', 'chef', 'chef@3il.fr' ),
-  (3, 'job', 'job', 'job@3il.fr' );
+  (1, 'dreamdev', 'dreamdev', 'dreamdev@3il.fr' ),
+  (2, 'jordan', 'jordan', 'jordan@3il.fr' ),
+  (3, 'zidane', 'zidane', 'zidane@3il.fr' ),
+  (4, 'lindsey', 'lindsey', 'lindsey@3il.fr' ),
+  (5, 'laurent', 'laurent', 'laurent@3il.fr' );
 
 ALTER TABLE compte ALTER COLUMN idcompte RESTART WITH 4;
 	
@@ -31,8 +33,11 @@ ALTER TABLE compte ALTER COLUMN idcompte RESTART WITH 4;
 INSERT INTO role (idcompte, role) VALUES 
   ( 1, 'ADMINISTRATEUR' ),
   ( 1, 'UTILISATEUR' ),
-  ( 2, 'UTILISATEUR' ),
-  ( 3, 'UTILISATEUR' );
+  ( 2, 'ADMINISTRATEUR' ),
+  ( 3, 'UTILISATEUR' ),
+  ( 4, 'UTILISATEUR' ),
+  ( 5, 'UTILISATEUR' ),
+  ( 2, 'UTILISATEUR' );
 
 -- Competition
 
