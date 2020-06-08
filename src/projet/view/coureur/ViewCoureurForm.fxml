@@ -137,7 +137,7 @@
                            <children>
                               <TabPane prefHeight="300.0" prefWidth="340.0" tabClosingPolicy="UNAVAILABLE">
                                 <tabs>
-                                  <Tab text="Untitled Tab 1">
+                                  <Tab text="Informations personnelles">
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
@@ -180,7 +180,7 @@
                                           </AnchorPane>
                                     </content>
                                   </Tab>
-                                  <Tab text="Untitled Tab 2">
+                                  <Tab text="Informations pratiques">
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
@@ -245,10 +245,8 @@
          <children>
             <VBox layoutX="15.0" layoutY="239.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#doRechercherUneEquipe" prefHeight="30.0" prefWidth="250.0" text="Rechercher une équipe" />
                   <Button mnemonicParsing="false" onAction="#doListerToutesLesEquipes" prefHeight="30.0" prefWidth="250.0" text="Lister toutes les équipes" />
                   <Button disable="true" mnemonicParsing="false" onAction="#doAjouterUneEquipe" prefHeight="30.0" prefWidth="250.0" text="Ajouter une équipe" />
-                  <Button mnemonicParsing="false" onAction="#doAffilierUneEquipeAuneCompetition" prefHeight="30.0" prefWidth="250.0" text="Affilier un coureur à une compétition" />
                </children>
             </VBox>
             <HBox layoutX="12.0" layoutY="12.0" prefHeight="37.0" prefWidth="200.0">
@@ -256,8 +254,8 @@
                   <Circle fill="DODGERBLUE" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="141.0" text="Pseudo" />
-                        <Label layoutX="14.0" layoutY="18.0" prefHeight="17.0" prefWidth="141.0" text="Email" />
+                        <Label layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="141.0" styleClass="pseudo_mail_text" text="Pseudo" />
+                        <Label layoutX="14.0" layoutY="18.0" prefHeight="17.0" prefWidth="141.0" styleClass="pseudo_mail_text" text="Email" />
                      </children>
                   </AnchorPane>
                </children>

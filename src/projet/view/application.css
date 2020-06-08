@@ -9,7 +9,7 @@
 
 
 .message-accueil {
-    -fx-background-color: rgb(141,141,199);
+    -fx-background-color: rgba(141,141,199,1);
     -fx-padding: 10;
     -fx-border-color: white; 
     -fx-border-width: 1;
@@ -38,6 +38,13 @@
 .label_de_listes{
 	-fx-font-size: 12;
 	-fx-font-weight: bold;
+	-fx-text-fill: rgba(255,255,255,1);
+	-fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.9),10,0,0,0);
+}
+
+.pseudo_mail_text{
+	-fx-font-weight: bold;
+	-fx-font-size: 13;
 	-fx-text-fill: rgba(255,255,255,1);
 	-fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.9),10,0,0,0);
 }

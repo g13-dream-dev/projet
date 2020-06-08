@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" styleClass="arriere-plan" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.systeme.ControllerInfo">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" styleClass="arriere-plan" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.systeme.ControllerInfo">
    <children>
       <Label fx:id="labelTitre" alignment="CENTER" layoutX="424.0" layoutY="36.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" text="Titre" AnchorPane.leftAnchor="424.0" AnchorPane.rightAnchor="423.0" AnchorPane.topAnchor="36.0">
          <font>
@@ -19,7 +19,7 @@
       <Label fx:id="labelMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="445.0" layoutY="69.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="message-accueil" text="Message" />
       <AnchorPane layoutX="108.0" layoutY="120.0" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: rgba(0,0,0,0.3);">
          <children>
-            <GridPane alignment="CENTER" layoutX="100.0" layoutY="25.0" style="-fx-background-color: trenparent;">
+            <GridPane alignment="CENTER" layoutX="100.0" layoutY="25.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="300.0" prefWidth="200.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="300.0" prefWidth="200.0" />

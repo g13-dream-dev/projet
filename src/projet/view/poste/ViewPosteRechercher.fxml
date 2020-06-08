@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" styleClass="arriere-plan" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.poste.ControllerPosteRechercher">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" styleClass="arriere-plan" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.poste.ControllerPosteRechercher">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="280.0" styleClass="barre-fonctionalites">
          <children>
@@ -30,8 +30,8 @@
                   <Circle fill="DODGERBLUE" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="141.0" text="Pseudo" />
-                        <Label layoutX="14.0" layoutY="18.0" prefHeight="17.0" prefWidth="141.0" text="Email" />
+                        <Label layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="141.0" styleClass="pseudo_mail_text" text="Pseudo" />
+                        <Label layoutX="14.0" layoutY="18.0" prefHeight="17.0" prefWidth="141.0" styleClass="pseudo_mail_text" text="Email" />
                      </children>
                   </AnchorPane>
                </children>

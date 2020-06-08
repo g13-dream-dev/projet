@@ -138,13 +138,8 @@ public class ControllerBenevoleListe {
 	}
 	
 	@FXML
-	private void doAfilierUnBenevoleAunPoste() {
-		
-	}
-	
-	@FXML
-	private void doAfilierUnBenevoleAuneCompetition() {
-		
+	private void doAffecterDesPostesAuxBenevoles() {
+		managerGui.showView(EnumView.BenevoleAttribuerPoste);
 	}
 
 }

@@ -17,8 +17,7 @@
                <children>
                   <Button disable="true" mnemonicParsing="false" onAction="#doListerTousLesBenevoles" prefHeight="30.0" prefWidth="250.0" text="Lister tous les bénévoles" />
                   <Button mnemonicParsing="false" onAction="#doAjouterUnBenevole" prefHeight="30.0" prefWidth="250.0" text="Ajouter un bénévole" />
-                  <Button mnemonicParsing="false" onAction="#doAfilierUnBenevoleAuneCompetition" prefHeight="30.0" prefWidth="250.0" text="Afilier un bénévole à une compétition" />
-                  <Button mnemonicParsing="false" onAction="#doAfilierUnBenevoleAunPoste" prefHeight="30.0" prefWidth="250.0" text="Afilier un bénévole à un poste" />
+                  <Button mnemonicParsing="false" onAction="#doAffecterDesPostesAuxBenevoles" prefHeight="30.0" prefWidth="250.0" text="Affecter des postes aux bénévoles" />
                </children>
             </VBox>
             <HBox layoutX="12.0" layoutY="12.0" prefHeight="37.0" prefWidth="200.0">
@@ -26,8 +25,8 @@
                   <Circle fill="DODGERBLUE" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="141.0" text="Pseudo" />
-                        <Label layoutX="14.0" layoutY="18.0" prefHeight="17.0" prefWidth="141.0" text="Email" />
+                        <Label layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="141.0" styleClass="pseudo_mail_text" text="Pseudo" />
+                        <Label layoutX="14.0" layoutY="18.0" prefHeight="17.0" prefWidth="141.0" styleClass="pseudo_mail_text" text="Email" />
                      </children>
                   </AnchorPane>
                </children>

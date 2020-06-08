@@ -10,16 +10,15 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" styleClass="arriere-plan" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.poste.ControllerAttribuerBenevole">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" styleClass="arriere-plan" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.benevole.ControllerAttribuerBenevole">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="280.0" styleClass="barre-fonctionalites">
          <children>
             <VBox layoutX="15.0" layoutY="239.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#doRechercherUnPoste" prefHeight="30.0" prefWidth="250.0" text="Rechercher un poste" />
-                  <Button mnemonicParsing="false" onAction="#doListerTousLesPostes" prefHeight="30.0" prefWidth="250.0" text="Lister tous les postes" />
-                  <Button mnemonicParsing="false" onAction="#doAjouterUnPoste" prefHeight="30.0" prefWidth="250.0" text="Ajouter un poste" />
-                  <Button disable="true" mnemonicParsing="false" onAction="#doAttribuerDesPostesAuxBenevoles" prefHeight="30.0" prefWidth="250.0" text="Attribuer des postes aux bénévoles" />
+                  <Button mnemonicParsing="false" onAction="#doListerTousLesBenevoles" prefHeight="30.0" prefWidth="250.0" text="Lister tous les postes" />
+                  <Button mnemonicParsing="false" onAction="#doAjouterUnBenevole" prefHeight="30.0" prefWidth="250.0" text="Ajouter un poste" />
+                  <Button disable="true" mnemonicParsing="false" onAction="#doAffecterDesPostesAuxBenevoles" prefHeight="30.0" prefWidth="250.0" text="Affecter des postes aux bénévoles" />
                </children>
             </VBox>
             <HBox layoutX="12.0" layoutY="12.0" prefHeight="37.0" prefWidth="200.0">
