@@ -89,7 +89,9 @@
 					$stmt4->bindValue(':datedelivrance',$datepermis);	
 					$stmt4->execute();
 
-					
+							echo"<script type='text/javascript'> alert('Vous avez été bien inscrit(e) ');
+
+					</script>";
 
 
 
@@ -104,7 +106,7 @@
 		}
 		else
 		{
-			echo " svp veuillez remplir0 tous les champs";
+			echo " svp veuillez remplir tous les champs";
 		}
 
 ?>
@@ -139,7 +141,7 @@
 		 <br>
 		<label for='sexe1' >Sexe</label>
 		<input type="radio" name="sexe"  value='Homme'>Homme
-		<input type="radio" name="sexe"  value='Femme'>Femme
+		<input type="radio" name="sexe" checked  value='Femme'>Femme
 		
 		<br>
 
@@ -153,11 +155,11 @@
 		 <br>
 
 		  <label for="course"> Choix de la course</label>
-			<input type='radio' name='course' value='1'>Mimi-bol d'air
+			<input type='radio' name='course' checked  value='1'>Mimi-bol d'air
 				<input type='radio' name='course' value='2'>Bol d'air
 
 			<br>
-		 <input type='checkbox' name='condition'> Condition d'utilisation
+		 <input type='checkbox' name='condition' checked > Condition d'utilisation
 		 <br>
 		 <br>
 		 <button type="submit" class='btn btn-primary form-control'>Enregistrer</button>
@@ -167,12 +169,6 @@
 
 
 </body>
-<?php 
-	
-			
-			
-			echo" insertion de benevole reussie";
 
-?>
 	
 </html>
