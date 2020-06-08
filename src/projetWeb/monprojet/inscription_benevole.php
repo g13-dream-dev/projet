@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>inscription coureur</title>
+	<title>inscription benevole</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+
+  <meta charset="UTF-8">
+		
 </head>
 <body>
 
@@ -23,9 +28,8 @@
 			$permis=$_POST["permis"];
 			$datepermis=$_POST["datepermis"];
 			$conditions=$_POST["condition"];
+			$course=$_POST["course"];
 
-			echo " hello";
-			echo $nom;
 			echo " <br>";
 
 			//requette d'insertio des donnees 
@@ -38,34 +42,61 @@
 									 LIMIT 1');
 
 
+			$stmt3= $con->prepare('INSERT INTO dreamdev.benevole(idbenevole,permanent,idcompetition)
+						VALUES(:idbenevole,:permanent,:idcompetition)');
+
+						//pour les permis 
+			$stmt4=$con->prepare('INSERT INTO dreamdev.permis(idpermis,numero,datedelivrance)
+						VALUES (:idpermis,:numero,:datedelivrance)');
+
+			$stmt5=$con->prepare('SELECT idbenevole FROM benevole ORDER BY idbenevole DESC
+									 LIMIT 1');
+		
+
+
 			try
 			{
 
 				
 					$stmt->bindValue(':nom',$nom);
 					$stmt->bindValue(':prenom',$prenom);
-
 					$stmt->bindValue(':sexe',$sexe);	
 					$stmt->bindValue(':naissance',$datenaiss);
 					$stmt->bindValue(':telephone', $numtele);	
 					$stmt->bindValue(':adresse', $adresse);
 					$stmt->bindValue(':codepostal', $codepostal);	
 					$stmt->bindValue(':email', $email);	
+					$stmt->execute();//enregistrement de la personne 
 
-					$stmt->execute();
-					$stmt2->execute();
-					$id= $stmt2->fetch();
 
-					$stmt3=$con->prepare('INSERT INTO benevole(idbenevole,permanent)
-										VALUES(:idbenevole,:permanent)');
+					$stmt2->execute();//recuperation de l'id de la personne 
+					$id= $stmt2->fetch();//reponse sur l'id personne
 
-					$stmt3->bindValue(':idbenevole','$id[0]');	
-					$stmt3->bindValue(':permanent', 'false');	
-					echo" insertion de benevole reussie";
+
+					//pasage des valeurs dans la table benevole 
+					$stmt3->bindValue(':idbenevole',$id[0]);	
+					$stmt3->bindValue(':permanent','false');	
+					$stmt3->bindValue(':idcompetition',$course);	
+					$stmt3->execute(); 
+
+					//recupêrer l'idbenevole
+					$stmt5->execute();
+					$idbenevole=$stmt5->fetch();
+
+					//insertion de permis
+					$stmt4->bindValue(':idpermis',$idbenevole[0]);
+					$stmt4->bindValue(':numero',$numtele);
+					$stmt4->bindValue(':datedelivrance',$datepermis);	
+					$stmt4->execute();
+
 					
-			}
+
+
+
+			}		
 			catch(Exception $e)
 			{
+
 					echo $e->getMessage();
 			}
 			
@@ -73,91 +104,75 @@
 		}
 		else
 		{
-			echo " svp veuillez remplir tous les champs";
+			echo " svp veuillez remplir0 tous les champs";
 		}
 
 ?>
-<form name="form1" method="POST" action=''>
-	Nom <input type="text" name="nom"><br>
-	Prenom <input type="text" name="prenom"><br>
-	Date de naissance 
-	<input type="text" name="datenaiss">
-	<br>
-	
-	Telephone 
-	<input type="number" name="numtel">
-	<br>
-	Adresse <input type="text" name="adresse"><br>
-	Code postal <input type="text" name="codepostal"><br>
-	Email <input type="Email" name="email"><br>
-	Sexe 
-	<input type="radio" name="sexe" value='Homme'>Homme
-	<input type="radio" name="sexe" value='Femme'>Femme
-	<br>
-	Permis de conduire 
-	<br>
-	Numero
-	<input type="text" name="permis">
-	<br>
-	d=Date de delivrance <input type="text" name="datepermis">
-	<br>
-
-	<input type="checkbox" name="condition" value='yes'>
-	Valier les conditions de la course.
-	<br> 
 
 
 
-	<button type="submit">VALIDER</button>
+<div class="class-group" id="cadre">
+	<form name="form1" method="POST" action=''>
+		
+		<center><h2><b>AJOUT D'UN BENEVOLE</b></h2></center>
+		
+		<label for='nom'>Nom</label>
+		 <input type="text" class='form-control' name="nom" value="berrin1">
 
-</form>
+		<label for='prenom1'>Prenom </label>
+		<input type="text" class='form-control' name="prenom" value="pieere1">
 
-<table border="1">
+		<label for='datenaiss'>Date de naissance</label> 
+		<input type="text" class='form-control'name="datenaiss" value="14/10/2003">
+		
+		<label for='numtel' >Telephone</label> 
+		<input type="number"class='form-control' name="numtel" value="1111155555">
+		
+		<label for='adresse1'>Adresse</label>
+		 <input type="text" name="adresse" class='form-control' value="19 rue bonbon1">
 
-<tr>
-	<td>id personne </td>
-	<td>nom </td>
-	<td>prenom </td>
-	<td>Sexe </td>
-	<td>Date de naissance</td>
-	<td>Telephone </td>
-	<td>Adresse </td>
-	<td>Code postale  </td>
-	<td> E-mail </td>
-	<td>Code postale  </td>
-	<td> E-mail </td>
-</tr>
-</tr>
+		<label for='codepostal1'>Code postal</label>
+		 <input type="number" name="codepostal" class='form-control' value="10">
 
+		<label for='email1'>Email</label>
+		 <input type='Email' name="email" class='form-control' value="zzz@gamiloooooo.com">
+		 <br>
+		<label for='sexe1' >Sexe</label>
+		<input type="radio" name="sexe"  value='Homme'>Homme
+		<input type="radio" name="sexe"  value='Femme'>Femme
+		
+		<br>
 
-<?php
+		<label for='numero'>Numero du permis de conduire</label>
+		<input type="text"  class='form-control' name="permis" value="eeee111rrr11">
 
-		$stmt = $con->prepare("SELECT * FROM personne INNER JOIN benevole ON personne.idpersonne=benevole.idbenevole");
+		
+		<label for='datepermis1'>Date de delivrance du permis</label>
+		 <input type="text"  class='form-control' name="datepermis" value="14/04/2014">
 
-		if ($stmt->execute()) {
-		  while ($row = $stmt->fetch()) {
-		    echo "<tr>";
-		    echo "<td> $row[0]</td>";
-		    echo " <td>$row[1] </td>";
-		     echo " <td>$row[2] </td>";
-		      echo " <td>$row[3] </td>";
-		       echo " <td>$row[4] </td>";
-		        echo " <td>$row[5] </td>";
-		         echo " <td>$row[6] </td>";
-		           echo " <td>$row[7] </td>";
-		            echo " <td>$row[8] </td>";
-		            echo " <td>$row[9] </td>";
-		            echo " <td>$row[10] </td>";
-		     }
-		    }
+		 <br>
 
-?>
+		  <label for="course"> Choix de la course</label>
+			<input type='radio' name='course' value='1'>Mimi-bol d'air
+				<input type='radio' name='course' value='2'>Bol d'air
 
+			<br>
+		 <input type='checkbox' name='condition'> Condition d'utilisation
+		 <br>
+		 <br>
+		 <button type="submit" class='btn btn-primary form-control'>Enregistrer</button>
+	</form>
 
-</table>
-
+</div>
 
 
 </body>
+<?php 
+	
+			
+			
+			echo" insertion de benevole reussie";
+
+?>
 	
 </html>

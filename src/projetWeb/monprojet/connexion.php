@@ -10,7 +10,7 @@
 		$con->exec('SET search_path TO dreamdev');
 
 			
-			echo " <br> connection a la bd reussie <br>";
+			//echo " <br> connection a la bd reussie <br>";
 		}
 		catch( Exception $e)
 		{

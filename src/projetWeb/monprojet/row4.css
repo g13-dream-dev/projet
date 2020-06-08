@@ -34,8 +34,8 @@ margin-left: 500px;
 div#crcl_jaune{
     position: absolute;
     background: rgb(0,0,0);
-    opacity: 0.4;
-    border-radius: 50%;
+    opacity: 0;
+    border-radius: 100%;
     width: 300px;
     height: 300px;
     margin: -30px;

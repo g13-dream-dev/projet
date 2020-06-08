@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListeSimple" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2a057aac-3f7c-4674-8ea6-afade940af0f">
-	<property name="com.jaspersoft.studio.data.sql.tables">
-		<![CDATA[cGVyc29ubmUgLDE3NSwxNSwxZGNkODUwNS1mNjY3LTQwZjItYmJmMS0zMTBjMTdmMzg4MDQ7YmVu
-ZXZvbGUgLDE1LDkzLGJjMTg1ODgxLTBlZDYtNDkwOS1iNWI3LTg3MTg3YmM1M2UyNzs=]]>
-	</property>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PostgreSQL-dreamdev"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="dreamdev"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT personne.idpersonne,
 	personne.nom AS Nom,
@@ -58,10 +55,6 @@ ORDER BY personne.nom DESC,
 	</background>
 	<title>
 		<band height="64" splitType="Stretch">
-			<image>
-				<reportElement x="2" y="0" width="128" height="51" uuid="28f89b4d-1b2b-4c37-9b8a-d3dd792d9ff0"/>
-				<imageExpression><![CDATA["C:/Users/tchea/Downloads/logo_ckc.png"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement key="" x="184" y="17" width="371" height="31" uuid="bda2c02d-c07a-44a0-b7a2-ffd4231f4aba"/>
 				<textElement>
@@ -69,6 +62,10 @@ ORDER BY personne.nom DESC,
 				</textElement>
 				<text><![CDATA[LISTE DES BENEVOLES]]></text>
 			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="140" height="60" uuid="247dc7f4-15ce-491e-88aa-74eacfa12f33"/>
+				<imageExpression><![CDATA["/etats/logo_ckc.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
